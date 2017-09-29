@@ -1,6 +1,7 @@
 <!-- 
 db.php is a PhP file created to simply connect to the 
 10.10.7.88 database. Note that the port is :8080
+hihi
 -->
 
 <?php
