@@ -6,7 +6,7 @@
 
 
 <?php
-	//page title hi hi hi hi 
+	//page title hi hi hi hi hihi
 	include('db.php');
 
 	$conn = new mysqli('10.10.7.165', 'root', 'dgklppmarist');
