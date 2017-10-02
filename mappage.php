@@ -17,7 +17,7 @@
             padding: 0;
         }
         header {
-            color: #1755b7;
+            color: #ffffff;
             background-color: #103570;
             text-align: center;
             border-width: 20px;
@@ -28,7 +28,7 @@
   <body>
     <header>
         <img src="img/logo.png" align="center" style="width:10%;height:10%;padding-left:450px;padding-right:430px;">
-        <a href="profilepage.php" vertical-align="text-top">Profile</a>
+        <a color=#ffffff href="profilepage.php" vertical-align="text-top">Profile</a>
     </header>
     <div id="map"></div>
     <script>
@@ -124,6 +124,7 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 40.7128, lng: -74.0059},
           zoom: 9,
+          fullscreenControl: false,
           mapTypeControlOptions: {
             mapTypeIds: ['styled_map', 'satellite']
           }
