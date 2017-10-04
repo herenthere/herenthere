@@ -13,7 +13,7 @@ profilepage.php is the profile page of any registered user.
 They can see the details on each of their roadtrips, modify
 them and share them with other people. The rating of each
 roadtrip is based on the ratings of each user who has seen
-the roadtrip. what what
+the roadtrip. 
 -->
 
 <!DOCTYPE html>
