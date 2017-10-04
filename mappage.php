@@ -18,7 +18,7 @@
         }
         header {
             color: #ffffff;
-            background-color: #103570;
+            background-color: #5483ce;
             text-align: center;
             border-width: 20px;
             border-bottom: 5px solid black;
@@ -27,7 +27,7 @@
   </head>
   <body>
     <header>
-        <img src="img/logo.png" align="center" style="width:10%;height:10%;padding-left:450px;padding-right:430px;">
+        <a type="button" href="mappage.php"><img src="img/logo.png" style="width:10%;height:10%;padding-left:450px;padding-right:430px;"></a>
         <a color=#ffffff href="profilepage.php" vertical-align="text-top">Profile</a>
     </header>
     <div id="map"></div>
