@@ -1,3 +1,21 @@
+<!--
+Marist College - Capping Project - Prof. Arias
+HereNThere
+==========================
+Juan Diaz
+Francesco Galletti
+Timbille Kulendi
+Kulvinder Lotay
+Tashi Palden
+Joey Pupel  
+==========================
+profilepage.php is the profile page of any registered user.
+They can see the details on each of their roadtrips, modify
+them and share them with other people. The rating of each
+roadtrip is based on the ratings of each user who has seen
+the roadtrip.
+-->
+
 <!DOCTYPE html>
 <html>
     <title>HereNThere</title>
@@ -98,9 +116,6 @@
     }
 ?>
 
-TODO
-make profile pic rounded
-
 <HTML>
 
 <body>
@@ -108,4 +123,14 @@ make profile pic rounded
 
 </body>
 </HTML>
+-->
+
+<!--
+=========================
+======  TODO    =========
+
+- Height maps needs to be scalable, use % instead of px.
+- Try pop ups
+- Put destinations
+- Put search location bar
 -->
