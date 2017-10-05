@@ -33,13 +33,22 @@ this page.
         height: 96%;
         margin: 0;
         padding: 0;
+        background-color: transparent;
     }
+
+    body {
+        background:url('img/backgroundhomepage.png');
+        background-size: 150%;
+        background-repeat: no-repeat;
+    }
+
     header {
+        background-image: url('img/cover.png');
+        background-size: 75%;
         color: #ffffff;
-        background-color: #5483ce;
+        background-color: transparent;
         text-align: center;
-        border-width: 20px;
-        border-bottom: 5px solid black;
+        height: 75px;
     }
     </style>
   </head>
@@ -47,8 +56,8 @@ this page.
   <body>
 
     <header>
-        <a type="button" href="mappage.php"><img src="img/logo.png" style="width:10%;height:10%;padding-left:450px;padding-right:430px;"></a>
-        <a color=#ffffff href="profilepage.php" vertical-align="text-top">Profile</a>
+      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:75px;align:center;"></a>
+      <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
     </header>
     <div id="map"></div>
       <script>

@@ -21,31 +21,37 @@ the roadtrip.
     <title>HereNThere</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         div.container {
             width: 100%;
         }
 
         div.header1 { 
+            background-image: url('img/cover.png');
+            background-size: 75%;
             color: #ffffff;
-            background-color: #5483ce;
+            background-color: transparent;
             text-align: center;
-            border-width: 20px;
-            border-bottom: 5px solid black;
+            height: 75px;
         }
 
         div.header2 {
-            background-image:url('img/profile.jpg'); /*tim old stuff*/
+            background-image:url('img/coverpic.jpg'); /*tim old stuff*/
             width: 100%; /*tim old stuff, to check with photo*/
-            height: auto; /*tim old stuff, to check with photo*/
+            height: 250px; /*tim old stuff, to check with photo*/
             text-align: center;
             border-bottom: 5px solid black;
         }
 
         html, body {
-                height: 96%;
-                margin: 0;
-                padding: 0;
+            background: #214682;
+            height: 96%;
+            margin: 0;
+            padding: 0;
         }
 
         table, th, td {
@@ -57,20 +63,24 @@ the roadtrip.
         }
 
         th {
-            color: #66c2ff;
+            color: #99d5fc;
+        }
+
+        tr {
+            color: #4b92c1;
         }
     </style>
   
     <body>
         <div class="header1">
-            <a type="button" href="mappage.php"><img src="img/logo.png" style="width:10%;height:10%;padding-left:450px;padding-right:430px;"></a>
-            <a color=#ffffff href="mappage.php" vertical-align="button-top">Map Page</a>
+            <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:75px;align:center;"></a>
+            <a href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
         </div>
         
         <div class="header2">
             <br>
-            <img src="img/profile.jpg" alt="?" height="250" width="250">
-            <h1>Timbille Kulendi</h1>
+            <img src="img/profile.jpg" alt="?" height="150" width="150" class="img-circle">
+            <h1 style="color: #214682">Timbille Kulendi</h1>
         </div>
          
         <div class="container">
@@ -133,4 +143,5 @@ the roadtrip.
 - Try pop ups
 - Put destinations
 - Put search location bar
+- color tables, follow https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_table_contextual&stacked=h
 -->

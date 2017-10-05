@@ -12,4 +12,7 @@ db.php is a PhP file created to simply connect to the
 	// change of francesco
 	// francesco2
 	// hi francesco test
+	
+	// TODO
+	// put jquery and all bootstrap stuff in here, so include db.php does all
 ?>
