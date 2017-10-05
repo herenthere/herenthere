@@ -9,7 +9,7 @@ Kulvinder Lotay
 Tashi Palden
 Joey Pupel  
 ==========================
-homepage.php is....
+homepage.php is the page...
 -->
 
 <!DOCTYPE html>
