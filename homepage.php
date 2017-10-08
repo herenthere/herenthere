@@ -9,7 +9,9 @@ Kulvinder Lotay
 Tashi Palden
 Joey Pupel  
 ==========================
-homepage.php is the page...
+homepage.php is the page where the user first goes in.
+The user can set a departure and destination, click GO
+and go to the mappage.
 -->
 
 <!DOCTYPE html>
