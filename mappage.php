@@ -14,6 +14,8 @@ see the details of their trips, see the points of interests
 based on their filters and range selections, and can explore
 different roadtrips. All the booking and planning is done on
 this page.
+
+Google Maps API v3
 -->
 
 <!DOCTYPE html>
@@ -26,7 +28,7 @@ this page.
     /* Always set the map height explicitly to define the size of the div
     * element that contains the map. */
     #map {
-        height: 100%;
+        height: 97%;
     }
     /* Optional: Makes the sample page fill the window. */
     html, body {
@@ -35,83 +37,110 @@ this page.
         padding: 0;
         background-color: transparent;
     }
+    .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
 
-    #floating-panel {
+      #origin-input,
+      #destination-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 230px;
+      }
+
+      #floating-panel {
         position: absolute;
-        top: 17%;
-        left: 0.75%;
+        top: 15%;
+        left: 1%;
         z-index: 5;
         background-color: #214682;
         padding: 5px;
-        border: 1px solid #ffffff;
-        color: #ffffff;
-        text-align: center;
+        border: 1px solid #fff;
         font-family: 'Roboto','sans-serif';
         line-height: 30px;
         padding-left: 10px;
-    }
-    
-    body {
+        height: 55%;
+        width: 20%;
+      }
+
+      #origin-input:focus,
+      #destination-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #mode-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+        margin-bottom: 150px;
+      }
+
+      #mode-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      body {
         background:url('img/backgroundhomepage.png');
         background-size: 150%;
         background-repeat: no-repeat;
-    }
+      }
 
-    header {
-        background-image: url('img/cover.png');
-        background-size: 75%;
-        color: #ffffff;
-        background-color: transparent;
-        text-align: center;
-        height: 75px;
-    }
+      header {
+          background-image: url('img/cover.png');
+          background-size: 75%;
+          color: #ffffff;
+          background-color: transparent;
+          text-align: center;
+          height: 75px;
+      }
     </style>
   </head>
-
   <body>
 
     <header>
-      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:75px;align:center;"></a>
-      <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
+        <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:75px;align:center;"></a>
+        <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
     </header>
 
-    <div id="floating-panel">
-    <b>Start: </b>
-    <select id="start">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
-    <br><b>End: </b>
-    <select id="end">
-      <option value="chicago, il">Chicago</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
-    </div>
-
     <div id="map"></div>
-      <script>
-      function initMap() {
 
+    <div id="floating-panel">
+      <input id="origin-input" class="controls" type="text"
+        placeholder="Enter an origin location">
+
+      <input id="destination-input" class="controls" type="text"
+        placeholder="Enter a destination location">
+
+      <div id="mode-selector" class="controls">
+        <input type="radio" name="type" id="changemode-walking" checked="checked"> <!-- TODO to change -->
+        <label for="changemode-walking">Restaurants</label>
+
+        <input type="radio" name="type" id="changemode-transit">
+        <label for="changemode-transit">Hotel</label>
+
+        <input type="radio" name="type" id="changemode-driving">
+        <label for="changemode-driving">Points of Interest</label>
+      </div>
+
+    <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initMap() {
         // Create a new StyledMapType object, passing it an array of styles,
         // and the name to be displayed on the map type control.
         var styledMapType = new google.maps.StyledMapType(
@@ -196,93 +225,100 @@ this page.
                 },
               ],
             {name: 'Map'});
-        
-        var searchpoint = {lat: 40.7128, lng: -74.0059};
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: searchpoint,
+            
+          var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 40.7128, lng: -74.0059},
           fullscreenControl: false,
+          mapTypeControlOptions: {
+            mapTypeIds: ['styled_map', 'satellite'],
+            position: google.maps.ControlPosition.TOP_RIGHT  
+          },
           zoom: 9
         });
-        directionsDisplay.setMap(map);
 
-        function initMap() {
-          var directionsService = new google.maps.DirectionsService;
-          var directionsDisplay = new google.maps.DirectionsRenderer;
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
-            fullscreenControl: false,
-            center: {lat: 40.7128, lng: -74.0059}
-          });
-          directionsDisplay.setMap(map);
-  
-          var onChangeHandler = function() {
-            calculateAndDisplayRoute(directionsService, directionsDisplay);
-          };
-          document.getElementById('start').addEventListener('change', onChangeHandler);
-          document.getElementById('end').addEventListener('change', onChangeHandler);
-        }
-  
-        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-          directionsService.route({
-            origin: document.getElementById('start').value,
-            destination: document.getElementById('end').value,
-            travelMode: 'DRIVING'
-          }, function(response, status) {
-            if (status === 'OK') {
-              directionsDisplay.setDirections(response);
-            } else {
-              window.alert('Directions request failed due to ' + status);
-            }
-          });
-        }
+        //Associate the styled map with the MapTypeId and set it to display.
+        map.mapTypes.set('styled_map', styledMapType);
+        map.setMapTypeId('styled_map');
+
+        new AutocompleteDirectionsHandler(map);
       }
 
-      directionsService.route({
-        origin: document.getElementById('start').value,
-        destination: document.getElementById('end').value,
-        waypoints: waypts,
-        optimizeWaypoints: true,
-        travelMode: 'DRIVING'
-      }, function(response, status) {
-        if (status === 'OK') {
-          directionsDisplay.setDirections(response);
-          var route = response.routes[0];
-          var summaryPanel = document.getElementById('directions-panel');
-          summaryPanel.innerHTML = '';
+       /**
+        * @constructor
+       */
+      function AutocompleteDirectionsHandler(map) {
+        this.map = map;
+        this.originPlaceId = null;
+        this.destinationPlaceId = null;
+        this.travelMode = 'DRIVING';
+        var originInput = document.getElementById('origin-input');
+        var destinationInput = document.getElementById('destination-input');
+        var modeSelector = document.getElementById('mode-selector');
+        this.directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.directionsDisplay.setMap(map);
 
-          // For each route, display summary information.
-          for (var i = 0; i < route.legs.length; i++) {
-            var routeSegment = i + 1;
-            summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                '</b><br>';
-            summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-            summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-            summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+        var originAutocomplete = new google.maps.places.Autocomplete(
+            originInput, {placeIdOnly: true});
+        var destinationAutocomplete = new google.maps.places.Autocomplete(
+            destinationInput, {placeIdOnly: true});
+
+        this.setupClickListener('changemode-driving', 'DRIVING');
+
+        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+        this.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(modeSelector);
+      }
+
+      // Sets a listener on a radio button to change the filter type on Places
+      // Autocomplete.
+      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+        var radioButton = document.getElementById(id);
+        var me = this;
+        radioButton.addEventListener('click', function() {
+          me.travelMode = mode;
+          me.route();
+        });
+      };
+
+      AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+        var me = this;
+        autocomplete.bindTo('bounds', this.map);
+        autocomplete.addListener('place_changed', function() {
+          var place = autocomplete.getPlace();
+          if (!place.place_id) {
+            window.alert("Please select an option from the dropdown list.");
+            return;
           }
-        } else {
-          window.alert('Directions request failed due to ' + status);
+          if (mode === 'ORIG') {
+            me.originPlaceId = place.place_id;
+          } else {
+            me.destinationPlaceId = place.place_id;
+          }
+          me.route();
+        });
+
+      };
+
+      AutocompleteDirectionsHandler.prototype.route = function() {
+        if (!this.originPlaceId || !this.destinationPlaceId) {
+          return;
         }
-      });
- 
-      function calcRoute() {
-        var selectedMode = document.getElementById('mode').value;
-        var request = {
-            origin: haight,
-            destination: oceanBeach,
-            // Note that Javascript allows us to access the constant
-            // using square brackets and a string value as its
-            // "property."
-            travelMode: google.maps.TravelMode[selectedMode]
-        };
-        directionsService.route(request, function(response, status) {
-          if (status == 'OK') {
-            directionsDisplay.setDirections(response);
+        var me = this;
+
+        this.directionsService.route({
+          origin: {'placeId': this.originPlaceId},
+          destination: {'placeId': this.destinationPlaceId},
+          travelMode: this.travelMode
+        }, function(response, status) {
+          if (status === 'OK') {
+            me.directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
           }
         });
-      }
+      };
 
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -291,16 +327,13 @@ this page.
           }
         }
       }
-
-
-        
-    </script>
+      </script>
 
     <!--
       Connects the map to the API key that we have registered
-     -->
+    -->
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVAWCWgAiZ_iTjXOVIBoJC0Y-_1xRNos&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVAWCWgAiZ_iTjXOVIBoJC0Y-_1xRNos&callback=initMap&libraries=places">
     </script>
 
   </body>
@@ -315,51 +348,6 @@ this page.
 - Put destinations
 - Put search location bar
 - 23 waypoints MAX - NOTE
-
-      function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
-        });
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
-
-   // Create a map object, and include the MapTypeId to add
-      // to the map type control.
-      var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 40.7128, lng: -74.0059},
-        zoom: 9,
-        fullscreenControl: false,
-        mapTypeControlOptions: {
-          mapTypeIds: ['styled_map', 'satellite']
-        }
-      });
-
-      infowindow = new google.maps.InfoWindow();
-      var service = new google.maps.places.PlacesService(map);
-      service.nearbySearch({
-        location: newyork,
-        radius: 500,
-        type: ['store']
-      }, callback);
-
-      //Associate the styled map with the MapTypeId and set it to display.
-      map.mapTypes.set('styled_map', styledMapType);
-      map.setMapTypeId('styled_map');
-    }
-
-    function callback(results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          createMarker(results[i]);
-        }
-      }
-    }
 
       function createMarker(place) {
         var placeLoc = place.geometry.location;
