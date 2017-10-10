@@ -65,27 +65,29 @@ and go to the mappage.
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
         <h1>Explore and hit the road</h1>
         <p>Select a departure and destination and hit GO!</p>
+        <form action='mappage.php' method='post'>
         <div class="row">
             <div class="col-xs-2 col-md-2 col-lg-2" class="form-group">
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
                 <label for="departure">Departure:</label>
-                <input type="text" class="form-control" id="departure">
+                <input type="text" class="form-control" id="departure" name="departure">
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
                 <label for="destination">Destination:</label>
-                <input type="text" class="form-control" id="destination">
+                <input type="text" class="form-control" id="destination" name="destination">
             </div>
             <div class="col-xs-1 col-md-1 col-lg-1">
                 <br>
-                <button type="button" class="btn btn-primary">GO</button>
+                <input type="submit" class="btn btn-primary" value="GO" name="GO"></button>
             </div>
         </div>
         <ul class="pagination">
-            <button type="button" class="btn btn-primary btn-circle"><img src="img/restauranticon.png" style="width:30px;height:30px;"></button>
-            <button type="button" class="btn btn-success btn-circle"><img src="img/hotelicon.png" style="width:30px;height:30px;"></button>
-            <button type="button" class="btn btn-info btn-circle"><img src="img/pointsofinteresticon.png" style="width:30px;height:30px;"></button>
+            <button type="button" class="btn btn-primary btn-circle" name="resturant"><img src="img/restauranticon.png" style="width:30px;height:30px;"></button>
+            <button type="button" class="btn btn-success btn-circle" name="hotel"><img src="img/hotelicon.png" style="width:30px;height:30px;"></button>
+            <button type="button" class="btn btn-info btn-circle" name="poi"><img src="img/pointsofinteresticon.png" style="width:30px;height:30px;"></button>
         </ul>
+        </form>
     </div>
   </body>
 </html>

@@ -119,21 +119,26 @@ Google Maps API v3
 
     <div id="floating-panel">
       <input id="origin-input" class="controls" type="text"
-        placeholder="Enter an origin location">
+        placeholder="Enter an origin location"
+        value="<?php echo $_POST['departure']; ?>">
 
       <input id="destination-input" class="controls" type="text"
-        placeholder="Enter a destination location">
+        placeholder="Enter a destination location"
+        value="<?php echo $_POST['destination']; ?>">
 
       <div id="mode-selector" class="controls">
-        <input type="radio" name="type" id="changemode-walking" checked="checked"> <!-- TODO to change -->
+        <input type="checkbox" name="type" id="changemode-walking" checked="checked"> <!-- TODO to change -->
         <label for="changemode-walking">Restaurants</label>
 
-        <input type="radio" name="type" id="changemode-transit">
-        <label for="changemode-transit">Hotel</label>
+        <input type="checkbox" name="type" id="changemode-transit">
+        <label for="changemode-transit">Hotel</label
+  >
 
-        <input type="radio" name="type" id="changemode-driving">
+        <input type="checkbox" name="type" id="changemode-driving">
         <label for="changemode-driving">Points of Interest</label>
       </div>
+
+
 
     <script>
       // This example requires the Places library. Include the libraries=places
