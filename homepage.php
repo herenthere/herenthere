@@ -65,7 +65,7 @@ and go to the mappage.
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
         <h1>Explore and hit the road</h1>
         <p>Select a departure and destination and hit GO!</p>
-        <form action='mappage.php' method='post'>
+        <form action="mappage.php" method="post" onkeydown="noGoInput()">
         <div class="row">
             <div class="col-xs-2 col-md-2 col-lg-2" class="form-group">
             </div>
@@ -79,7 +79,7 @@ and go to the mappage.
             </div>
             <div class="col-xs-1 col-md-1 col-lg-1">
                 <br>
-                <input type="submit" class="btn btn-primary" value="GO" name="GO"></button>
+                <input type="submit" class="btn btn-primary" value="GO" id="GO"></button>
             </div>
         </div>
         <ul class="pagination">
@@ -90,6 +90,21 @@ and go to the mappage.
         </form>
     </div>
   </body>
+
+  <script type="text/javascript">
+    function noGoInput(){
+      var originInput=document.getElementById("origin-input");
+      var destinationInput=document.getElementById("destination-input");
+
+      if(originInput.value=="" && destinationInput.value=="") {
+        document.getElementById("GO").disabled=true;
+      }
+      else
+        document.getElementById("GO").disabled=false;
+    }
+
+
+  </script>
   <script>
     
     new AutocompleteDirectionsHandler(map);
