@@ -120,11 +120,17 @@ Google Maps API v3
     <div id="floating-panel">
       <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location"
-        value="<?php echo $_POST['departure']; ?>">
+        value="<?php 
+                    if(isset($_POST['departure'])) {
+                      echo $_POST['departure'];
+                    }?>">
 
       <input id="destination-input" class="controls" type="text"
         placeholder="Enter a destination location"
-        value="<?php echo $_POST['destination']; ?>">
+        value="<?php 
+                    if(isset($_POST['destination'])) {
+                      echo $_POST['destination'];
+                    }?>">
 
       <div id="mode-selector" class="controls">
         <input type="checkbox" name="type" id="changemode-walking" checked="checked"> <!-- TODO to change -->
