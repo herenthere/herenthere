@@ -36,7 +36,7 @@ the roadtrip.
             color: #ffffff;
             background-color: transparent;
             text-align: center;
-            height: 75px;
+            height: 11%;
         }
 
         div.header2 {
@@ -73,8 +73,8 @@ the roadtrip.
   
     <body>
         <div class="header1">
-            <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:75px;align:center;"></a>
-            <a href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
+            <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;"></a>
+            <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
         </div>
         
         <div class="header2">

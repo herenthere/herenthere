@@ -15,7 +15,8 @@ based on their filters and range selections, and can explore
 different roadtrips. All the booking and planning is done on
 this page.
 
-Google Maps API v3 test
+Google Maps API v3
+Google Places API v3
 -->
 
 <!DOCTYPE html>
@@ -104,15 +105,15 @@ Google Maps API v3 test
           color: #ffffff;
           background-color: transparent;
           text-align: center;
-          height: 75px;
+          height: 11%;
       }
     </style>
   </head>
   <body>
 
     <header>
-        <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:75px;align:center;"></a>
-        <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
+      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;"></a>
+      <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden;"></a>
     </header>
 
     <div id="map"></div>
@@ -123,7 +124,8 @@ Google Maps API v3 test
         value="<?php 
                     if(isset($_POST['departure'])) {
                       echo $_POST['departure'];
-                    }?>">
+                    }
+                    ?>">
 
       <input id="destination-input" class="controls" type="text"
         placeholder="Enter a destination location"
@@ -309,7 +311,6 @@ Google Maps API v3 test
           }
           me.route();
         });
-
       };
 
       AutocompleteDirectionsHandler.prototype.route = function() {

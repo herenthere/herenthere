@@ -46,22 +46,22 @@ and go to the mappage.
       
     header {
         background-image: url('img/cover.png');
-        background-size: 75%;
+        background-size: 40%;
         color: #ffffff;
         background-color: transparent;
         text-align: center;
-        height: 175px;
+        height: 12%;
     }
     </style>
   </head>
 
   <body>
     <header>
-        <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:40%;align:center;"></a>
-        <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
+      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;"></a>
+      <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden;"></a>
     </header>
 
-    <br><br> <!-- to delete -->
+    <br><br><br><br> <!-- to delete -->
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
         <h1>Explore and hit the road</h1>
         <p>Select a departure and destination and hit GO!</p>
