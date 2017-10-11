@@ -65,21 +65,21 @@ and go to the mappage.
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
         <h1>Explore and hit the road</h1>
         <p>Select a departure and destination and hit GO!</p>
-        <form action='mappage.php' method='post'>
+        <form action="mappage.php" method="post" id="search" onkeydown="noGoInput()">
         <div class="row">
             <div class="col-xs-2 col-md-2 col-lg-2" class="form-group">
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
                 <label for="departure">Departure:</label>
-                <input type="text" class="form-control" id="origin-input" name="departure">
+                <input type="text" class="form-control" id="origin-input" name="departure" >
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
                 <label for="destination">Destination:</label>
-                <input type="text" class="form-control" id="destination-input" name="destination">
+                <input type="text" class="form-control" id="destination-input" name="destination" >
             </div>
             <div class="col-xs-1 col-md-1 col-lg-1">
                 <br>
-                <input type="submit" class="btn btn-primary" value="GO" name="GO"></button>
+                <input type="submit" class="btn btn-primary" value="GO" id="GO" disabled></button>
             </div>
         </div>
         <ul class="pagination">
@@ -90,6 +90,22 @@ and go to the mappage.
         </form>
     </div>
   </body>
+
+  <script type="text/javascript">
+    function noGoInput(){
+      var originInput=document.getElementById("origin-input");
+      var destinationInput=document.getElementById("destination-input");
+
+      if(originInput.value=="" && destinationInput.value=="") {
+        document.getElementById("GO").disabled=true;
+      }
+      else
+        document.getElementById("GO").disabled=false;
+    }
+
+
+  </script>
+  
   <script>
     
     new AutocompleteDirectionsHandler(map);
