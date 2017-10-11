@@ -5,7 +5,7 @@ db.php is a PhP file created to simply connect to the
 
 <?php
 	//Create connection
-	$conn = mysqli_connect('10.10.7.165','root','dgklppmarist','herenthere');
+	$conn = mysqli_connect('localhost','root','dgklppmarist','herenthere');
 	mysqli_set_charset($conn,'utf8');
 
 	//Hi again tim
