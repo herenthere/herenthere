@@ -96,7 +96,7 @@ and go to the mappage.
       var originInput=document.getElementById("origin-input");
       var destinationInput=document.getElementById("destination-input");
 
-      if(originInput.value=="" && destinationInput.value=="") {
+      if(originInput.value=="" || destinationInput.value=="") {
         document.getElementById("GO").disabled=true;
       }
       else
