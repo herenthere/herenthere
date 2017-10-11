@@ -20,7 +20,7 @@ the roadtrip.
 <?php
     include('db.php');
     
-    $query = 'SELECT FirstName, LastName FROM USERS Where UserID = 1';
+    $sql = 'SELECT FirstName, LastName FROM USER Where UserID = 1';
     $result = $conn->$query($sql);
 
     
