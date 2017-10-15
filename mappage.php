@@ -23,7 +23,10 @@ Google Places API v3
 <html>
   <head>
     <title>HereNThere</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
     <style>
     /* Always set the map height explicitly to define the size of the div
@@ -57,7 +60,7 @@ Google Places API v3
         font-weight: 300;
         padding: 0 11px 0 13px;
         text-overflow: ellipsis;
-        width: 230px;
+        width: 215px;
       }
 
       #floating-panel {
@@ -100,20 +103,108 @@ Google Places API v3
       }
 
       header {
-          background-image: url('img/cover.png');
-          background-size: 75%;
-          color: #ffffff;
-          background-color: transparent;
-          text-align: center;
-          height: 11%;
+        background-image: url('img/cover.png');
+        background-size: 75%;
+        color: #ffffff;
+        background-color: transparent;
+        text-align: center;
+        height: 11%;
+      }
+
+      .modal-header, h4, .close {
+        background-color: #214682;
+        color: white;
+        text-align: center;
+        font-size: 30px;
+      }
+
+      .modal-footer {
+        background-color: #f9f9f9;
       }
     </style>
   </head>
   <body>
 
     <header>
-      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;"></a>
-      <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden;"></a>
+      
+      <!-- Trigger the modal with a button -->
+      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;margin-left: 250px;"></a></div>
+      <button type="button" class="btn btn-default btn-lg" id="myBtn" style="background-color: transparent; border-color: transparent;"><img src="img/profileicon.png" style="width:40px;height:40px; margin-left: 75px;"></button></div>
+           
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-body">
+            <div id="initial-content"> <!-- CODE THAT WILL DISAPPEAR-->
+              <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+              </div>
+              <form role="form">
+                <div class="form-group" style="color: black;">
+                  <label for="username"><span class="glyphicon glyphicon-eye-open"></span> Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group" style="color: black;">
+                  <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter password">
+                </div>
+                <div class="checkbox" style="color: black;">
+                  <label><input type="checkbox" value="" checked>Remember me</label>
+                </div>
+                <button type="submit" href="profilepage.php" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
+              </form>
+              <div class="modal-footer" style="color: black;">
+              <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+              <p>Not a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;" onclick="$('#signup-content').show();$('#initial-content').hide();">Sign Up</a></p>
+            </div>
+            </div>
+            <div id="signup-content" style="display :none;">
+            <form role="form">
+              <div class="modal-header" style="padding:35px 50px;">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><span class="glyphicon glyphicon-lock"></span> Signup</h4>
+              </div>
+               <div class="form-group" style="color: black;">
+                <label for="firstname"><span class="glyphicon glyphicon-user"></span> First Name</label>
+                <input type="text" class="form-control" id="firstname" placeholder="Enter First Name">
+              </div>
+              <div class="form-group" style="color: black;">
+                <label for="lastname"><span class="glyphicon glyphicon-user"></span> Last Name</label>
+                <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
+              </div>
+              <div class="form-group" style="color: black;">
+                <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter Valid E-mail">
+              </div>
+              <div class="form-group" style="color: black;">
+                <label for="username"><span class="glyphicon glyphicon-eye-open"></span> Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter username">
+              </div>
+              <div class="form-group" style="color: black;">
+                <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password">
+              </div>
+              <div class="checkbox" style="color: black;">
+                <label><input type="checkbox" value="" checked>Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
+              </form>
+              <div class="modal-footer" style="color: black;">
+              <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+              <p>Already a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;"onclick="$('#signup-content').hide();$('#initial-content').show();">Login</a></p>
+            </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+      
+              
+        </div>
+      </div> 
     </header>
 
     <div id="map"></div>
@@ -147,9 +238,15 @@ Google Places API v3
       </div>
 
 
-
     <script>
-      // This example requires the Places library. Include the libraries=places
+    
+        $(document).ready(function(){
+            $("#myBtn").click(function(){
+                $("#myModal").modal();
+            });
+        });
+
+// This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
