@@ -50,6 +50,7 @@ Google Places API v3
         height: 32px;
         outline: none;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        
       }
 
       #origin-input,
