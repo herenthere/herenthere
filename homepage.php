@@ -1,6 +1,6 @@
 <!--
 Marist College - Capping Project - Prof. Arias
-HereNThere
+HereNThere || Rights reserved
 ==========================
 Juan Diaz
 Francesco Galletti
@@ -12,56 +12,159 @@ Joey Pupel
 homepage.php is the page where the user first goes in.
 The user can set a departure and destination, click GO
 and go to the mappage.
+==========================
+Google Maps API v3
+Google Places API v3
+==========================
+Version 0.1 - October 13, 2017
+- Trip from point A to B
+- Auto completion in text areas
+- Google Places API v3, implemented
+- Google Maps API v3 (+ skin), implemented
+- Basic homepage, mappage, profile page created
+Version 0.3 - October 20, 2017
+- Login popup
+- Registration popup
+- hashing / encryption - TODO
+- Registration - TODO
+- Database tables for USERS - TODO
+Version 0.5 - October 27, 2017
+- Multiple stops  in a trip - TODO
+- Duration and distance each stop - TODO
 -->
 
 <!DOCTYPE html>
 <html>
   <head>
     <title>HereNThere</title>
+
+    <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+        We are just importing these libraries -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <!-- Link to Bootstrap libraries -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
+    <!--Style has all the CSS and modifications to edit how things look on the screen.
+    For example #map will modify how the Google Maps window looks like. -->
     <style>
-    /* Always set the map height explicitly to define the size of the div
-    * element that contains the map. */
-    #map {
+
+      #map {
         height: 100%;
-    }
-    /* Optional: Makes the sample page fill the window. */
-    html, body {
+      }
+
+      html, body {
         height: 96%;
         margin: 0;
         padding: 0;
-    }
-    
-    body {
+      }
+      
+      body {
         background:url('img/backgroundhomepage.png');
         background-size: 150%;
         background-repeat: no-repeat;
-    }
-      
-    header {
+      }
+        
+      header {
         background-image: url('img/cover.png');
         background-size: 40%;
         color: #ffffff;
         background-color: transparent;
         text-align: center;
         height: 12%;
-    }
+      }
+
     </style>
   </head>
-
+<!-- 
+  ==========================
+  ==========================
+  =====   END STYLE   ======
+  ==========================
+  ==========================
+-->
   <body>
     <header>
-      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;"></a>
-      <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden;"></a>
+      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;margin-left: 250px;"></a></div>
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-default btn-lg" id="myBtn" style="background-color: transparent; border-color: transparent;"><img src="img/profileicon.png" style="width:40px;height:40px; margin-left: 75px;"></button></div>
+      
+      <!-- Modal is another name for popup -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-body">
+
+              <div id="initial-content"> <!-- id= initial-content means that this code will disappear when pressing on Sign Up-->
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                </div>
+                <form role="form">
+                  <div class="form-group" style="color: black;"> <!-- Username LOGIN-->
+                    <label for="username"><span class="glyphicon glyphicon-eye-open"></span> Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                  </div>
+                  <div class="form-group" style="color: black;"> <!-- Password LOGIN-->
+                    <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                  </div>
+                  <div class="checkbox" style="color: black;"> <!-- Remember me checkbox LOGIN-->
+                    <label><input type="checkbox" value="" checked>Remember me</label>
+                  </div>
+                  <button type="submit" href="profilepage.php" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
+                </form>
+                <div class="modal-footer" style="color: black;"> <!-- Footer LOGIN-->
+                  <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                  <p>Not a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;" onclick="$('#signup-content').show();$('#initial-content').hide();">Sign Up</a></p>
+                </div>
+              </div>
+
+              <div id="signup-content" style="display :none;"> <!-- id= signup-content means that this code will disappear when pressing on Login-->
+                <form role="form">
+                  <div class="modal-header" style="padding:35px 50px;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4><span class="glyphicon glyphicon-lock"></span> Signup</h4>
+                  </div>
+                  <div class="form-group" style="color: black;"> <!-- First Name SIGNUP-->
+                    <label for="firstname"><span class="glyphicon glyphicon-user"></span> First Name</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter First Name">
+                  </div>
+                  <div class="form-group" style="color: black;"><!-- Last Name SIGNUP-->
+                    <label for="lastname"><span class="glyphicon glyphicon-user"></span> Last Name</label>
+                    <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
+                  </div>
+                  <div class="form-group" style="color: black;"> <!-- Email SIGNUP-->
+                    <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="Enter Valid E-mail">
+                  </div>
+                  <div class="form-group" style="color: black;"> <!-- Username SIGNUP-->
+                    <label for="username"><span class="glyphicon glyphicon-eye-open"></span> Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                  </div>
+                  <div class="form-group" style="color: black;"> <!-- Password SIGNUP-->
+                    <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                  </div>
+                  <div class="checkbox" style="color: black;"> <!-- Remember checkbox SIGNUP-->
+                    <label><input type="checkbox" value="" checked>Remember me</label>
+                  </div>
+                  <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
+                </form>
+                <div class="modal-footer" style="color: black;">
+                  <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                  <p>Already a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;"onclick="$('#signup-content').hide();$('#initial-content').show();">Login</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <br><br><br><br> <!-- to delete -->
+    <!-- Main elements in the center of the screen -->
+    <br><br><br><br> <!-- to delete, pulls it down in the center but will be BS eventually-->
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
         <h1>Explore and hit the road</h1>
         <p>Select a departure and destination and hit GO!</p>
@@ -90,8 +193,10 @@ and go to the mappage.
         </form>
     </div>
   </body>
-
-  <script type="text/javascript">
+  
+  <script>
+    
+    // Disables the GO button unless use has put info in both text areas.
     function noGoInput(){
       var originInput=document.getElementById("origin-input");
       var destinationInput=document.getElementById("destination-input");
@@ -103,97 +208,91 @@ and go to the mappage.
         document.getElementById("GO").disabled=false;
     }
 
-
-  </script>
-  
-  <script>
-    
     new AutocompleteDirectionsHandler(map);
-     /**
+    /**
         * @constructor
-       */
-       function AutocompleteDirectionsHandler(map) {
-        this.map = map;
-        this.originPlaceId = null;
-        this.destinationPlaceId = null;
-        this.travelMode = 'WALKING';
-        var originInput = document.getElementById('origin-input');
-        var destinationInput = document.getElementById('destination-input');
-        var modeSelector = document.getElementById('mode-selector');
-        this.directionsService = new google.maps.DirectionsService;
-        this.directionsDisplay = new google.maps.DirectionsRenderer;
-        this.directionsDisplay.setMap(map);
+    */
+    function AutocompleteDirectionsHandler(map) {
+      this.map = map;
+      this.originPlaceId = null;
+      this.destinationPlaceId = null;
+      this.travelMode = 'WALKING';
+      var originInput = document.getElementById('origin-input');
+      var destinationInput = document.getElementById('destination-input');
+      var modeSelector = document.getElementById('mode-selector');
+      this.directionsService = new google.maps.DirectionsService;
+      this.directionsDisplay = new google.maps.DirectionsRenderer;
+      this.directionsDisplay.setMap(map);
 
-        var originAutocomplete = new google.maps.places.Autocomplete(
-            originInput, {placeIdOnly: true});
-        var destinationAutocomplete = new google.maps.places.Autocomplete(
-            destinationInput, {placeIdOnly: true});
+      var originAutocomplete = new google.maps.places.Autocomplete(
+          originInput, {placeIdOnly: true});
+      var destinationAutocomplete = new google.maps.places.Autocomplete(
+          destinationInput, {placeIdOnly: true});
 
-        this.setupClickListener('changemode-walking', 'WALKING');
-        this.setupClickListener('changemode-transit', 'TRANSIT');
-        this.setupClickListener('changemode-driving', 'DRIVING');
+      this.setupClickListener('changemode-walking', 'WALKING');
+      this.setupClickListener('changemode-transit', 'TRANSIT');
+      this.setupClickListener('changemode-driving', 'DRIVING');
 
-        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+      this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+      this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
 
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-      }
+      this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+      this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+      this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+    }
 
-      // Sets a listener on a radio button to change the filter type on Places
-      // Autocomplete.
-      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
-        var radioButton = document.getElementById(id);
-        var me = this;
-        radioButton.addEventListener('click', function() {
-          me.travelMode = mode;
-          me.route();
-        });
-      };
+    // Sets a listener on a radio button to change the filter type on Places
+    // Autocomplete.
+    AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+      var radioButton = document.getElementById(id);
+      var me = this;
+      radioButton.addEventListener('click', function() {
+        me.travelMode = mode;
+        me.route();
+      });
+    };
 
-      AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
-        var me = this;
-        autocomplete.bindTo('bounds', this.map);
-        autocomplete.addListener('place_changed', function() {
-          var place = autocomplete.getPlace();
-          if (!place.place_id) {
-            window.alert("Please select an option from the dropdown list.");
-            return;
-          }
-          if (mode === 'ORIG') {
-            me.originPlaceId = place.place_id;
-          } else {
-            me.destinationPlaceId = place.place_id;
-          }
-          me.route();
-        });
-
-      };
-
-      AutocompleteDirectionsHandler.prototype.route = function() {
-        if (!this.originPlaceId || !this.destinationPlaceId) {
+    AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+      var me = this;
+      autocomplete.bindTo('bounds', this.map);
+      autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+        if (!place.place_id) {
+          window.alert("Please select an option from the dropdown list.");
           return;
         }
-        var me = this;
+        if (mode === 'ORIG') {
+          me.originPlaceId = place.place_id;
+        } else {
+          me.destinationPlaceId = place.place_id;
+        }
+        me.route();
+      });
+    };
 
-        this.directionsService.route({
-          origin: {'placeId': this.originPlaceId},
-          destination: {'placeId': this.destinationPlaceId},
-          travelMode: this.travelMode
-        }, function(response, status) {
-          if (status === 'OK') {
-            me.directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      };
+    AutocompleteDirectionsHandler.prototype.route = function() {
+      if (!this.originPlaceId || !this.destinationPlaceId) {
+        return;
+      }
+      var me = this;
+
+      this.directionsService.route({
+        origin: {'placeId': this.originPlaceId},
+        destination: {'placeId': this.destinationPlaceId},
+        travelMode: this.travelMode
+      }, function(response, status) {
+        if (status === 'OK') {
+          me.directionsDisplay.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+    };
   </script>
 
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVAWCWgAiZ_iTjXOVIBoJC0Y-_1xRNos&callback=AutocompleteDirectionsHandler&libraries=places">
-    </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVAWCWgAiZ_iTjXOVIBoJC0Y-_1xRNos&callback=AutocompleteDirectionsHandler&libraries=places">
+  </script>
 
 </html>
 
@@ -202,29 +301,25 @@ and go to the mappage.
 =========================
 ======  TODO    =========
 
-- Logo on top does not show
-- Google maps has text areas for destination? implement google api?
--->
 
 
-<!--
-    TO BLUR THINGS  , PUT IN DIVs
-        -webkit-filter: blur(5px);
-        -moz-filter: blur(5px);
-        -o-filter: blur(5px);
-        -ms-filter: blur(5px);
-        filter: blur(5px);
+TO BLUR THINGS  , PUT IN DIVs
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 
-    Navigation Bar Bootstrap
-        <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Projects</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
-        </div>
+Navigation Bar Bootstrap
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
 -->

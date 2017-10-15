@@ -1,6 +1,6 @@
 <!--
 Marist College - Capping Project - Prof. Arias
-HereNThere
+HereNThere || Rights reserved
 ==========================
 Juan Diaz
 Francesco Galletti
@@ -14,34 +14,55 @@ see the details of their trips, see the points of interests
 based on their filters and range selections, and can explore
 different roadtrips. All the booking and planning is done on
 this page.
-
+==========================
 Google Maps API v3
 Google Places API v3
+==========================
+Version 0.1 - October 13, 2017
+- Trip from point A to B
+- Auto completion in text areas
+- Google Places API v3, implemented
+- Google Maps API v3 (+ skin), implemented
+- Basic homepage, mappage, profile page created
+Version 0.3 - October 20, 2017
+- Login popup
+- Registration popup
+- hashing / encryption - TODO
+- Registration - TODO
+- Database tables for USERS - TODO
+Version 0.5 - October 27, 2017
+- Multiple stops  in a trip - TODO
+- Duration and distance each stop - TODO
 -->
 
 <!DOCTYPE html>
 <html>
   <head>
     <title>HereNThere</title>
+    <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+        We are just importing these libraries -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta charset="utf-8">
+
+    <!--Style has all the CSS and modifications to edit how things look on the screen.
+        For example #map will modify how the Google Maps window looks like. -->
     <style>
-    /* Always set the map height explicitly to define the size of the div
-    * element that contains the map. */
-    #map {
+
+      #map {
         height: 97%;
-    }
-    /* Optional: Makes the sample page fill the window. */
-    html, body {
+      }
+
+      html, body {
         height: 96%;
         margin: 0;
         padding: 0;
         background-color: transparent;
-    }
-    .controls {
+      }
+
+      .controls {
         margin-top: 10px;
         border: 1px solid transparent;
         border-radius: 2px 0 0 2px;
@@ -50,7 +71,6 @@ Google Places API v3
         height: 32px;
         outline: none;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        
       }
 
       #origin-input,
@@ -122,94 +142,102 @@ Google Places API v3
       .modal-footer {
         background-color: #f9f9f9;
       }
+
     </style>
   </head>
-  <body>
 
-    <header>
-      
-      <!-- Trigger the modal with a button -->
-      <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;margin-left: 250px;"></a></div>
-      <button type="button" class="btn btn-default btn-lg" id="myBtn" style="background-color: transparent; border-color: transparent;"><img src="img/profileicon.png" style="width:40px;height:40px; margin-left: 75px;"></button></div>
-           
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <div class="modal-body">
-            <div id="initial-content"> <!-- CODE THAT WILL DISAPPEAR-->
+<!-- 
+  ==========================
+  ==========================
+  =====   END STYLE   ======
+  ==========================
+  ==========================
+-->
+
+  <body>
+  <header>
+    
+    <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;margin-left: 250px;"></a></div>
+    <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-default btn-lg" id="myBtn" style="background-color: transparent; border-color: transparent;"><img src="img/profileicon.png" style="width:40px;height:40px; margin-left: 75px;"></button></div>
+    
+    <!-- Modal is another name for popup -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <div class="modal-body">
+
+            <div id="initial-content"> <!-- id= initial-content means that this code will disappear when pressing on Sign Up-->
               <div class="modal-header" style="padding:35px 50px;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
               </div>
               <form role="form">
-                <div class="form-group" style="color: black;">
+                <div class="form-group" style="color: black;"> <!-- Username LOGIN-->
                   <label for="username"><span class="glyphicon glyphicon-eye-open"></span> Username</label>
                   <input type="text" class="form-control" id="username" placeholder="Enter username">
                 </div>
-                <div class="form-group" style="color: black;">
+                <div class="form-group" style="color: black;"> <!-- Password LOGIN-->
                   <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
                   <input type="password" class="form-control" id="password" placeholder="Enter password">
                 </div>
-                <div class="checkbox" style="color: black;">
+                <div class="checkbox" style="color: black;"> <!-- Remember me checkbox LOGIN-->
                   <label><input type="checkbox" value="" checked>Remember me</label>
                 </div>
                 <button type="submit" href="profilepage.php" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
               </form>
-              <div class="modal-footer" style="color: black;">
-              <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-              <p>Not a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;" onclick="$('#signup-content').show();$('#initial-content').hide();">Sign Up</a></p>
+              <div class="modal-footer" style="color: black;"> <!-- Footer LOGIN-->
+                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                <p>Not a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;" onclick="$('#signup-content').show();$('#initial-content').hide();">Sign Up</a></p>
+              </div>
             </div>
-            </div>
-            <div id="signup-content" style="display :none;">
-            <form role="form">
-              <div class="modal-header" style="padding:35px 50px;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4><span class="glyphicon glyphicon-lock"></span> Signup</h4>
-              </div>
-               <div class="form-group" style="color: black;">
-                <label for="firstname"><span class="glyphicon glyphicon-user"></span> First Name</label>
-                <input type="text" class="form-control" id="firstname" placeholder="Enter First Name">
-              </div>
-              <div class="form-group" style="color: black;">
-                <label for="lastname"><span class="glyphicon glyphicon-user"></span> Last Name</label>
-                <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
-              </div>
-              <div class="form-group" style="color: black;">
-                <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                <input type="text" class="form-control" id="email" placeholder="Enter Valid E-mail">
-              </div>
-              <div class="form-group" style="color: black;">
-                <label for="username"><span class="glyphicon glyphicon-eye-open"></span> Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter username">
-              </div>
-              <div class="form-group" style="color: black;">
-                <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password">
-              </div>
-              <div class="checkbox" style="color: black;">
-                <label><input type="checkbox" value="" checked>Remember me</label>
-              </div>
-              <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
+
+            <div id="signup-content" style="display :none;"> <!-- id= signup-content means that this code will disappear when pressing on Login-->
+              <form role="form">
+                <div class="modal-header" style="padding:35px 50px;">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><span class="glyphicon glyphicon-lock"></span> Signup</h4>
+                </div>
+                <div class="form-group" style="color: black;"> <!-- First Name SIGNUP-->
+                  <label for="firstname"><span class="glyphicon glyphicon-user"></span> First Name</label>
+                  <input type="text" class="form-control" id="firstname" placeholder="Enter First Name">
+                </div>
+                <div class="form-group" style="color: black;"><!-- Last Name SIGNUP-->
+                  <label for="lastname"><span class="glyphicon glyphicon-user"></span> Last Name</label>
+                  <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name">
+                </div>
+                <div class="form-group" style="color: black;"> <!-- Email SIGNUP-->
+                  <label for="email"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                  <input type="text" class="form-control" id="email" placeholder="Enter Valid E-mail">
+                </div>
+                <div class="form-group" style="color: black;"> <!-- Username SIGNUP-->
+                  <label for="username"><span class="glyphicon glyphicon-eye-open"></span> Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group" style="color: black;"> <!-- Password SIGNUP-->
+                  <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter password">
+                </div>
+                <div class="checkbox" style="color: black;"> <!-- Remember checkbox SIGNUP-->
+                  <label><input type="checkbox" value="" checked>Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
               </form>
               <div class="modal-footer" style="color: black;">
-              <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-              <p>Already a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;"onclick="$('#signup-content').hide();$('#initial-content').show();">Login</a></p>
-            </div>
+                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                <p>Already a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;"onclick="$('#signup-content').hide();$('#initial-content').show();">Login</a></p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
-      
-              
-        </div>
-      </div> 
-    </header>
+  </header>
 
+    <!-- div to initiate Google Maps -->
     <div id="map"></div>
 
+    <!-- floating panel on the left of the map. Origin and Destination text areas -->
     <div id="floating-panel">
       <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location"
@@ -226,32 +254,30 @@ Google Places API v3
                       echo $_POST['destination'];
                     }?>">
 
+      <!-- Filter check boxes - TODO make them actually display Restaurants/Hotels/Points of interests ONLY-->
       <div id="mode-selector" class="controls">
-        <input type="checkbox" name="type" id="changemode-walking" checked="checked"> <!-- TODO to change -->
+        <input type="checkbox" name="type" id="changemode-walking" checked="checked">
         <label for="changemode-walking">Restaurants</label>
 
         <input type="checkbox" name="type" id="changemode-transit">
-        <label for="changemode-transit">Hotel</label
-  >
+        <label for="changemode-transit">Hotel</label>
 
         <input type="checkbox" name="type" id="changemode-driving">
         <label for="changemode-driving">Points of Interest</label>
       </div>
 
-
     <script>
-    
-        $(document).ready(function(){
-            $("#myBtn").click(function(){
-                $("#myModal").modal();
-            });
-        });
 
-// This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+      // Code for modal to pop up when click on myBtn (profile icon)  
+      $(document).ready(function(){
+          $("#myBtn").click(function(){
+              $("#myModal").modal();
+          });
+      });
 
+      // Initialize Google Maps map. Give it skin, then variables map, then camera location, then autocomplete functions.
       function initMap() {
+
         // Create a new StyledMapType object, passing it an array of styles,
         // and the name to be displayed on the map type control.
         var styledMapType = new google.maps.StyledMapType(
@@ -430,6 +456,7 @@ Google Places API v3
         });
       };
 
+      // Callback used by async scripted link below
       function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           for (var i = 0; i < results.length; i++) {
@@ -439,9 +466,7 @@ Google Places API v3
       }
       </script>
 
-    <!--
-      Connects the map to the API key that we have registered
-    -->
+    <!-- Connects the map to the API key that we have registered -->
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVAWCWgAiZ_iTjXOVIBoJC0Y-_1xRNos&callback=initMap&libraries=places">
     </script>
@@ -454,9 +479,7 @@ Google Places API v3
 ======  TODO    =========
 
 - Height maps needs to be scalable, use % instead of px.
-- Try pop ups
 - Put destinations
-- Put search location bar
 - 23 waypoints MAX - NOTE
 
       function createMarker(place) {

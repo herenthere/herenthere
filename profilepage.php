@@ -1,6 +1,6 @@
 <!--
 Marist College - Capping Project - Prof. Arias
-HereNThere
+HereNThere || Rights reserved
 ==========================
 Juan Diaz
 Francesco Galletti
@@ -14,28 +14,54 @@ They can see the details on each of their roadtrips, modify
 them and share them with other people. The rating of each
 roadtrip is based on the ratings of each user who has seen
 the roadtrip. 
+==========================
+Google Maps API v3
+Google Places API v3
+==========================
+Version 0.1 - October 13, 2017
+- Trip from point A to B
+- Auto completion in text areas
+- Google Places API v3, implemented
+- Google Maps API v3 (+ skin), implemented
+- Basic homepage, mappage, profile page created
+Version 0.3 - October 20, 2017
+- Login popup
+- Registration popup
+- hashing / encryption - TODO
+- Registration - TODO
+- Database tables for USERS - TODO
+Version 0.5 - October 27, 2017
+- Multiple stops  in a trip - TODO
+- Duration and distance each stop - TODO
 -->
 
 <!DOCTYPE html>
+
 <?php
     include('db.php');
-    
-    $sql = 'SELECT FirstName, LastName FROM USER Where UserID = 1';
-    $result = $conn->$query($sql);
 
-    
+    $sql = 'SELECT FirstName, LastName FROM USER Where UserID = 1';
+    $result = $conn->$query($sql);    
 ?>
+
 <html>
     <title>HereNThere</title>
+    
+    <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+        We are just importing these libraries -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!--Style has all the CSS and modifications to edit how things look on the screen.
+    For example #map will modify how the Google Maps window looks like. -->
     <style>
+
         div.container {
-            width: 100%;
+        width: 100%;
         }
 
         div.header1 { 
@@ -77,28 +103,38 @@ the roadtrip.
         tr {
             color: #4b92c1;
         }
+
     </style>
-  
+<!-- 
+  ==========================
+  ==========================
+  =====   END STYLE   ======
+  ==========================
+  ==========================
+-->
+
     <body>
+        <!-- Top header TODO implement homepage-mappage header-->
         <div class="header1">
             <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;"></a>
             <a color=#ffffff href="profilepage.php"><img src="img/profileicon.png" style="width:40px;height:40px;overflow:hidden; "></a>
         </div>
         
+        <!-- Cover photo -->
         <div class="header2">
             <br>
             <img src="img/profile.jpg" alt="?" height="150" width="150" class="img-circle">
             
             <h1 style="color: #214682"><?php
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    echo $row["FirstName"] . " " . $row["LastName"];
-                }
-            } else {
-                echo "Timbille Kulendi";
-            }
-            ?></h1>
+                                        if ($result->num_rows > 0) {
+                                            // output data of each row
+                                            while($row = $result->fetch_assoc()) {
+                                                echo $row["FirstName"] . " " . $row["LastName"];
+                                            }
+                                        } else {
+                                            echo "Timbille Kulendi";
+                                        }
+                                        ?></h1>
         </div>
          
         <div class="container">
@@ -132,26 +168,12 @@ the roadtrip.
                 </tr>
             </table>
         </div>
-
     </body>
 </html>
-
-<HTML>
-
-<body>
-    <td align="center">
-
-</body>
-</HTML>
--->
 
 <!--
 =========================
 ======  TODO    =========
 
-- Height maps needs to be scalable, use % instead of px.
-- Try pop ups
-- Put destinations
-- Put search location bar
-- color tables, follow https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_table_contextual&stacked=h
+
 -->
