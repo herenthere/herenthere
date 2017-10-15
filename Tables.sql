@@ -1,16 +1,3 @@
-CREATE TABLE IF NOT EXISTS favorites(
-	Fav_id SERIAL NOT NULL UNIQUE,
-	User_id INTEGER NOT NULL,
-	Photo_id INTEGER,
-	Video_id INTEGER,
-	Music_id INTEGER,
-	PRIMARY KEY (fav_id),
-	FOREIGN KEY (user_id) REFERENCES user_profile(user_id),
-	FOREIGN KEY (photo_id) REFERENCES photos(photo_id),
-	FOREIGN KEY(video_id) REFERENCES videos(video_id),
-	FOREIGN KEY (music_id) REFERENCES music(music_id)
-);
-
 
 CREATE TABLE IF NOT EXISTS Admin(
     AdminID SERIAL NOT NULL UNIQUE,
@@ -21,6 +8,7 @@ CREATE TABLE IF NOT EXISTS Admin(
 
 CREATE TABLE IF NOT EXISTS User(
     UserID SERIAL NOT NULL UNIQUE,
+    UserName VARCHAR(30) NOT NULL,
     LastName VARCHAR(30) NOT NULL,
     FirstName VARCHAR(30) NOT NULL,
     Email VARCHAR(100) NOT NULL,
