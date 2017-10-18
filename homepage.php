@@ -151,7 +151,7 @@ Version 0.5 - October 27, 2017
                   <div class="checkbox" style="color: black;"> <!-- Remember checkbox SIGNUP-->
                     <label><input type="checkbox" value="" checked>Remember me</label>
                   </div>
-                  <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
+                  <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span>Signup</button>
                 </form>
                 <div class="modal-footer" style="color: black;">
                   <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
