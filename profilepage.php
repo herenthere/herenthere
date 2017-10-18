@@ -37,12 +37,12 @@ Version 0.5 - October 27, 2017
 
 <!DOCTYPE html>
 
-<?php
+<!-- <
     include('db.php');
 
     $sql = 'SELECT FirstName, LastName FROM USER Where UserID = 1';
     $result = $conn->$query($sql);    
-?>
+?> -->
 
 <html>
     <title>HereNThere</title>
@@ -198,16 +198,7 @@ Version 0.5 - October 27, 2017
             <br>
             <img src="img/profile.jpg" alt="?" height="150" width="150" class="img-circle">
             
-            <h1 style="color: #214682"><?php
-                                        if ($result->num_rows > 0) {
-                                            // output data of each row
-                                            while($row = $result->fetch_assoc()) {
-                                                echo $row["FirstName"] . " " . $row["LastName"];
-                                            }
-                                        } else {
-                                            echo "Timbille Kulendi";
-                                        }
-                                        ?></h1>
+            <h1 style="color: #214682">Timbille Kulendi</h1>
         </div>
          
         <div class="container">

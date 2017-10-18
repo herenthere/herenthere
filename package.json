@@ -1,0 +1,32 @@
+{
+  "name": "herenthere",
+  "version": "1.0.0",
+  "description": "HereNThere Road Trip Planner",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herenthere/herenthere.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/herenthere/herenthere/issues"
+  },
+  "homepage": "https://github.com/herenthere/herenthere#readme",
+  "dependencies": {
+    "express.js": "^1.0.0",
+    "mysql": "^2.10.2",
+    "passport": "^0.3.2",
+    "knex": "^0.10.0",
+    "dotenv": "^2.0.0",
+    "async": "^1.5.2",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.15.1",
+    "bookshelf": "^0.9.2",
+    "express-validator": "^2.20.4"
+  }
+}

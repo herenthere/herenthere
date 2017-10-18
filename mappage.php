@@ -173,7 +173,7 @@ Version 0.5 - October 27, 2017
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
               </div>
-              <form role="form">
+              <form method="POST" role="form">
                 <div class="form-group" style="color: black;"> <!-- Username LOGIN-->
                   <label for="username"><span class="glyphicon glyphicon-eye-open"></span> Username</label>
                   <input type="text" class="form-control" id="username" placeholder="Enter username">
@@ -182,10 +182,10 @@ Version 0.5 - October 27, 2017
                   <label for="password"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
                   <input type="password" class="form-control" id="password" placeholder="Enter password">
                 </div>
-                <div class="checkbox" style="color: black;"> <!-- Remember me checkbox LOGIN-->
+                <!-- <div class="checkbox" style="color: black;"> <!-- Remember me checkbox LOGIN
                   <label><input type="checkbox" value="" checked>Remember me</label>
-                </div>
-                <button type="submit" href="profilepage.php" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
+                </div> -->
+                <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
               </form>
               <div class="modal-footer" style="color: black;"> <!-- Footer LOGIN-->
                 <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
