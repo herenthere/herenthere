@@ -72,9 +72,22 @@ app.get('/map', function(req, res){
 app.post('/map', function(req, res){
   var departure = req.body.departure;  
   var destination = req.body.destination;
-
+  
   res.render('/map.ejs', {departure: departure, destination: destination});
 });
+app.get('/home', function(req, res){
+  res.render('home.ejs');
+});
+app.post('/home', function(req, res){
+  res.render('/home.ejs');
+});
+app.get('/profile', function(req, res){
+  res.render('profile.ejs');
+});
+app.post('/profile', function(req, res){
+  res.render('/profile.ejs');
+});
+
 // app.get('/account', userController.ensureAuthenticated, userController.accountGet);
 // app.put('/account', userController.ensureAuthenticated, userController.accountPut);
 // app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);

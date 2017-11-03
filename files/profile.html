@@ -130,7 +130,7 @@ Version 0.5 - October 27, 2017
     <body>
         <!-- Top header TODO implement homepage-mappage header-->
         <div class="header1">
-        <a type="button" href="mappage.php"><img src="img/logo.png" style="width:15%;height:85%;align:center;margin-left: 250px;"></a></div>
+        <a type="button" href="map.html"><img src="img/logo.png" style="width:15%;height:85%;align:center;margin-left: 250px;"></a></div>
         <!-- Trigger the modal with a button -->
         <button type="button" class="btn btn-default btn-lg" id="myBtn" style="background-color: transparent; border-color: transparent;"><img src="img/profileicon.png" style="width:40px;height:40px; margin-left: 75px;"></button></div>
         
@@ -158,7 +158,7 @@ Version 0.5 - October 27, 2017
                     <div class="checkbox" style="color: black;"> <!-- Remember me checkbox LOGIN-->
                       <label><input type="checkbox" value="" checked>Remember me</label>
                     </div>
-                    <button type="submit" href="profilepage.php" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
+                    <button type="submit" href="profile.html" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span> Login</button>
                   </form>
                   <div class="modal-footer" style="color: black;"> <!-- Footer LOGIN-->
                     <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -247,69 +247,68 @@ Version 0.5 - October 27, 2017
             </table>
             <script>
             // TODO: Look through script
-            
-              $(document).on('ready', function () {
-        $('.kv-gly-star').rating({
-            containerClass: 'is-star'
-        });
-        $('.kv-gly-heart').rating({
-            containerClass: 'is-heart',
-            defaultCaption: '{rating} hearts',
-            starCaptions: function (rating) {
-                return rating == 1 ? 'One heart' : rating + ' hearts';
-            },
-            filledStar: '<i class="glyphicon glyphicon-heart"></i>',
-            emptyStar: '<i class="glyphicon glyphicon-heart-empty"></i>'
-        });
-        $('.kv-fa').rating({
-            theme: 'krajee-fa',
-            filledStar: '<i class="fa fa-star"></i>',
-            emptyStar: '<i class="fa fa-star-o"></i>'
-        });
-        $('.kv-fa-heart').rating({
-            defaultCaption: '{rating} hearts',
-            starCaptions: function (rating) {
-                return rating == 1 ? 'One heart' : rating + ' hearts';
-            },
-            theme: 'krajee-fa',
-            filledStar: '<i class="fa fa-heart"></i>',
-            emptyStar: '<i class="fa fa-heart-o"></i>'
-        });
-        $('.kv-uni-star').rating({
-            theme: 'krajee-uni',
-            filledStar: '&#x2605;',
-            emptyStar: '&#x2606;'
-        });
-        $('.kv-uni-rook').rating({
-            theme: 'krajee-uni',
-            defaultCaption: '{rating} rooks',
-            starCaptions: function (rating) {
-                return rating == 1 ? 'One rook' : rating + ' rooks';
-            },
-            filledStar: '&#9820;',
-            emptyStar: '&#9814;'
-        });
-        $('.kv-svg').rating({
-            theme: 'krajee-svg',
-            filledStar: '<span class="krajee-icon krajee-icon-star"></span>',
-            emptyStar: '<span class="krajee-icon krajee-icon-star"></span>'
-        });
-        $('.kv-svg-heart').rating({
-            theme: 'krajee-svg',
-            filledStar: '<span class="krajee-icon krajee-icon-heart"></span>',
-            emptyStar: '<span class="krajee-icon krajee-icon-heart"></span>',
-            defaultCaption: '{rating} hearts',
-            starCaptions: function (rating) {
-                return rating == 1 ? 'One heart' : rating + ' hearts';
-            },
-            containerClass: 'is-heart'
-        });
+                $(document).on('ready', function () {
+                    $('.kv-gly-star').rating({
+                        containerClass: 'is-star'
+                    });
+                    $('.kv-gly-heart').rating({
+                        containerClass: 'is-heart',
+                        defaultCaption: '{rating} hearts',
+                        starCaptions: function (rating) {
+                            return rating == 1 ? 'One heart' : rating + ' hearts';
+                        },
+                        filledStar: '<i class="glyphicon glyphicon-heart"></i>',
+                        emptyStar: '<i class="glyphicon glyphicon-heart-empty"></i>'
+                    });
+                    $('.kv-fa').rating({
+                        theme: 'krajee-fa',
+                        filledStar: '<i class="fa fa-star"></i>',
+                        emptyStar: '<i class="fa fa-star-o"></i>'
+                    });
+                    $('.kv-fa-heart').rating({
+                        defaultCaption: '{rating} hearts',
+                        starCaptions: function (rating) {
+                            return rating == 1 ? 'One heart' : rating + ' hearts';
+                        },
+                        theme: 'krajee-fa',
+                        filledStar: '<i class="fa fa-heart"></i>',
+                        emptyStar: '<i class="fa fa-heart-o"></i>'
+                    });
+                    $('.kv-uni-star').rating({
+                        theme: 'krajee-uni',
+                        filledStar: '&#x2605;',
+                        emptyStar: '&#x2606;'
+                    });
+                    $('.kv-uni-rook').rating({
+                        theme: 'krajee-uni',
+                        defaultCaption: '{rating} rooks',
+                        starCaptions: function (rating) {
+                            return rating == 1 ? 'One rook' : rating + ' rooks';
+                        },
+                        filledStar: '&#9820;',
+                        emptyStar: '&#9814;'
+                    });
+                    $('.kv-svg').rating({
+                        theme: 'krajee-svg',
+                        filledStar: '<span class="krajee-icon krajee-icon-star"></span>',
+                        emptyStar: '<span class="krajee-icon krajee-icon-star"></span>'
+                    });
+                    $('.kv-svg-heart').rating({
+                        theme: 'krajee-svg',
+                        filledStar: '<span class="krajee-icon krajee-icon-heart"></span>',
+                        emptyStar: '<span class="krajee-icon krajee-icon-heart"></span>',
+                        defaultCaption: '{rating} hearts',
+                        starCaptions: function (rating) {
+                            return rating == 1 ? 'One heart' : rating + ' hearts';
+                        },
+                        containerClass: 'is-heart'
+                    });
 
-        $('.rating,.kv-gly-star,.kv-gly-heart,.kv-uni-star,.kv-uni-rook,.kv-fa,.kv-fa-heart,.kv-svg,.kv-svg-heart').on(
-                'change', function () {
-                    console.log('Rating selected: ' + $(this).val());
+                    $('.rating,.kv-gly-star,.kv-gly-heart,.kv-uni-star,.kv-uni-rook,.kv-fa,.kv-fa-heart,.kv-svg,.kv-svg-heart').on(
+                            'change', function () {
+                                console.log('Rating selected: ' + $(this).val());
+                            });
                 });
-    });
             </script>
         </div>
     </body>
