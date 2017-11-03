@@ -165,7 +165,7 @@
             self.$emptyStars = $rating.find('.empty-stars');
             self.$filledStars = $rating.find('.filled-stars');
             //self._renderCaption(); We do not want render caption
-            //self._renderClear(); We do not want clear rating
+            //self._renderClear(); We do not want to render clear
             self._initHighlight();
             $container.append($el);
             if (self.rtl) {
@@ -198,22 +198,6 @@
             }
             self._addContent('caption', '<div class="caption">' + html + '</div>');
             self.$caption = self.$container.find(".caption");
-        },
-        _renderClear: function () {
-            var self = this, css, $clr = self.clearElement ? $(self.clearElement) : '';
-            if (!self.showClear) {
-                return;
-            }
-            css = self._getClearClass();
-            if ($clr.length) {
-                $h.addCss($clr, css);
-                $clr.attr({"title": self.clearButtonTitle}).html(self.clearButton);
-                self.$clear = $clr;
-                return;
-            }
-            self._addContent('clear',
-                '<div class="' + css + '" title="' + self.clearButtonTitle + '">' + self.clearButton + '</div>');
-            self.$clear = self.$container.find('.' + self.clearButtonBaseClass);
         },
         _getClearClass: function () {
             var self = this;
@@ -388,11 +372,6 @@
             $h.handler($rating, 'click touchstart', $.proxy(events.starClick, self));
             $h.handler($rating, 'mousemove', $.proxy(events.starMouseMove, self));
             $h.handler($rating, 'mouseleave', $.proxy(events.starMouseLeave, self));
-            if (self.showClear && $clear.length) {
-                $h.handler($clear, 'click touchstart', $.proxy(events.clearClick, self));
-                $h.handler($clear, 'mousemove', $.proxy(events.clearMouseMove, self));
-                $h.handler($clear, 'mouseleave', $.proxy(events.clearMouseLeave, self));
-            }
             if ($form.length) {
                 $h.handler($form, 'reset', $.proxy(events.resetForm, self), true);
             }
