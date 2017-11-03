@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS Feedback(
     FeedbackID SERIAL NOT NULL UNIQUE,
     UserID INTEGER NOT NULL REFERENCES User(UserID),
     RoadtripID INTEGER NOT NULL REFERENCES RoadTrip(RoadTripID),
+    OwnerRating INTEGER,
     Rating INTEGER,
     Comment VARCHAR(200),
     PRIMARY KEY (FeedbackID)

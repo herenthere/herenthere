@@ -12,15 +12,15 @@ var dotenv = require('dotenv');
 var passport = require('passport');
 
 // Load environment variables from .env file
-dotenv.load();
+// dotenv.load();
 
 // Controllers
 //var HomeController = require('./controllers/home');
-var userController = require('./controllers/user');
+// var userController = require('./controllers/user');
 //var contactController = require('./controllers/contact');
 
 // Passport OAuth strategies
-require('./config/passport');
+// require('./config/passport');
 
 var app = express();
 
@@ -60,7 +60,8 @@ app.set('port', process.env.PORT || 3000);
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // app.get('/home', HomeController.index);
-app.get('/profile', userController.ensureAuthenticated, userController.profileGet);
+app.use('/files', express.static(path.join(__dirname, 'files')));
+// app.get('/profile', userController.ensureAuthenticated, userController.profileGet);
 // app.get('/contact', contactController.contactGet);
 // app.post('/contact', contactController.contactPost);
 // app.get('/account', userController.ensureAuthenticated, userController.accountGet);
@@ -68,8 +69,8 @@ app.get('/profile', userController.ensureAuthenticated, userController.profileGe
 // app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
 // app.get('/signup', userController.signupGet);
 // app.post('/signup', userController.signupPost);
-app.get('/login', userController.loginGet);
-app.post('/login', userController.loginPost);
+// app.get('/login', userController.loginGet);
+// app.post('/login', userController.loginPost);
 // app.get('/forgot', userController.forgotGet);
 // app.post('/forgot', userController.forgotPost);
 // app.get('/reset/:token', userController.resetGet);
