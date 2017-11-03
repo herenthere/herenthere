@@ -164,8 +164,8 @@
                 .append(self._getStars('empty')).append(self._getStars('filled'));
             self.$emptyStars = $rating.find('.empty-stars');
             self.$filledStars = $rating.find('.filled-stars');
-            self._renderCaption();
-            self._renderClear();
+            //self._renderCaption(); We do not want render caption
+            //self._renderClear(); We do not want clear rating
             self._initHighlight();
             $container.append($el);
             if (self.rtl) {
