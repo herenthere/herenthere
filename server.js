@@ -41,12 +41,13 @@ var app = express();
 // });
 
 //app.engine('handlebars', hbs.engine);
+app.set('view engine', 'ejs');
 //app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 // app.use(compression());
 // app.use(logger('dev'));
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(expressValidator());
 // app.use(methodOverride('_method'));
 // app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
@@ -63,7 +64,17 @@ app.set('port', process.env.PORT || 3000);
 app.use('/files', express.static(path.join(__dirname, 'files')));
 // app.get('/profile', userController.ensureAuthenticated, userController.profileGet);
 // app.get('/contact', contactController.contactGet);
-// app.post('/contact', contactController.contactPost);
+app.get('/map', function(req, res){
+  var departure = "";
+  var destination = "";
+  res.render('map.ejs', {departure: departure, destination: destination});
+});
+app.post('/map', function(req, res){
+  var departure = req.body.departure;  
+  var destination = req.body.destination;
+
+  res.render('/map.ejs', {departure: departure, destination: destination});
+});
 // app.get('/account', userController.ensureAuthenticated, userController.accountGet);
 // app.put('/account', userController.ensureAuthenticated, userController.accountPut);
 // app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
