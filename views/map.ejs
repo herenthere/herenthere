@@ -53,7 +53,7 @@ Version 0.5 - October 27, 2017
 
       #map {
         height: 100%;
-        outline-width: 3px;
+        outline-width: 2px;
         outline-color:#214682;
         outline-style: solid;
       }
@@ -124,32 +124,10 @@ Version 0.5 - October 27, 2017
         border-color: #4d90fe;
       }
 
-      #mode-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        padding: 5px 11px 0px 11px;
-        margin-bottom: 150px;
-      }
-
-      #mode-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
       body {
         background:url('img/backgroundhomepage.png');
         background-size: 150%;
         background-repeat: no-repeat;
-      }
-
-      header {
-        background-image: url('img/cover.png');
-        background-size: 75%;
-        color: #ffffff;
-        background-color: transparent;
-        text-align: center;
-        height: 6%;
       }
 
       .modal-header, h4, .close {
@@ -168,6 +146,59 @@ Version 0.5 - October 27, 2017
         left: 0%;
         bottom: 0%;
         width: 100%;
+      }
+
+      #scrolling-window {
+        position: relative;
+        overflow-y: scroll;
+        height: 200px; 
+      }
+
+      #slidecontainer {
+          width: 75%; /* Width of the outside container */
+      }
+      
+      /* The slider itself */
+      .slider {
+          -webkit-appearance: none;  /* Override default CSS styles */
+          appearance: none;
+          width: 75%; /* Full-width */
+          height: 15px; /* Specified height */
+          border-radius: 5px;
+          background: #d3d3d3; /* Grey background */
+          outline: none; /* Remove outline */
+          opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+          -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+          transition: opacity .2s;
+      }
+      
+      /* Mouse-over effects */
+      .slider:hover {
+          opacity: 1; /* Fully shown on mouse-over */
+      }
+      
+      /* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */ 
+      .slider::-webkit-slider-thumb {
+          -webkit-appearance: none; /* Override default look */
+          appearance: none;
+          width: 25px; /* Set a specific slider handle width */
+          height: 25px; /* Slider handle height */
+          border-radius: 25px;
+          background: #4CAF50; /* Green background */
+          cursor: pointer; /* Cursor on hover */
+      }
+      
+      .slider::-moz-range-thumb {
+          width: 25px; /* Set a specific slider handle width */
+          height: 25px; /* Slider handle height */
+          border-radius: 25px;
+          background: #4CAF50; /* Green background */
+          cursor: pointer; /* Cursor on hover */
+      }
+
+      #demo {
+        color: #ffffff;
+
       }
 
     </style>
@@ -192,61 +223,69 @@ Version 0.5 - October 27, 2017
     <div id="floating-panel">
       <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location"
-        value="<%= departure %>">
+        value="<%= departure %>"/>
 
       <input id="destination-input" class="controls" type="text"
         placeholder="Enter a destination location"
-        value="<%= destination %>">
+        value="<%= destination %>"/>
 
+      <div id="scrolling-window" data-spy="scroll">
+          <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop."/><button id="b1" class="btn add-more" type="button">+</button>
+    
+          <script>
+              $(document).ready(function(){
+                  var next = 1;
+                  $(".add-more").click(function(e){
+                      e.preventDefault();
+                      var addto = "#field" + next;
+                      var addRemove = "#field" + (next);
+                      next = next + 1;
+                      var newIn = '<input autocomplete="off" class="controlsplus" id="field' + next + '" name="prof' + next + '" type="text" placeholder="Add a stop.">';
+                      var newInput = $(newIn);
+                      var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+                      var removeButton = $(removeBtn);
+                      $(addto).after(newInput);
+                      $(addRemove).after(removeButton);
+                      $("#count").val(next);
+                      
+                          $('.remove-me').click(function(e){
+                              e.preventDefault();
+                              var fieldNum = this.id.charAt(this.id.length-1);
+                              var fieldID = "#field" + fieldNum;
+                              $(this).remove();
+                              $(fieldID).remove();
+                          });
+                  });
+              });
+          </script>
+          
+      </div>
 
-      <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop."/><button id="b1" class="btn add-more" type="button">+</button>
+      <div id="slidecontainer">
+          <input type="range" min="10" max="31" value="15" class="slider" id="myRange"/>
+          <h3 id="demo"></h3>
+      </div>
 
       <script>
-          $(document).ready(function(){
-              var next = 1;
-              $(".add-more").click(function(e){
-                  e.preventDefault();
-                  var addto = "#field" + next;
-                  var addRemove = "#field" + (next);
-                  next = next + 1;
-                  var newIn = '<input autocomplete="off" class="controlsplus" id="field' + next + '" name="prof' + next + '" type="text" placeholder="Add a stop.">';
-                  var newInput = $(newIn);
-                  var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
-                  var removeButton = $(removeBtn);
-                  $(addto).after(newInput);
-                  $(addRemove).after(removeButton);
-                  $("#count").val(next);
-                  
-                      $('.remove-me').click(function(e){
-                          e.preventDefault();
-                          var fieldNum = this.id.charAt(this.id.length-1);
-                          var fieldID = "#field" + fieldNum;
-                          $(this).remove();
-                          $(fieldID).remove();
-                      });
-              });
-          });
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value; // Display the default slider value
+
+        // Update the current slider value (each time you drag the slider handle)
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
       </script>
 
       <div id="icons">
-          <img src="files/img/restauranticon.png" style="width:50px;height:50px;">
-          <img src="files/img/hotelicon.png" style="width:50px;height:50px;">
-          <img src="files/img/pointsofinteresticon.png" style="width:50px;height:50px;">
+          <img src="../files/img/restauranticon.png" style="width:50px;height:50px;">
+          <img src="../files/img/hotelicon.png" style="width:50px;height:50px;">
+          <img src="../files/img/pointsofinteresticon.png" style="width:50px;height:50px;">
       </div>
       
     </div>
 
       <!-- Filter check boxes - TODO make them actually display Restaurants/Hotels/Points of interests ONLY-->
-      <div id="mode-selector" left="-100px" class="controls">
-        <input type="checkbox" name="type" id="changemode-walking" checked="checked">
-        <label for="changemode-walking">Restaurants</label>
-
-        <input type="checkbox" name="type" id="changemode-transit">
-        <label for="changemode-transit">Hotel</label>
-
-        <input type="checkbox" name="type" id="changemode-driving">
-        <label for="changemode-driving">Points of Interest</label>
-      </div>
 
     <script>
 

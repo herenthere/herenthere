@@ -118,7 +118,18 @@ app.get('/tripdetail', function(req, res){
 app.post('/tripdetail', function(req, res){
   res.render('tripdetail.ejs');
 });
-
+app.get('/aboutus', function(req, res){
+  res.render('aboutus.ejs');
+});
+app.post('/aboutus', function(req, res){
+  res.render('aboutus.ejs');
+});
+app.get('/help', function(req, res){
+  res.render('help.ejs');
+});
+app.post('/help', function(req, res){
+  res.render('help.ejs');
+});
 // app.get('/account', userController.ensureAuthenticated, userController.accountGet);
 // app.put('/account', userController.ensureAuthenticated, userController.accountPut);
 // app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
