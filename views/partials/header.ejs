@@ -11,13 +11,13 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     top: 0;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
+    transition: 0.3s;
+    padding-top: 100px;
 }
 
 .sidenav a {
@@ -36,6 +36,7 @@
 .sidenav .closebtn {
     position: absolute;
     top: 0;
+    z-index: 10;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
@@ -72,7 +73,7 @@ li a:hover:not(.active) {
 
 </style>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-static-top">
         <div class="container-fluid">
           <div class="navbar-header">
             <a class="navbar-brand" href="#"><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
