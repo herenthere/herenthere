@@ -59,31 +59,23 @@ Version 0.5 - October 27, 2017
     <!-- Styles for star ratings-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="files/css/star-rating.css" media="all" type="text/css"/>
-    <link rel="stylesheet" href="files/css/themes/krajee-fa/theme.css" media="all" type="text/css"/>
-    <link rel="stylesheet" href="files/css/themes/krajee-svg/theme.css" media="all" type="text/css"/>
-    <link rel="stylesheet" href="files/css/themes/krajee-uni/theme.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="../files/css/star-rating.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="..files/css/themes/krajee-fa/theme.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="..files/css/themes/krajee-svg/theme.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="..files/css/themes/krajee-uni/theme.css" media="all" type="text/css"/>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="files/js/star-rating.js" type="text/javascript"></script>
-    <script src="files/js/themes/krajee-fa/theme.js" type="text/javascript"></script>
-    <script src="files/js/themes/krajee-svg/theme.js" type="text/javascript"></script>
-    <script src="files/js/themes/krajee-uni/theme.js" type="text/javascript"></script>
+    <script src="../files/js/star-rating.js" type="text/javascript"></script>
+    <script src="../files/js/themes/krajee-fa/theme.js" type="text/javascript"></script>
+    <script src="../files/files/js/themes/krajee-svg/theme.js" type="text/javascript"></script>
+    <script src="../files/files/js/themes/krajee-uni/theme.js" type="text/javascript"></script>
     
     <!--Style has all the CSS and modifications to edit how things look on the screen.
     For example #map will modify how the Google Maps window looks like. -->
     <style>
 
         div.container {
-        width: 100%;
-        }
-
-        div.header1 { 
-            background-image: url('files/img/cover.png');
-            background-size: 75%;
-            color: #ffffff;
-            background-color: transparent;
-            text-align: center;
-            height: 11%;
+            width: 100%;
+            background-color: #214682;
         }
 
         div.header2 {
@@ -95,7 +87,6 @@ Version 0.5 - October 27, 2017
         }
 
         html, body {
-            background: #214682;
             height: 96%;
             margin: 0;
             padding: 0;
@@ -125,7 +116,7 @@ Version 0.5 - October 27, 2017
   ==========================
 -->
 
-    <body>
+    <body style="background-color: #214682;">
         
         <header>
             <% include partials/header %>
@@ -135,13 +126,12 @@ Version 0.5 - October 27, 2017
         <div class="header2">
             <br>
             <img src="files/img/profile.jpg" alt="?" height="150" width="150" class="img-circle">
-            
             <h1 style="color: #214682">Timbille Kulendi</h1>
         </div>
          
         <div class="container">
-            <table>
-                <tr>
+            <table style="width:65%;">
+                <tr text-align="center">
                     <th>Trip Name</th>
                     <th># of stops</th>
                     <th>Duration</th>
@@ -157,7 +147,7 @@ Version 0.5 - October 27, 2017
                     <td>303 mi</td>
                     <td>$876 USD</td>
                     <td><input type="text" class="rating rating-loading" value="2" data-size="xs" title=""></td>
-                    <td><img src="img/exit.png" alt="x" height="15" width="15"></td>
+                    <td><img src="../files/img/exit.png" alt="x" height="15" width="15"></td>
                 </tr>
                 <tr>
                     <td>Los Angeles Trip</td>
@@ -166,7 +156,7 @@ Version 0.5 - October 27, 2017
                     <td>1208 mi</td>
                     <td>$1950 USD</td>
                     <td><input type="text" class="rating rating-loading" value="2" data-size="xs" title=""></td>
-                    <td><img src="img/exit.png" alt="x" height="15" width="15"></td>
+                    <td><img src="../files/img/exit.png" alt="x" height="15" width="15"></td>
                 </tr>
             </table>
             <script>
