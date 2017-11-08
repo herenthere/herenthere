@@ -12,7 +12,7 @@ var dotenv = require('dotenv');
 var passport = require('passport');
 
 // Load environment variables from .env file
-// dotenv.load();
+dotenv.load();
 
 // Controllers
 //var HomeController = require('./controllers/home');
@@ -20,7 +20,7 @@ var passport = require('passport');
 //var contactController = require('./controllers/contact');
 
 // Passport OAuth strategies
-// require('./config/passport');
+require('./config/passport');
 
 var app = express();
 
@@ -40,7 +40,6 @@ var app = express();
 //   }
 // });
 
-//app.engine('handlebars', hbs.engine);
 app.set('view engine', 'ejs');
 //app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
@@ -52,8 +51,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(methodOverride('_method'));
 // app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 // app.use(flash());
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 // app.use(function(req, res, next) {
 //   res.locals.user = req.user ? req.user.toJSON() : null;
 //   next();
@@ -65,6 +64,26 @@ app.use('/files', express.static(path.join(__dirname, 'files')));
 // app.get('/contact', contactController.contactGet);
 app.get('/login', function(req, res){
   res.render('login.ejs');
+});
+app.post('/login', function(req, res, next){
+  req.assert('username', 'Username cannot be blank').notEmpty();
+  req.assert('password', 'Password cannot be blank').notEmpty();
+
+  var errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('error', errors);
+    return res.redirect('/login');
+  }
+
+  passport.authenticate('local', function(err, user, info) {
+    if (!user) {
+      req.flash('error', info);
+    }
+    req.logIn(user, function(err) {
+      res.redirect('/home');
+    })
+  })(req, res, next);
 });
 app.get('/map', function(req, res){
   var departure = "";
