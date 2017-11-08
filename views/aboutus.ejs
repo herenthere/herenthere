@@ -9,35 +9,14 @@ Kulvinder Lotay
 Tashi Palden
 Joey Pupel  
 ==========================
-homepage.php is the page where the user first goes in.
-The user can set a departure and destination, click GO
-and go to the mappage.
-==========================
-Google Maps API v3
-Google Places API v3
-==========================
-Version 0.1 - October 13, 2017
-- Trip from point A to B
-- Auto completion in text areas
-- Google Places API v3, implemented
-- Google Maps API v3 (+ skin), implemented
-- Basic homepage, mappage, profile page created
-Version 0.3 - October 20, 2017
-- Login popup
-- Registration popup
-- hashing / encryption - TODO
-- Registration - TODO
-- Database tables for USERS - TODO
-Version 0.5 - October 27, 2017
-- Multiple stops  in a trip - TODO
-- Duration and distance each stop - TODO
+Aboutus
 -->
 
 <!DOCTYPE html>
 <html>
   <head>
+    
     <title>HereNThere</title>
-
     <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
         We are just importing these libraries -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -54,44 +33,16 @@ Version 0.5 - October 27, 2017
     <!--Style has all the CSS and modifications to edit how things look on the screen.
     For example #map will modify how the Google Maps window looks like. -->
     <style>
-
-      #map {
-        height: 100%;
-      }
-
-      html, body {
-        height: 96%;
-        margin: 0;
-        padding: 0;
-      }
-      
       body {
         background:url('files/img/backgroundhomepage.png');
         background-size: 150%;
         background-repeat: no-repeat;
       }
-        
-      header {
-        background-image: url('files/img/cover.png');
-        background-size: 40%;
-        color: #ffffff;
-        background-color: transparent;
+
+      p1 {
         text-align: center;
-        height: 12%;
+        color:aliceblue;
       }
-
-      #departure-datepicker {
-      background: white url(files/img/calendar.png) left no-repeat;
-      padding-left: 30px;
-      background-size: 30px 30px;
-      }
-
-      #destination-datepicker {
-      background: white url(files/img/calendar.png) left no-repeat;
-      padding-left: 30px;
-      background-size: 30px 30px;
-      }
-
     </style>
   </head>
 <!-- 
@@ -102,39 +53,18 @@ Version 0.5 - October 27, 2017
   ==========================
 -->
   <body>
-    <header>
-        <% include partials/header %>
-    </header>
-
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    Made by Capping group HereNThere
-
+      <header>
+          <% include partials/header %>
+      </header>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <p1>
+        Made by HereNThere Team.
+        We are a team of people.
+        Fun.
+        Capping.
+        <3
+    </p1>
+  </body>
 </html>
 
 
-<!--
-=========================
-======  TODO    =========
-
-
-
-TO BLUR THINGS  , PUT IN DIVs
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-
-Navigation Bar Bootstrap
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
--->
