@@ -73,6 +73,24 @@ Version 0.5 - October 27, 2017
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
 
+      .controlsplus {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 215px;
+      }
+
       #origin-input,
       #destination-input {
         background-color: #fff;
@@ -170,6 +188,37 @@ Version 0.5 - October 27, 2017
       <input id="destination-input" class="controls" type="text"
         placeholder="Enter a destination location"
         value="<%= destination %>">
+
+        <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop."/><button id="b1" class="btn add-more" type="button">+</button>
+
+        <script>
+            $(document).ready(function(){
+                var next = 1;
+                $(".add-more").click(function(e){
+                    e.preventDefault();
+                    var addto = "#field" + next;
+                    var addRemove = "#field" + (next);
+                    next = next + 1;
+                    var newIn = '<input autocomplete="off" class="controlsplus" id="field' + next + '" name="prof' + next + '" type="text" placeholder="Add a stop.">';
+                    var newInput = $(newIn);
+                    var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+                    var removeButton = $(removeBtn);
+                    $(addto).after(newInput);
+                    $(addRemove).after(removeButton);
+                    $("#count").val(next);
+                    
+                        $('.remove-me').click(function(e){
+                            e.preventDefault();
+                            var fieldNum = this.id.charAt(this.id.length-1);
+                            var fieldID = "#field" + fieldNum;
+                            $(this).remove();
+                            $(fieldID).remove();
+                        });
+                });
+            });
+        </script>
+      
+    </div>
 
       <!-- Filter check boxes - TODO make them actually display Restaurants/Hotels/Points of interests ONLY-->
       <div id="mode-selector" class="controls">
