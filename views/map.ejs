@@ -124,19 +124,6 @@ Version 0.5 - October 27, 2017
         border-color: #4d90fe;
       }
 
-      #mode-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        padding: 5px 11px 0px 11px;
-        margin-bottom: 150px;
-      }
-
-      #mode-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
       body {
         background:url('img/backgroundhomepage.png');
         background-size: 150%;
@@ -170,6 +157,12 @@ Version 0.5 - October 27, 2017
         width: 100%;
       }
 
+      #scrolling-window {
+        position: relative;
+        overflow-y: scroll;
+        height: 200px; 
+      }
+
     </style>
   </head>
 
@@ -192,42 +185,45 @@ Version 0.5 - October 27, 2017
     <div id="floating-panel">
       <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location"
-        value="<%= departure %>">
+        value="<%= departure %>"/>
 
       <input id="destination-input" class="controls" type="text"
         placeholder="Enter a destination location"
-        value="<%= destination %>">
+        value="<%= destination %>"/>
 
-
-      <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop."/><button id="b1" class="btn add-more" type="button">+</button>
-
-      <script>
-          $(document).ready(function(){
-              var next = 1;
-              $(".add-more").click(function(e){
-                  e.preventDefault();
-                  var addto = "#field" + next;
-                  var addRemove = "#field" + (next);
-                  next = next + 1;
-                  var newIn = '<input autocomplete="off" class="controlsplus" id="field' + next + '" name="prof' + next + '" type="text" placeholder="Add a stop.">';
-                  var newInput = $(newIn);
-                  var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
-                  var removeButton = $(removeBtn);
-                  $(addto).after(newInput);
-                  $(addRemove).after(removeButton);
-                  $("#count").val(next);
-                  
-                      $('.remove-me').click(function(e){
-                          e.preventDefault();
-                          var fieldNum = this.id.charAt(this.id.length-1);
-                          var fieldID = "#field" + fieldNum;
-                          $(this).remove();
-                          $(fieldID).remove();
-                      });
+      <div id="scrolling-window" data-spy="scroll">
+          <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop."/><button id="b1" class="btn add-more" type="button">+</button>
+    
+          <script>
+              $(document).ready(function(){
+                  var next = 1;
+                  $(".add-more").click(function(e){
+                      e.preventDefault();
+                      var addto = "#field" + next;
+                      var addRemove = "#field" + (next);
+                      next = next + 1;
+                      var newIn = '<input autocomplete="off" class="controlsplus" id="field' + next + '" name="prof' + next + '" type="text" placeholder="Add a stop.">';
+                      var newInput = $(newIn);
+                      var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+                      var removeButton = $(removeBtn);
+                      $(addto).after(newInput);
+                      $(addRemove).after(removeButton);
+                      $("#count").val(next);
+                      
+                          $('.remove-me').click(function(e){
+                              e.preventDefault();
+                              var fieldNum = this.id.charAt(this.id.length-1);
+                              var fieldID = "#field" + fieldNum;
+                              $(this).remove();
+                              $(fieldID).remove();
+                          });
+                  });
               });
-          });
-      </script>
+          </script>
+          
+      </div>
 
+      
       <div id="icons">
           <img src="files/img/restauranticon.png" style="width:50px;height:50px;">
           <img src="files/img/hotelicon.png" style="width:50px;height:50px;">
@@ -237,16 +233,6 @@ Version 0.5 - October 27, 2017
     </div>
 
       <!-- Filter check boxes - TODO make them actually display Restaurants/Hotels/Points of interests ONLY-->
-      <div id="mode-selector" left="-100px" class="controls">
-        <input type="checkbox" name="type" id="changemode-walking" checked="checked">
-        <label for="changemode-walking">Restaurants</label>
-
-        <input type="checkbox" name="type" id="changemode-transit">
-        <label for="changemode-transit">Hotel</label>
-
-        <input type="checkbox" name="type" id="changemode-driving">
-        <label for="changemode-driving">Points of Interest</label>
-      </div>
 
     <script>
 
