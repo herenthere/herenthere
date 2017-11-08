@@ -87,6 +87,12 @@ app.get('/profile', function(req, res){
 app.post('/profile', function(req, res){
   res.render('profile.ejs');
 });
+app.get('/tripdetail', function(req, res){
+  res.render('tripdetail.ejs');
+});
+app.post('/tripdetail', function(req, res){
+  res.render('tripdetail.ejs');
+});
 
 // app.get('/account', userController.ensureAuthenticated, userController.accountGet);
 // app.put('/account', userController.ensureAuthenticated, userController.accountPut);
