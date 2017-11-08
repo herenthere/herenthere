@@ -3,13 +3,12 @@ var path = require('path');
 var logger = require('morgan');
 var compression = require('compression');
 var methodOverride = require('method-override');
+var passport = require('passport');
 var session = require('express-session');
 var flash = require('express-flash');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var dotenv = require('dotenv');
-//var exphbs = require('express-handlebars');
-var passport = require('passport');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -62,6 +61,9 @@ app.use(passport.session());
 app.use('/files', express.static(path.join(__dirname, 'files')));
 // app.get('/profile', userController.ensureAuthenticated, userController.profileGet);
 // app.get('/contact', contactController.contactGet);
+app.get('/', function(req, res){
+  res.redirect('/home');
+})
 app.get('/login', function(req, res){
   res.render('login.ejs');
 });
