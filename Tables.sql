@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS User(
     Email VARCHAR(100) NOT NULL,
     Password VARCHAR(100) NOT NULL,
     Verified BOOLEAN NOT NULL DEFAULT 0,
+    UserPhoto LONGBLOB,
+    UserCover LONGBLOB,
     PRIMARY KEY (UserID)
 )
 
@@ -27,6 +29,8 @@ CREATE TABLE IF NOT EXISTS RoadTrip(
     StartDate DATETIME,
     StopDate DATETIME,
     Duration INTEGER,
+    TripPhoto LONGBLOB,
+    TripCover LONGBLOB,
     PRIMARY KEY (RoadtripID)
 )
 
