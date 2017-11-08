@@ -60,19 +60,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // });
 // app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/home', HomeController.index);
 app.use('/files', express.static(path.join(__dirname, 'files')));
 // app.get('/profile', userController.ensureAuthenticated, userController.profileGet);
 // app.get('/contact', contactController.contactGet);
+app.get('/login', function(req, res){
+  res.render('login.ejs');
+});
 app.get('/map', function(req, res){
   var departure = "";
   var destination = "";
+  var departure_date = "";
+  var destination_date = "";
   res.render('map.ejs', {departure: departure, destination: destination});
 });
 app.post('/map', function(req, res){
   var departure = req.body.departure;  
   var destination = req.body.destination;
-  console.log(req.body);
+  // console.log(req.body);
   res.render('map.ejs', {departure: departure, destination: destination});
 });
 app.get('/home', function(req, res){
