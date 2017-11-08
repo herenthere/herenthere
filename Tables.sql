@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS RoadTripStatistics(
     ActualLength INTEGER,
     Stops INTEGER,
     NumberOfClicks INTEGER,
+    FinancialCost INTEGER,
     PRIMARY KEY (RoadtripStatsID)
 )
 
@@ -66,7 +67,6 @@ CREATE TABLE IF NOT EXISTS RoadTripOptions(
     RoadTripID INTEGER NOT NULL REFERENCES RoadTrip(RoadTripID),
     IsPublic BOOLEAN NOT NULL DEFAULT 0,
     RoadTripRange INTEGER NOT NULL,
-    FinancialCost INTEGER,
     NumOfDaysOnRoad INTEGER,
     TimesLunch DATETIME,
     TimesDinner DATETIME,
