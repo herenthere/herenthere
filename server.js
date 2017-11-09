@@ -3,27 +3,51 @@ var path = require('path');
 var logger = require('morgan');
 var compression = require('compression');
 var methodOverride = require('method-override');
-var session = require('express-session');
 var flash = require('express-flash');
+var dotenv = require('dotenv');
+var passport = require('passport');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-var dotenv = require('dotenv');
-//var exphbs = require('express-handlebars');
-var passport = require('passport');
+
+// app
+var app = express();
+
+// BodyParser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Load environment variables from .env file
 dotenv.load();
 
-// Controllers
+// Models
+var models = require("./models");
+
+// Passport strategies
+require('./config/passport.js')(passport, models.user);
+
+// Sync database
+models.sequelize.sync().then(function(){
+  console.log("db works!")
+}).catch(function(err){
+  console.log(err, "something went wrong!")
+});
+
+// Routes
+var authRoute = require('./routes/auth.js')(app, passport);
+
+// Passport
+app.use(session({
+  secret: 'herenthere',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 //var HomeController = require('./controllers/home');
 // var userController = require('./controllers/user');
 //var contactController = require('./controllers/contact');
-
-// Passport OAuth strategies
-require('./config/passport');
-
-var app = express();
-
 
 // var hbs = exphbs.create({
 //   defaultLayout: 'main',
@@ -45,14 +69,12 @@ app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
 // app.use(compression());
 // app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
 // app.use(expressValidator());
 // app.use(methodOverride('_method'));
 // app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 // app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+
 // app.use(function(req, res, next) {
 //   res.locals.user = req.user ? req.user.toJSON() : null;
 //   next();
@@ -64,29 +86,6 @@ app.get('/', function(req, res){
 app.use('/files', express.static(path.join(__dirname, 'files')));
 // app.get('/profile', userController.ensureAuthenticated, userController.profileGet);
 // app.get('/contact', contactController.contactGet);
-app.get('/login', function(req, res){
-  res.render('login.ejs');
-});
-app.post('/login', function(req, res, next){
-  req.assert('username', 'Username cannot be blank').notEmpty();
-  req.assert('password', 'Password cannot be blank').notEmpty();
-
-  var errors = req.validationErrors();
-
-  if (errors) {
-    req.flash('error', errors);
-    return res.redirect('/login');
-  }
-
-  passport.authenticate('local', function(err, user, info) {
-    if (!user) {
-      req.flash('error', info);
-    }
-    req.logIn(user, function(err) {
-      res.redirect('/home');
-    })
-  })(req, res, next);
-});
 app.get('/map', function(req, res){
   var departure = "";
   var destination = "";

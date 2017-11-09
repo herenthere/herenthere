@@ -1,0 +1,69 @@
+<html>
+  <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+      We are just importing these libraries -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
+  <head>
+    <title>HereNThere Login</title>
+  </head>
+
+  <link rel = "stylesheet"
+    type = "text/css"
+    href = "../files/css/main.css" />
+  
+  <body>
+    <header>
+      <% include partials/loginheader %>
+    </header>
+    <div class="login-container container">
+      <div class="panel">
+        <div class="panel-body">
+            <form id="signup" name="signup" action="/signup" method="POST">
+              <legend>Create an account</legend>
+              <div class="form-group" style="color: black;"> <!-- First Name SIGNUP-->
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter First Name">
+              </div>
+              <div class="form-group"><!-- Last Name SIGNUP-->
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter Last Name">
+              </div>
+              <div class="form-group"> <!-- Email SIGNUP-->
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email" placeholder="Enter Valid E-mail">
+              </div>
+              <div class="form-group"> <!-- Username SIGNUP-->
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="Enter username">
+              </div>
+              <div class="form-group"> <!-- Password SIGNUP-->
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Enter password">
+              </div>
+              <div class="form-group">
+                <small class="text-muted">By signing up, you agree to the <a href="/">Terms of Service</a>.</small>
+              </div>
+              <!-- <div class="checkbox">
+                <label><input type="checkbox" value="" checked>Remember me</label>
+              </div> -->
+              <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span>Signup</button>
+            </form>
+            <div class="hr-title"><span>or</span></div>
+            <div class="btn-toolbar text-center">
+              <a href="/auth/facebook" class="btn btn-facebook">Sign in with Facebook</a>
+              <a href="/auth/google" class="btn btn-google">Sign in with Google</a>
+            </div>
+            <!-- <div class="modal-footer" style="color: black;">
+              <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+              <p>Already a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;"onclick="$('#signup-content').hide();$('#initial-content').show();">Login</a></p>
+            </div> -->
+        <p class="text-center">
+          Already have an account <a href="/login"><strong>Log in</strong></a>
+        </p>
+      </div>   
+    </div>
+  </body>
+</html>

@@ -47,3 +47,61 @@
 // });
 
 // module.exports = User;
+
+module.exports = function(sequelize, Sequelize) {
+    var User = sequelize.define('user', {
+        UserID: {
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER
+        },
+
+        UserName: {
+            type: Sequelize.STRING,
+            notEmpty: true,
+            notNull: true
+        },
+
+        LastName: {
+            type: Sequelize.STRING,
+            notEmpty: true
+        },
+
+        FirstName: {
+            type: Sequelize.STRING,
+            notEmpty: true
+        },
+
+        Email: {
+            type: Sequelize.STRING,
+            notNull: true,
+            notEmpty: true
+        },
+
+        Password: {
+            type: Sequelize.STRING,
+            notNull: true,
+            notEmpty: true
+        },
+
+        LastLogin: {
+            type: Sequelize.DATE
+        },
+
+        Verified: {
+            type: Sequelize.BOOLEAN
+        },
+
+        UserPhoto: {
+            type: Sequelize.BLOB
+        },
+
+        UserCover: {
+            type: Sequelize.BLOB
+        }
+    });
+
+    return User;
+}
+
+// add verified to user

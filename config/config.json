@@ -1,0 +1,26 @@
+{
+    "development": {
+        "username": "main",
+        "password": "dgklppmarist",
+        "database": "herenthere",
+        "host": "10.10.7.165",
+        "dialect": "mysql",
+        "operatorsAliases": false
+    },
+
+    "test": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+    },
+
+    "production": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+    }
+}
