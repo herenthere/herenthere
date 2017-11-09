@@ -1,0 +1,385 @@
+/* HEADER START */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 150px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 2px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #4b33d3;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+/* HEADER END */
+
+/* HOME START */
+
+
+body {
+    background:url('../img/backgroundhomepage.png');
+    background-size: 150%;
+    background-repeat: no-repeat;
+}
+
+#departure-datepicker {
+    background: white url('../img/calendar.png') left no-repeat;
+    padding-left: 30px;
+    background-size: 30px 30px;
+}
+
+#destination-datepicker {
+    background: white url('../img/calendar.png') left no-repeat;
+    padding-left: 30px;
+    background-size: 30px 30px;
+}
+/* HOME END */
+
+/* HELP START */
+p1 { /* TODO delete */ 
+    text-align: center;
+    color:aliceblue;
+}
+/* HELP END */
+/* TODO GET LATEST VERSION OF LOGIN
+LOGIN NEEDS A DIFFERENT HEADER WITHOUT BUTTONS*/
+/* LOGIN START */
+.hr-title {
+    height: auto;
+    margin-top: 20px;
+    border-top: 1px solid;
+    color: #bbb;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+  }
+
+  .btn-toolbar > .btn {
+    float: none;
+    margin-bottom: 5px;
+  }
+
+  .btn {
+    font-weight: 600;
+    border-radius: 3px;
+  }
+
+  .btn:focus {
+    outline: 0 !important;
+  }
+
+  .btn-default {
+    border-color: #ccc;
+    background: #f5f5f5 linear-gradient(to bottom, #fff, #f5f5f5);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), inset 0 -1px 4px rgba(151, 159, 175, 0.2);
+  }
+
+  .btn-default:active {
+    background: #e6e6e6 linear-gradient(to bottom, #f0f0f0, #e6e6e6);
+  }
+
+  .btn-success { /* TODO Look into default bootstrap button success cause color is fine there already*/
+    border-color: #208a46;
+    background: #29b35b linear-gradient(to bottom, #2ec866, #29b35b);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -1px 4px rgba(32, 138, 70, 0.3);
+  }
+
+  .btn-success:active { /* TODO Look into default bootstrap button success cause color is fine there already*/
+    background: #239a4e linear-gradient(to bottom, #28af59, #239a4e);
+  }
+
+  .btn-danger { /* TODO Look into default bootstrap button success cause color is fine there already*/
+    border-color: #8c1512;
+    background: #b61b17 linear-gradient(to bottom, #cc1e1a, #b61b17);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -1px 4px rgba(140, 21, 18, 0.3);
+  }
+
+  .btn-danger:active {
+    background: #9b1714 linear-gradient(to bottom, #b11a17, #9b1714);
+  }
+
+  .btn-facebook {
+    color: #fff;
+    border-color: #335190;
+    background: #3b5998 linear-gradient(to bottom, #4263a9, #3b5998);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1), inset 0 -1px 4px rgba(59, 89, 152, 0.3);
+  }
+
+  .btn-facebook:hover,
+  .btn-facebook:focus {
+    color: #fff;
+  }
+
+  .login-form-control {
+    height: auto;
+    padding: 8px 12px;
+    border: 2px solid #ebebeb;
+    border-radius: 0;
+    box-shadow: inset 0 1px 2px rgba(150, 160, 175, 0.1), inset 0 1px 15px rgba(150, 160, 175, 0.05);
+  }
+
+  .form-group > label {
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+
+  .panel {
+    border: solid 1px rgba(160, 160, 160, 0.3);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .panel-body {
+    padding: 30px;
+  }
+/* LOGIN END */
+
+/* MAP BEGIN */
+#map {
+    height: 100%;
+    outline-width: 2px;
+    outline-color:#214682;
+    outline-style: solid;
+  }
+/* TODO change it to MAPBODY */
+  html, body { 
+    height: 97%;
+    background-color: transparent;
+  }
+
+  .controls {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .controlsplus {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 215px;
+  }
+
+  #origin-input,
+  #destination-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 215px;
+  }
+
+  #floating-panel {
+    position: absolute;
+    top: 15%;
+    left: 1%;
+    z-index: 5;
+    background-color: #214682;
+    padding: 5px;
+    border: 1px solid #fff;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+    height: 55%;
+    width: 20%;
+    min-width: 270px;
+  }
+
+  #origin-input:focus,
+  #destination-input:focus {
+    border-color: #4d90fe;
+  }
+
+  #icons {
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    width: 100%;
+  }
+
+  #scrolling-window {
+    position: relative;
+    overflow-y: scroll;
+    height: 200px; 
+  }
+
+  #slidecontainer {
+      width: 75%; /* Width of the outside container */
+  }
+  
+  /* The slider itself */
+  .slider {
+      -webkit-appearance: none;  /* Override default CSS styles */
+      appearance: none;
+      width: 75%; /* Full-width */
+      height: 15px; /* Specified height */
+      border-radius: 5px;
+      background: #d3d3d3; /* Grey background */
+      outline: none; /* Remove outline */
+      opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+      -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+      transition: opacity .2s;
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+      opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */ 
+  .slider::-webkit-slider-thumb {
+      -webkit-appearance: none; /* Override default look */
+      appearance: none;
+      width: 25px; /* Set a specific slider handle width */
+      height: 25px; /* Slider handle height */
+      border-radius: 25px;
+      background: #4CAF50; /* Green background */
+      cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+      width: 25px; /* Set a specific slider handle width */
+      height: 25px; /* Slider handle height */
+      border-radius: 25px;
+      background: #4CAF50; /* Green background */
+      cursor: pointer; /* Cursor on hover */
+  }
+
+  /* number that represents the slider number */
+  #demo {
+    color: #ffffff;
+  }
+/* MAP END */
+
+/* PROFILE START */
+/* TODO cover pic will taken from DB
+   TripDetail and Profile page share the same styles. MERGE WITH TRIPDETAIL */
+div.container { 
+    width: 100%;
+    background-color: #214682;
+}
+
+div.header2 {
+    background-image:url('../img/coverpic.jpg'); /*tim old stuff*/
+    width: 100%; /*tim old stuff, to check with photo*/
+    height: 250px; /*tim old stuff, to check with photo*/
+    text-align: center;
+    border-bottom: 5px solid black;
+}
+
+table, th, td {
+    text-align: center;
+    margin:1em auto;
+    border-collapse: separate;
+    border-spacing: 50px 0;
+    padding: 10px 0; 
+}
+
+th {
+    color: #99d5fc;
+}
+
+tr {
+    color: #4b92c1;
+}
+/* PROFILE END */
+
+/* TRIPDETAIL START */
+/* TODO check if background is white, if so add background color and make sure it is different from other body backgrounds */
+div.header1 { 
+    background-image: url('../img/cover.png');
+    background-size: 75%;
+    color: #ffffff;
+    background-color: transparent;
+    text-align: center;
+    height: 11%;
+}
+
+div.header2 {
+    background-image:url('../img/coverpic2.jpg'); /*tim old stuff*/
+    width: 100%; /*tim old stuff, to check with photo*/
+    height: 250px; /*tim old stuff, to check with photo*/
+    text-align: center;
+    border-bottom: 5px solid black;
+}
+
+/* ABOUTUS START */
+  p1 {
+    text-align: center;
+    color:aliceblue;
+  }
+/* ABOUTUS END */
+
+
+/* <link rel = "stylesheet"
+ type = "text/css"
+ href = "../../files/css/main.css" /> */
