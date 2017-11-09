@@ -1,1 +1,39 @@
 <!-- TODO make a login header without buttons on top and limited menu on left side -->
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            </a>
+            </div>
+                <ull class="nav navbar-nav navbar-center">
+                <a href="/map"><img src="files/img/logo.png" style="width:185px;height:50px;padding-left:50px;"></a>
+                </ull>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Menu on the left side -->
+<div id="mySidenav" class="sidenav" style="text-align: center;">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/home">Start a new Trip</a>
+  <a href="/profile">Profile</a> <!-- TODO to SIGN IN if user is NOT logged in -->
+  <a href="/home">SIGN OUT</a> <!-- TODO Only gonna show if the user is logged in -->
+  <a href="/aboutus">About Us</a>
+  <a href="/aboutus">Contact</a>
+  <a href="/help">Help</a>
+</div>
+
+
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "17%";
+        document.getElementById("mySidenav").style.minWidth = "200px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("mySidenav").style.minWidth = "0";
+    }
+</script>

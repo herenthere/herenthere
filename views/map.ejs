@@ -272,7 +272,7 @@ Version 0.5 - October 27, 2017
         var destinationAutocomplete = new google.maps.places.Autocomplete(
             destinationInput, {placeIdOnly: true});
 
-        this.setupClickListener('changemode-driving', 'DRIVING');
+        // this.setupClickListener('changemode-driving', 'DRIVING');
 
         this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
         this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
@@ -282,14 +282,14 @@ Version 0.5 - October 27, 2017
 
       // Sets a listener on a radio button to change the filter type on Places
       // Autocomplete.
-      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
-        var radioButton = document.getElementById(id);
-        var me = this;
-        radioButton.addEventListener('click', function() {
-          me.travelMode = mode;
-          me.route();
-        });
-      };
+      // AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+      //   var radioButton = document.getElementById(id);
+      //   var me = this;
+      //   radioButton.addEventListener('click', function() {
+      //     me.travelMode = mode;
+      //     me.route();
+      //   });
+      // };
 
       AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
         var me = this;

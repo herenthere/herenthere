@@ -1,4 +1,11 @@
 <html>
+  <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+      We are just importing these libraries -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="utf-8">
   <head>
     <title>HereNThere Login</title>
   </head>
@@ -9,32 +16,34 @@
   
   <body>
     <header>
-      <% include partials/header %>
+      <% include partials/loginheader %>
     </header>
-    <div class="panel">
-      <div class="panel-body">
-        <form action="/login" method="POST">
-          <legend>Log In</legend>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input name="username" id="username" placeholder="Username" class="form-control" autofocus>
+    <div class="login-container container">
+      <div class="panel">
+        <div class="panel-body">
+          <form action="/login" method="POST">
+            <legend>Log In</legend>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input name="username" id="username" placeholder="Username" class="form-control" autofocus>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+            </div>
+            <div class="form-group"><a href="/forgot"><strong>Forgot your password?</strong></a></div>
+            <button type="submit" class="btn btn-success">Log in</button>
+          </form>
+          <div class="hr-title"><span>or</span></div>
+          <div class="btn-toolbar text-center">
+            <a href="/auth/facebook" class="btn btn-facebook">Sign in with Facebook</a>
+            <a href="/auth/google" class="btn btn-google">Sign in with Google</a>
           </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" class="form-control">
-          </div>
-          <div class="form-group"><a href="/forgot"><strong>Forgot your password?</strong></a></div>
-          <button type="submit" class="btn btn-success">Log in</button>
-        </form>
-        <div class="hr-title"><span>or</span></div>
-        <div class="btn-toolbar text-center">
-          <a href="/auth/facebook" class="btn btn-facebook">Sign in with Facebook</a>
-          <a href="/auth/google" class="btn btn-google">Sign in with Google</a>
         </div>
-      </div>
-      <p class="text-center">
-        Don't have an account? <a href="/signup"><strong>Sign up</strong></a>
-      </p>
-    </div>   
+        <p class="text-center">
+          Don't have an account? <a href="/signup"><strong>Sign up</strong></a>
+        </p>
+      </div>   
+    </div>
   </body>
 </html>

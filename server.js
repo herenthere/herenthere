@@ -58,7 +58,9 @@ app.use(passport.session());
 //   next();
 // });
 // app.use(express.static(path.join(__dirname, 'public')));
-
+app.get('/', function(req, res){
+  res.redirect('/home');
+})
 app.use('/files', express.static(path.join(__dirname, 'files')));
 // app.get('/profile', userController.ensureAuthenticated, userController.profileGet);
 // app.get('/contact', contactController.contactGet);
@@ -117,10 +119,12 @@ app.post('/profile', function(req, res){
   res.render('profile.ejs', {user: user});
 });
 app.get('/tripdetail', function(req, res){
-  res.render('tripdetail.ejs');
+  var user = 1;
+  res.render('tripdetail.ejs', {user: user});
 });
 app.post('/tripdetail', function(req, res){
-  res.render('tripdetail.ejs');
+  var user = 1;
+  res.render('tripdetail.ejs', {user: user});
 });
 app.get('/aboutus', function(req, res){
   var user = 0;
