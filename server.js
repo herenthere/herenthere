@@ -50,6 +50,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(methodOverride('_method'));
 // app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
 // app.use(flash());
+app.use(session({
+  secret: 'herentheresecret',
+  resave: true,
+  
+}))
 app.use(passport.initialize());
 app.use(passport.session());
 // app.use(function(req, res, next) {
@@ -130,6 +135,7 @@ app.get('/help', function(req, res){
 app.post('/help', function(req, res){
   res.render('help.ejs');
 });
+
 // app.get('/account', userController.ensureAuthenticated, userController.accountGet);
 // app.put('/account', userController.ensureAuthenticated, userController.accountPut);
 // app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
