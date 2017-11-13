@@ -80,12 +80,12 @@ Version 0.5 - October 27, 2017
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
                 <label for="departure">Departure:</label>
-                <input type="text" class="form-control" id="origin-input" name="departure" >
+                <input type="text" class="form-control" id="origin-input-home" name="departure" >
                 <input type = "text" id = "departure-datepicker" placeholder = "Add Date" style="color:grey;">
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
               <label for="destination">Destination:</label>
-                <input type="text" class="form-control" id="destination-input" name="destination" >
+                <input type="text" class="form-control" id="destination-input-home" name="destination" >
                 <input type = "text" id = "destination-datepicker" placeholder = "Add Date" style="color:grey;">
             </div>
             <div class="col-xs-1 col-md-1 col-lg-1">
@@ -121,8 +121,8 @@ Version 0.5 - October 27, 2017
   
     // Disables the GO button unless use has put info in both text areas.
     function noGoInput(){
-      var originInput=document.getElementById("origin-input");
-      var destinationInput=document.getElementById("destination-input");
+      var originInput=document.getElementById("origin-input-home");
+      var destinationInput=document.getElementById("destination-input-home");
 
       if(originInput.value=="" || destinationInput.value=="") {
         document.getElementById("GO").disabled=true;
@@ -140,8 +140,8 @@ Version 0.5 - October 27, 2017
       this.originPlaceId = null;
       this.destinationPlaceId = null;
       this.travelMode = 'WALKING';
-      var originInput = document.getElementById('origin-input');
-      var destinationInput = document.getElementById('destination-input');
+      var originInput = document.getElementById('origin-input-home');
+      var destinationInput = document.getElementById('destination-input-home');
       var modeSelector = document.getElementById('mode-selector');
       this.directionsService = new google.maps.DirectionsService;
       this.directionsDisplay = new google.maps.DirectionsRenderer;
@@ -224,6 +224,7 @@ Version 0.5 - October 27, 2017
 =========================
 ======  TODO    =========
 
+- Make Private Public toggle button.
 
 
 TO BLUR THINGS  , PUT IN DIVs

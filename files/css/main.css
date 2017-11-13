@@ -67,11 +67,10 @@ li a:hover:not(.active) {
 
 /* HOME START */
 
-
 body {
     background:url('../img/backgroundhomepage.png');
     background-size: 150%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
 }
 
 #departure-datepicker {
@@ -84,6 +83,21 @@ body {
     background: white url('../img/calendar.png') left no-repeat;
     padding-left: 30px;
     background-size: 30px 30px;
+}
+
+#origin-input-home:focus,
+#destination-input-home:focus {
+  border-color: #4d90fe;
+}
+#origin-input-home,
+#destination-input-home {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
 }
 /* HOME END */
 
@@ -204,14 +218,18 @@ LOGIN NEEDS A DIFFERENT HEADER WITHOUT BUTTONS*/
 
 /* MAP BEGIN */
 #map {
-    height: 100%;
     outline-width: 2px;
     outline-color:#214682;
     outline-style: solid;
+    position: absolute;
+    top: 51px;
+    bottom: 0;
+    width: 100%;
   }
+
 /* TODO change it to MAPBODY */
   html, body { 
-    height: 97%;
+    height: 96%;
     background-color: transparent;
   }
 
@@ -345,7 +363,7 @@ div.container {
     background-color: #214682;
 }
 
-div.header2 {
+div.header {
     background-image:url('../img/coverpic.jpg'); /*tim old stuff*/
     width: 100%; /*tim old stuff, to check with photo*/
     height: 250px; /*tim old stuff, to check with photo*/
@@ -372,16 +390,8 @@ tr {
 
 /* TRIPDETAIL START */
 /* TODO check if background is white, if so add background color and make sure it is different from other body backgrounds */
-div.header1 { 
-    background-image: url('../img/cover.png');
-    background-size: 75%;
-    color: #ffffff;
-    background-color: transparent;
-    text-align: center;
-    height: 11%;
-}
 
-div.header2 {
+div.headertrip {
     background-image:url('../img/coverpic2.jpg'); /*tim old stuff*/
     width: 100%; /*tim old stuff, to check with photo*/
     height: 250px; /*tim old stuff, to check with photo*/
