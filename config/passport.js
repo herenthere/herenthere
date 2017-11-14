@@ -30,6 +30,8 @@ module.exports = function(passport, user){
         } else{
           var userPassword = generateHash(password);
   
+          console.log(req.body);
+
           var data = {
             UserName: username,
             FirstName: req.body.firstname,

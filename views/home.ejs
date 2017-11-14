@@ -28,6 +28,7 @@ Google Places API v3
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -55,7 +56,7 @@ Google Places API v3
       </header>
 
     <!-- Main elements in the center of the screen -->
-    <br><br><br><br><br><br><br> <!-- to delete, pulls it down in the center but will be BS eventually-->
+    <br><br><br><br><br> <!-- to delete, pulls it down in the center but will be BS eventually-->
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
         <h1>Explore and hit the road</h1>
         <p>Select a departure and destination and hit GO!</p>
@@ -64,14 +65,16 @@ Google Places API v3
             <div class="col-xs-2 col-md-2 col-lg-2" class="form-group">
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
-                <label for="departure">Departure:</label>
-                <input type="text" class="form-control" id="origin-input-home" name="departure" >
-                <input type = "text" id = "departure-datepicker" placeholder = "Add Date" style="color:grey;">
+              <label for="departure">Departure:</label>
+              <input type="text" class="form-control" id="origin-input-home" name="departure" >
+              <input id="originplaceid" name="originplaceid" type="text" hidden>
+              <input type = "text" id = "departure-datepicker" placeholder = "Add Date" style="color:grey;">
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
               <label for="destination">Destination:</label>
-                <input type="text" class="form-control" id="destination-input-home" name="destination" >
-                <input type = "text" id = "destination-datepicker" placeholder = "Add Date" style="color:grey;">
+              <input type="text" class="form-control" id="destination-input-home" name="destination" >
+              <input id="destinationplaceid" name="destinationplaceid" type="text" hidden>
+              <input type = "text" id = "destination-datepicker" placeholder = "Add Date" style="color:grey;">
             </div>
             <div class="col-xs-1 col-md-1 col-lg-1">
                 <br>
@@ -84,6 +87,21 @@ Google Places API v3
             <button type="button" class="btn btn-info btn-circle" name="poi"><img src="../files/img/pointsofinteresticon.png" style="width:30px;height:30px;"></button>
         </ul>
         </form>
+        <div class="w3-container">
+          <h3><button type="button" class="btn btn-primary btn-lg" onclick="myFunction()">Additional Filters</button></h3>
+          
+          <div class="w3-panel w3-blue w3-card-4" style="width:500px;display:none;" id="additionalfilters">
+            <br>
+            <p1panel>Number of hours to drive daily</p1panel> <input type="number" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Maximum number of days on the road</p1panel> <input type="number" value="2" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Usual time for lunch</p1panel> <input type="number" value="1" min="12" max="24" style="width:50px;color:black;float:right;"/><br> <br>
+            <p1panel>Usual time for dinner</p1panel> <input type="number" value="1" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Maximum time driving without stopping</p1panel> <input type="number" value="4" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
+            <div id="togglePublicPrivate" align="center">
+              <label class="grey"><input type="radio" name="toggle"><span>Private</span></label>
+              <label class="blue"><input type="radio" name="toggle"><span>Public</span></label>
+            </div>
+        </div>
     </div>
   </body>
   
@@ -116,12 +134,15 @@ Google Places API v3
         document.getElementById("GO").disabled=false;
     }
 
-    new AutocompleteDirectionsHandler(map);
+    function init(){
+      new AutocompleteDirectionsHandler();
+    }
+
     /**
         * @constructor
     */
-    function AutocompleteDirectionsHandler(map) {
-      this.map = map;
+    function AutocompleteDirectionsHandler() {
+      // this.map = map;
       this.originPlaceId = null;
       this.destinationPlaceId = null;
       this.travelMode = 'WALKING';
@@ -129,40 +150,43 @@ Google Places API v3
       var destinationInput = document.getElementById('destination-input-home');
       var modeSelector = document.getElementById('mode-selector');
       this.directionsService = new google.maps.DirectionsService;
-      this.directionsDisplay = new google.maps.DirectionsRenderer;
-      this.directionsDisplay.setMap(map);
+      // this.directionsDisplay = new google.maps.DirectionsRenderer;
+      // this.directionsDisplay.setMap(map);
 
       var originAutocomplete = new google.maps.places.Autocomplete(
           originInput, {placeIdOnly: true});
       var destinationAutocomplete = new google.maps.places.Autocomplete(
           destinationInput, {placeIdOnly: true});
 
-      this.setupClickListener('changemode-walking', 'WALKING');
-      this.setupClickListener('changemode-transit', 'TRANSIT');
-      this.setupClickListener('changemode-driving', 'DRIVING');
+      // this.setupClickListener('changemode-walking', 'WALKING');
+      // this.setupClickListener('changemode-transit', 'TRANSIT');
+      // this.setupClickListener('changemode-driving', 'DRIVING');
 
       this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
       this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
 
-      this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-      this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-      this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+      // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+      // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+      // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
     }
 
     // Sets a listener on a radio button to change the filter type on Places
-    // Autocomplete.
-    AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
-      var radioButton = document.getElementById(id);
-      var me = this;
-      radioButton.addEventListener('click', function() {
-        me.travelMode = mode;
-        me.route();
-      });
-    };
+    // // Autocomplete.
+    // AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+    //   var radioButton = document.getElementById(id);
+    //   var me = this;
+    //   radioButton.addEventListener('click', function() {
+    //     me.travelMode = mode;
+    //     me.route();
+    //   });
+    // };
 
     AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+      var originInputPlaceId = document.getElementById('originplaceid');
+      var destinationInputPlaceId = document.getElementById('destinationplaceid');
+      
       var me = this;
-      autocomplete.bindTo('bounds', this.map);
+      // autocomplete.bindTo('bounds', this.map);
       autocomplete.addListener('place_changed', function() {
         var place = autocomplete.getPlace();
         if (!place.place_id) {
@@ -171,10 +195,12 @@ Google Places API v3
         }
         if (mode === 'ORIG') {
           me.originPlaceId = place.place_id;
+          originInputPlaceId.value = place.place_id;
         } else {
           me.destinationPlaceId = place.place_id;
+          destinationInputPlaceId.value = place.place_id;
         }
-        me.route();
+        // me.route();
       });
     };
 
@@ -196,10 +222,20 @@ Google Places API v3
         }
       });
     };
+    
+    function myFunction() {
+      var x = document.getElementById("additionalfilters");
+      if (x.style.display === "none") {
+          x.style.display = "block";
+      } else {
+          x.style.display = "none";
+      }
+    }
+
   </script>
 
   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVAWCWgAiZ_iTjXOVIBoJC0Y-_1xRNos&callback=AutocompleteDirectionsHandler&libraries=places">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVAWCWgAiZ_iTjXOVIBoJC0Y-_1xRNos&callback=init&libraries=places">
   </script>
 
 </html>

@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var path = require('path');
 var logger = require('morgan');
 var compression = require('compression');
@@ -10,12 +11,20 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 
-// app
-var app = express();
-
 // BodyParser
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Passport
+app.use(session({
+  secret: 'herenthere',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.set('view engine', 'ejs');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -36,15 +45,6 @@ models.sequelize.sync().then(function(){
 // Routes
 var authRoute = require('./routes/auth.js')(app, passport);
 
-// Passport
-app.use(session({
-  secret: 'herenthere',
-  resave: true,
-  saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-
 //var HomeController = require('./controllers/home');
 // var userController = require('./controllers/user');
 //var contactController = require('./controllers/contact');
@@ -64,7 +64,6 @@ app.use(passport.session());
 //   }
 // });
 
-app.set('view engine', 'ejs');
 //app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 // app.use(compression());
@@ -89,17 +88,21 @@ app.use('/files', express.static(path.join(__dirname, 'files')));
 app.get('/map', function(req, res){
   var departure = "";
   var destination = "";
+  var departureplaceid = "";
+  var destinationplaceid = "";
   var departure_date = "";
   var destination_date = "";
   var user = 0;
-  res.render('map.ejs', {departure: departure, destination: destination, user: user});
+  res.render('map.ejs', {departure: departure, destination: destination, departureplaceid: departureplaceid, destinationplaceid: destinationplaceid, user: user});
 });
 app.post('/map', function(req, res){
   var departure = req.body.departure;  
   var destination = req.body.destination;
+  var departureplaceid = req.body.originplaceid;
+  var destinationplaceid = req.body.destinationplaceid;
   var user = 0;
   // console.log(req.body);
-  res.render('map.ejs', {departure: departure, destination: destination, user: user});
+  res.render('map.ejs', {departure: departure, destination: destination, departureplaceid: departureplaceid, destinationplaceid: destinationplaceid, user: user});
 });
 app.get('/home', function(req, res){
   var user = 0;

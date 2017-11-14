@@ -57,7 +57,7 @@ module.exports = function(sequelize, Sequelize) {
         },
 
         UserName: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT,
             notEmpty: true,
             notNull: true
         },

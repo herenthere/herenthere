@@ -1,61 +1,144 @@
-<!--
-Marist College - Capping Project - Prof. Arias
-HereNThere || Rights reserved
-==========================
-Juan Diaz
-Francesco Galletti
-Timbille Kulendi
-Kulvinder Lotay
-Tashi Palden
-Joey Pupel  
-==========================
-Aboutus
--->
-
 <!DOCTYPE html>
-<html>
-  <head>
-    
-    <title>HereNThere</title>
-    <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
-        We are just importing these libraries -->
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<html lang="en">
+<head>
+  <title>HereNThere</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
 
-    <!-- jQuery UI Datepicker -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    
-    <!--Style has all the CSS and modifications to edit how things look on the screen.
-    For example #map will modify how the Google Maps window looks like. -->
+<aboutusbody id="myPage" data-spy="scroll">
+
     <link rel = "stylesheet"
-      type = "text/css"
-      href = "../files/css/main.css" />
-  </head>
-<!-- 
-  ==========================
-  ==========================
-  =====   END STYLE   ======
-  ==========================
-  ==========================
--->
-  <body>
-      <header>
-          <% include partials/header %>
-      </header>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <p1>
-        Made by HereNThere Team.
-        We are a team of people.
-        Fun.
-        Capping.
-        <3
-    </p1>
-  </body>
+          type = "text/css"
+          href = "../files/css/main.css" />
+    
+    <header>
+        <% include partials/header %>
+    </header>
+
+    <div class="jumbotron text-center">
+      <h1>HereNThere</h1> 
+      <p>We specialize in taking you to your next adventure, using NodeJS</p> 
+    </div>
+
+    <!-- Container (About Section) -->
+    <div id="about" class="container-fluid" style="padding: 60px 50px;">
+      <div class="row">
+        <div class="col-sm-8">
+          <h3 style="font-size:35px;">About HereNThere</h3><br>
+          <h3>Founded in 2017, HereNThere is a road trip planner web application. lollollollollollollollollollollollollol</h3><br>
+          <h4 style="color:white;">Best roadtripper on the web except for roadtrippers.com</h4>  
+          <button class="btn btn-default btn-lg">Get in Touch</button>
+        </div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-signal logoaboutus"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid bg-grey" style="padding: 60px 50px;">
+      <div class="row">
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-globe logoaboutus slideanim"></span>
+        </div>
+        <div class="col-sm-8">
+          <h2>Our Values</h2><br>
+          <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
+          <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container (Services Section) -->
+    <div id="services" class="container-fluid text-center" style="padding: 60px 50px;">
+      <h2>TEAM</h2>
+      <h4>Development Team</h4>
+      <br>
+      <div class="row slideanim">
+        <div class="col-sm-4">
+          <span><img src="files/img/juandiaz.png" alt="JuanDiaz" height="75" width="75" class="img-circle"></span>
+          <h4>Juan Diaz</h4>
+          <p>IS Major</p>
+        </div>
+        <div class="col-sm-4">
+          <span><img src="files/img/francescogalletti.png" alt="FrancescoGalletti" height="75" width="75" class="img-circle"></span>
+          <h4>Francesco Galletti</h4>
+          <p>CS Major - Game Design</p>
+        </div>
+        <div class="col-sm-4">
+            <span><img src="files/img/timbillekulendi.png" alt="TimbilleKulendi" height="75" width="75" class="img-circle"></span>
+          <h4>Timbille Kulendi</h4>
+          <p>CS Major - Software Development</p>
+        </div>
+      </div>
+      <br><br>
+      <div class="row slideanim">
+        <div class="col-sm-4">
+            <span><img src="files/img/kulvinderlotay.png" alt="KulvinderLotay" height="75" width="75" class="img-circle"></span>
+          <h4>Kulvinder Lotay</h4>
+          <p>CS Major - Game Design</p>
+        </div>
+        <div class="col-sm-4">
+            <span><img src="files/img/tashipalden.png" alt="TashiPalden" height="75" width="75" class="img-circle"></span>
+          <h4>Tashi Palden</h4>
+          <p>CS Major - Game Design</p>
+        </div>
+        <div class="col-sm-4">
+            <span><img src="files/img/joeypupel.png" alt="JoeyPupel" height="75" width="75" class="img-circle"></span>
+            <h4>Joey Pupel</h4>
+            <p>CS Major - Game Design</p>
+          </div>
+      </div>
+    </div>
+
+    <footer class="container-fluid text-center" style="padding: 60px 50px;">
+      <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+      </a>
+    </footer>
+
+    <script>
+    $(document).ready(function(){
+      // Add smooth scrolling to all links in navbar + footer link
+      $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+
+          // Store hash
+          var hash = this.hash;
+
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, aboutusbody').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function(){
+      
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+      
+      $(window).scroll(function() {
+        $(".slideanim").each(function(){
+          var pos = $(this).offset().top;
+
+          var winTop = $(window).scrollTop();
+            if (pos < winTop + 600) {
+              $(this).addClass("slide");
+            }
+        });
+      });
+    })
+    </script>
+
+</aboutusbody>
 </html>
-
-
