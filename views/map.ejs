@@ -91,6 +91,7 @@ Version 0.5 - October 27, 2017
                     
                 <script>
                   var waypoints = [];
+                  var directionsHandler = "";
                 </script>
           
                 <input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
@@ -118,6 +119,8 @@ Version 0.5 - October 27, 2017
                         
                         $(addto).after(newInput);
                         $(addRemove).after(removeButton);
+
+                        directionsHandler.updateWaypoints();
                         
                         // $("#count").val(next);
                         $('.remove-me').click(function(e){
@@ -129,6 +132,7 @@ Version 0.5 - October 27, 2017
                           // console.log(waypoints);
                           if(index != -1){
                             waypoints.splice(index, 1);
+                            // directionsHandler.updateWaypoints();
                           }
                           // console.log(this);
                           // console.log(waypoints);
@@ -329,7 +333,7 @@ Version 0.5 - October 27, 2017
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
 
-        new AutocompleteDirectionsHandler(map);
+        directionsHandler = new AutocompleteDirectionsHandler(map);
 
         // infowindow
         infowindow.setContent(infowindowcontent);
@@ -389,7 +393,7 @@ Version 0.5 - October 27, 2017
       }
 
       AutocompleteDirectionsHandler.prototype.updateWaypoints = function(){
-        console.log(document.getElementById(waypoints[0]));
+        // console.log(document.getElementById(waypoints[0]));
 
         var me = this;
 
