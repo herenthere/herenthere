@@ -56,7 +56,7 @@ Google Places API v3
       </header>
 
     <!-- Main elements in the center of the screen -->
-    <br><br><br><br> <!-- to delete, pulls it down in the center but will be BS eventually-->
+    <br><br><br> <!-- to delete, pulls it down in the center but will be BS eventually-->
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
         <h1>Explore and hit the road</h1>
         <p>Select a departure and destination and hit GO!</p>
@@ -79,13 +79,14 @@ Google Places API v3
             </div>
             <div class="col-xs-1 col-md-1 col-lg-1">
                 <br>
-                <input type="submit" class="btn btn-primary" value="GO" id="GO" disabled></button>
+                <!-- TODO Delete </button> next line -->
+                <input type="submit" class="btn btn-primary" value="GO" id="GO" disabled></button> 
             </div>
         </div>
-        <ul class="pagination">
-            <button type="button" class="btn btn-primary btn-circle" name="restaurant"><img src="../files/img/restauranticon.png" style="width:30px;height:30px;"></button>
-            <button type="button" class="btn btn-success btn-circle" name="hotel"><img src="../files/img/hotelicon.png" style="width:30px;height:30px;"></button>
-            <button type="button" class="btn btn-info btn-circle" name="poi"><img src="../files/img/pointsofinteresticon.png" style="width:30px;height:30px;"></button>
+        <ul class="pagination" style="height:60px;padding-top:8px;width:300px;background-color:transparent;">
+            <buttons><img src="../files/img/restaurantgreyicon.png" style="width:50px;height:50px;" id="changeImgrestaurant"></buttons>
+            <buttons><img src="../files/img/hotelgreyicon.png" style="width:50px;height:50px;" id="changeImghotel"></buttons>
+            <buttons><img src="../files/img/pointsofinterestgreyicon.png" style="width:50px;height:50px;" id="changeImgpointsofinterest"></buttons>
         </ul>
 
         <div class="w3-container">

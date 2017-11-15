@@ -149,7 +149,7 @@ Version 0.5 - October 27, 2017
             <div class="panel-heading">
               <h4 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                  <p align="center" style="font-size: 25px;">Trip Filters</p>
+                  <p align="center" style="font-size: 25px;">Trip Settings</p>
                 </a>
               </h4>
             </div>
@@ -183,12 +183,16 @@ Version 0.5 - October 27, 2017
               </div>
             </div>
             <div id="icons">
-                <img src="../files/img/restauranticon.png" style="width:50px;height:50px;">
-                <img src="../files/img/hotelicon.png" style="width:50px;height:50px;">
-                <img src="../files/img/pointsofinteresticon.png" style="width:50px;height:50px;">
-            </div>
+                <buttons><img src="../files/img/restaurantgreyicon.png" style="width:50px;height:50px;" id="changeImgrestaurant"></buttons>
+                <buttons><img src="../files/img/hotelgreyicon.png" style="width:50px;height:50px;" id="changeImghotel"></buttons>
+                <buttons><img src="../files/img/pointsofinterestgreyicon.png" style="width:50px;height:50px;" id="changeImgpointsofinterest"></buttons>
+                <div style="float:right; padding-top:5px;padding-right:20px;">
+                  <!-- TODO Delete </button> next line -->
+                  <input type="submit" class="btn btn-success" value="Save"></button> 
+                </div>  
+              </div>
           </div>
-        </div>      
+        </div>  
     </div>
 
     <!-- div to initiate Google Maps -->

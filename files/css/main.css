@@ -67,6 +67,33 @@ li a:hover:not(.active) {
 
 /* HOME START */
 
+buttons {
+  transition: all .4s ease;
+  padding: 20px 13px;
+  border-radius: 18px;
+}
+
+buttons {
+  background-color: grey;
+  color: #fff;
+}
+
+buttons:hover {
+  background-color: white;
+  color: #000;
+}
+
+#changeImgrestaurant:hover{
+  content: url('../img/restauranticon.png');
+}
+
+#changeImghotel:hover{
+  content: url('../img/hotelicon.png');
+}
+
+#changeImgpointsofinterest:hover{
+  content: url('../img/pointsofinteresticon.png');
+}
 p1panel{
   float: left;
 }
@@ -367,7 +394,7 @@ html, body {
 
 #floating-panel {
   position: absolute;
-  top: 10%;
+  top: 8%;
   left: 1%;
   z-index: 5;
   background-color: #214682;
@@ -376,7 +403,7 @@ html, body {
   font-family: 'Roboto','sans-serif';
   line-height: 30px;
   padding-left: 4px;
-  height: 82%;
+  height: 87%;
   /* used to be 20% */
   width: 25%; 
   min-width: 270px;
