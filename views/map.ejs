@@ -41,10 +41,12 @@ Version 0.5 - October 27, 2017
     <title>HereNThere</title>
     <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
         We are just importing these libraries -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
     <meta charset="utf-8">
 
@@ -71,89 +73,122 @@ Version 0.5 - October 27, 2017
 
     <!-- floating panel on the left of the map. Origin and Destination text areas -->
     <div id="floating-panel">
-      <input class="controls" id="origin-input" name="origin-input" type="text" placeholder="Enter an origin location" value="<%= departure %>"/>
-      <input id="origin-input-placeid" name="origin-input-placeid" type="text" value="<%= departureplaceid %>" hidden>
-
-      <!-- <div id="scrolling-window" data-spy="scroll"> -->
-        <!-- <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop..."/> -->
-  
-      <script>
-        var waypoints = [];
-      </script>
-
-      <input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
-      
-      <script>
-        waypoints.push('waypoint1');
-        $(document).ready(function(){
-            var next = 1;
-            $(".add-more").click(function(e){
-              e.preventDefault();
-              var addto = "#waypoint" + next;
-              var addRemove = "#waypoint" + (next);
-              
-              next++;
-
-              var newIn = '<input class="controlsplus" id="waypoint' + next + '" name="waypoint' + next + '" type="text" placeholder="Add a stop...">';
-              waypoints.push('waypoint' + next);
-              // console.log(waypoints);
-              
-              var newInput = $(newIn);
-              
-              var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div>';
-              var removeButton = $(removeBtn);
-              // console.log(removeBtn);
-              
-              $(addto).after(newInput);
-              $(addRemove).after(removeButton);
-              
-              // $("#count").val(next);
-              $('.remove-me').click(function(e){
-                // e.preventDefault();
-                var waypointNum = this.id.charAt(this.id.length-1);
-                var waypointID = "#waypoint" + waypointNum;
-                var index = waypoints.indexOf('waypoint' + waypointNum);
-                // console.log('it ran');
-                // console.log(waypoints);
-                if(index != -1){
-                  waypoints.splice(index, 1);
-                }
-                // console.log(this);
-                // console.log(waypoints);
-                $(this).remove();
-                $(waypointID).remove();
-              });
-            });
-        });
-      </script>
-      <!-- </div> -->
-
-      <input id="destination-input" name="destination-input" class="controls" type="text" placeholder="Enter a destination location" value="<%= destination %>"/>    
-      <input id="destination-input-placeid" name="destination-input-placeid" type="text" value="<%= destinationplaceid %>" hidden>
-
-      <br><br>
-      <div id="slidecontainer">
-          <input type="range" min="10" max="31" value="15" class="slider" id="myRange"/>
-          <h3 id="demo"></h3>
-      </div>
-
-      <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value; // Display the default slider value
-
-        // Update the current slider value (each time you drag the slider handle)
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-        }
-      </script>
-
-      <div id="icons">
-          <img src="../files/img/restauranticon.png" style="width:50px;height:50px;">
-          <img src="../files/img/hotelicon.png" style="width:50px;height:50px;">
-          <img src="../files/img/pointsofinteresticon.png" style="width:50px;height:50px;">
-      </div>
-      
+      <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="float:center;">
+                  <p align="center" style="font-size: 25px;">Trip Details</p>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+              <div class="panel-body"> <!--BODY INSIDE FIRST PANEL -->
+                <input class="controls" id="origin-input" name="origin-input" type="text" placeholder="Enter an origin location" value="<%= departure %>"/>
+                <input id="origin-input-placeid" name="origin-input-placeid" type="text" value="<%= departureplaceid %>" hidden>
+                <!-- <div id="scrolling-window" data-spy="scroll"> -->
+                  <!-- <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop..."/> -->
+                    
+                <script>
+                  var waypoints = [];
+                </script>
+          
+                <input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
+                
+                <script>
+                  waypoints.push('waypoint1');
+                  $(document).ready(function(){
+                      var next = 1;
+                      $(".add-more").click(function(e){
+                        e.preventDefault();
+                        var addto = "#waypoint" + next;
+                        var addRemove = "#waypoint" + (next);
+                        
+                        next++;
+          
+                        var newIn = '<input class="controlsplus" id="waypoint' + next + '" name="waypoint' + next + '" type="text" placeholder="Add a stop...">';
+                        waypoints.push('waypoint' + next);
+                        // console.log(waypoints);
+                        
+                        var newInput = $(newIn);
+                        
+                        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div>';
+                        var removeButton = $(removeBtn);
+                        // console.log(removeBtn);
+                        
+                        $(addto).after(newInput);
+                        $(addRemove).after(removeButton);
+                        
+                        // $("#count").val(next);
+                        $('.remove-me').click(function(e){
+                          // e.preventDefault();
+                          var waypointNum = this.id.charAt(this.id.length-1);
+                          var waypointID = "#waypoint" + waypointNum;
+                          var index = waypoints.indexOf('waypoint' + waypointNum);
+                          // console.log('it ran');
+                          // console.log(waypoints);
+                          if(index != -1){
+                            waypoints.splice(index, 1);
+                          }
+                          // console.log(this);
+                          // console.log(waypoints);
+                          $(this).remove();
+                          $(waypointID).remove();
+                        });
+                      });
+                  });
+                </script>
+                <!-- </div> -->
+          
+                <input id="destination-input" name="destination-input" class="controls" type="text" placeholder="Enter a destination location" value="<%= destination %>"/>    
+                <input id="destination-input-placeid" name="destination-input-placeid" type="text" value="<%= destinationplaceid %>" hidden>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default template">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                  <p align="center" style="font-size: 25px;">Trip Filters</p>
+                </a>
+              </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+              <div class="panel-body"> <!--BODY INSIDE SECOND  PANEL -->                   
+                <mapp1panel>Number of hours to drive daily</mapp1panel> <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="<%= hoursdrivedaily %>" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+                <mapp1panel>Maximum number of days on the road</mapp1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="<%= maxdaysonroad %>" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+                <mapp1panel>Usual time for lunch</mapp1panel> <input type="number" name="timelunch" id="timelunch" value="<%= timelunch %>"  min="12" max="24" style="width:50px;color:black;float:right;"/><br> <br>
+                <mapp1panel>Usual time for dinner</mapp1panel> <input type="number" name="timedinner" id="timedinner" value="<%= timedinner %>" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
+                <mapp1panel>Maximum time driving not stopping</mapp1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="<%= maxtimedrive %>" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
+                <br>
+                <div id="maptogglePublicPrivate" align="center"> <!-- TODO radio buttons passing to next page -->
+                  <label class="grey"><input type="radio" name="toggle" id="privatetoggle"><span>Private</span></label>
+                  <label class="blue"><input type="radio" name="toggle" id="publictoggle"><span>Public</span></label>
+                </div>
+                <br>
+                <div id="slidecontainer">
+                    <input type="range" min="10" max="31" value="15" class="slider" id="myRange"/>
+                    <h3 id="demo" name="slidervalue" style="color:black;"></h3>
+                </div>
+                <script>
+                    var slider = document.getElementById("myRange");
+                    var output = document.getElementById("demo");
+                    output.innerHTML = slider.value; // Display the default slider value
+            
+                    // Update the current slider value (each time you drag the slider handle)
+                    slider.oninput = function() {
+                        output.innerHTML = this.value;
+                    }
+                  </script>
+              </div>
+            </div>
+            <div id="icons">
+                <img src="../files/img/restauranticon.png" style="width:50px;height:50px;">
+                <img src="../files/img/hotelicon.png" style="width:50px;height:50px;">
+                <img src="../files/img/pointsofinteresticon.png" style="width:50px;height:50px;">
+            </div>
+          </div>
+        </div>      
     </div>
 
     <!-- div to initiate Google Maps -->
@@ -164,7 +199,10 @@ Version 0.5 - October 27, 2017
       <span id="place-name"  class="title"></span><br>
       <span id="place-address"></span>
     </div>
-
+      <br>
+      <button class="btn btn-lg btn-primary btn-add-panel">
+          <i class="glyphicon glyphicon-plus"></i> Add new panel
+      </button>
       <!-- Filter check boxes - TODO make them actually display Restaurants/Hotels/Points of interests ONLY-->
 
     <script>
@@ -307,6 +345,10 @@ Version 0.5 - October 27, 2017
         var originInputPlaceId = document.getElementById('origin-input-placeid');
         var destinationInputPlaceId = document.getElementById('destination-input-placeid');
 
+        this.waypointsAutocomplete = [];
+        this.waypointsPlaceIds = [];
+        this.waypointRoutes = [];
+
         this.map = map;        
         
         this.travelMode = 'DRIVING';
@@ -314,7 +356,6 @@ Version 0.5 - October 27, 2017
         this.directionsDisplay = new google.maps.DirectionsRenderer;
         this.directionsDisplay.setMap(map);
 
-        this.waypoints = [];
         // this.waypoints = [{location: {placeId: 'ChIJOwg_06VPwokRYv534QaPC8g'}}];
 
         if(originInputPlaceId.value && destinationInputPlaceId.value){
@@ -339,8 +380,27 @@ Version 0.5 - October 27, 2017
 
         this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
         this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+      
+        this.updateWaypoints();
       }
 
+      AutocompleteDirectionsHandler.prototype.updateWaypoints = function(){
+        console.log(document.getElementById(waypoints[0]));
+
+        var me = this;
+
+        for (i = 0; i < waypoints.length; i++){
+          me.waypointsAutocomplete.push(new google.maps.places.Autocomplete(
+            document.getElementById(waypoints[i]), {placeIdOnly: true}
+          ));
+
+          me.waypointsPlaceIds.push(null);
+        }
+
+        for (x = 0; x < me.waypointsAutocomplete.length; x++){
+          me.setupPlaceChangedListener(me.waypointsAutocomplete[x], x);
+        }
+      }
       // Sets a listener on a radio button to change the filter type on Places
       // Autocomplete.
       // AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
@@ -369,9 +429,15 @@ Version 0.5 - October 27, 2017
           }
           if (mode === 'ORIG') {
             me.originPlaceId = place.place_id;
-          } else {
+          } 
+          else if (mode === 'DEST'){
             me.destinationPlaceId = place.place_id;
           }
+          else {
+            me.waypointsPlaceIds[mode] = place.place_id;
+            me.waypointRoutes.push({location: {placeId: me.waypointsPlaceIds[mode]}});
+          }
+
           me.route();
         });
       };
@@ -382,10 +448,10 @@ Version 0.5 - October 27, 2017
         }
         var me = this;
 
-        var waypoints = [{location: {placeId: 'ChIJOwg_06VPwokRYv534QaPC8g'}}];
+        console.log(this.waypointRoutes);
 
         //Calling google.maps.DirectionsService.route method, passing a request: DirectionsRequest and callback: function(DirectionsResult, DirectionsStatus)
-        directionsServiceRoute(me, this.originPlaceId, this.destinationPlaceId, this.travelMode, waypoints);
+        directionsServiceRoute(me, this.originPlaceId, this.destinationPlaceId, this.travelMode, this.waypointRoutes);
       };
 
       function directionsServiceRoute(me, originPlaceId, destinationPlaceId, travelMode, waypoints){
@@ -416,6 +482,7 @@ Version 0.5 - October 27, 2017
           }
         }
       }
+      
     </script>
 
     <!-- Connects the map to the API key that we have registered -->

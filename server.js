@@ -93,7 +93,14 @@ app.get('/map', function(req, res){
   var departure_date = "";
   var destination_date = "";
   var user = 0;
-  res.render('map.ejs', {departure: departure, destination: destination, departureplaceid: departureplaceid, destinationplaceid: destinationplaceid, user: user});
+  var hoursdrivedaily = "";
+  var maxdaysonroad = "";
+  var timelunch = "";
+  var timedinner = "";
+  var maxtimedrive = "";
+  var privatetoggle = "";
+  var publictoggle = "";
+  res.render('map.ejs', {departure: departure, destination: destination, publictoggle: publictoggle, privatetoggle: privatetoggle, maxtimedrive: maxtimedrive, timedinner: timedinner, departureplaceid: departureplaceid, timelunch: timelunch, hoursdrivedaily: hoursdrivedaily, maxdaysonroad: maxdaysonroad, destinationplaceid: destinationplaceid, user: user});
 });
 app.post('/map', function(req, res){
   var departure = req.body.departure;  
@@ -101,8 +108,15 @@ app.post('/map', function(req, res){
   var departureplaceid = req.body.originplaceid;
   var destinationplaceid = req.body.destinationplaceid;
   var user = 0;
-  // console.log(req.body);
-  res.render('map.ejs', {departure: departure, destination: destination, departureplaceid: departureplaceid, destinationplaceid: destinationplaceid, user: user});
+  var hoursdrivedaily = req.body.hoursdrivedaily;
+  var maxdaysonroad = req.body.maxdaysonroad;
+  var timelunch = req.body.timelunch;
+  var timedinner = req.body.timedinner;
+  var maxtimedrive = req.body.maxtimedrive; 
+  var privatetoggle = req.body.privatetoggle;
+  var publictoggle = req.body.publictoggle;
+  console.log(req.body);
+  res.render('map.ejs', {departure: departure, destination: destination, publictoggle: publictoggle, privatetoggle: privatetoggle, maxtimedrive: maxtimedrive, timedinner: timedinner, departureplaceid: departureplaceid, timelunch: timelunch, hoursdrivedaily: hoursdrivedaily, maxdaysonroad: maxdaysonroad, destinationplaceid: destinationplaceid, user: user});
 });
 app.get('/home', function(req, res){
   var user = 0;

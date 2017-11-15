@@ -56,17 +56,18 @@ Google Places API v3
       </header>
 
     <!-- Main elements in the center of the screen -->
-    <br><br><br><br><br> <!-- to delete, pulls it down in the center but will be BS eventually-->
+    <br><br><br><br> <!-- to delete, pulls it down in the center but will be BS eventually-->
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
         <h1>Explore and hit the road</h1>
         <p>Select a departure and destination and hit GO!</p>
-        <form action="/map" method="post" id="search" onkeydown="noGoInput()">
+        <br>
+        <form action="/map" method="post" id="search" name="search" onkeydown="noGoInput()" novalidate>
         <div class="row">
             <div class="col-xs-2 col-md-2 col-lg-2" class="form-group">
             </div>
             <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
               <label for="departure">Departure:</label>
-              <input type="text" class="form-control" id="origin-input-home" name="departure" >
+              <input type="text" class="form-control" id="origin-input-home" name="departure">
               <input id="originplaceid" name="originplaceid" type="text" hidden>
               <input type = "text" id = "departure-datepicker" placeholder = "Add Date" style="color:grey;">
             </div>
@@ -86,22 +87,23 @@ Google Places API v3
             <button type="button" class="btn btn-success btn-circle" name="hotel"><img src="../files/img/hotelicon.png" style="width:30px;height:30px;"></button>
             <button type="button" class="btn btn-info btn-circle" name="poi"><img src="../files/img/pointsofinteresticon.png" style="width:30px;height:30px;"></button>
         </ul>
-        </form>
+
         <div class="w3-container">
           <h3><button type="button" class="btn btn-primary btn-lg" onclick="myFunction()">Additional Filters</button></h3>
-          
+
           <div class="w3-panel w3-blue w3-card-4" style="width:500px;display:none;" id="additionalfilters">
             <br>
-            <p1panel>Number of hours to drive daily</p1panel> <input type="number" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
-            <p1panel>Maximum number of days on the road</p1panel> <input type="number" value="2" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
-            <p1panel>Usual time for lunch</p1panel> <input type="number" value="1" min="12" max="24" style="width:50px;color:black;float:right;"/><br> <br>
-            <p1panel>Usual time for dinner</p1panel> <input type="number" value="1" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
-            <p1panel>Maximum time driving without stopping</p1panel> <input type="number" value="4" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
+            <p1panel>Number of hours to drive daily</p1panel> <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Maximum number of days on the road</p1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="2" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Usual time for lunch</p1panel> <input type="number" name="timelunch" id="timelunch" value="12" min="1" max="24" style="width:50px;color:black;float:right;"/><br> <br>
+            <p1panel>Usual time for dinner</p1panel> <input type="number" name="timedinner" id="timedinner" value="18" min="1" max="24" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Maximum time driving not stopping</p1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="4" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
             <div id="togglePublicPrivate" align="center">
-              <label class="grey"><input type="radio" name="toggle"><span>Private</span></label>
-              <label class="blue"><input type="radio" name="toggle"><span>Public</span></label>
+              <label class="grey"><input type="radio" name="toggle" id="privatetoggle"><span>Private</span></label>
+              <label class="blue"><input type="radio" name="toggle" id="publictoggle"><span>Public</span></label>
             </div>
-        </div>
+          </div>
+          </form>
     </div>
   </body>
   
