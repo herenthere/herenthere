@@ -5,15 +5,19 @@ var logger = require('morgan');
 var compression = require('compression');
 var methodOverride = require('method-override');
 var flash = require('express-flash');
-var dotenv = require('dotenv');
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var dotenv = require('dotenv');
 var expressValidator = require('express-validator');
+var ejs = require('ejs');
+
+// Load environment variables from .env file
+dotenv.load();
 
 // BodyParser
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Passport
 app.use(session({
@@ -24,13 +28,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// For EJS
 app.set('view engine', 'ejs');
-
-// Load environment variables from .env file
-dotenv.load();
 
 // Models
 var models = require("./models");
+
+// Routes
+var authRoute = require('./routes/auth.js')(app, passport);
 
 // Passport strategies
 require('./config/passport.js')(passport, models.user);
@@ -41,9 +46,6 @@ models.sequelize.sync().then(function(){
 }).catch(function(err){
   console.log(err, "something went wrong!")
 });
-
-// Routes
-var authRoute = require('./routes/auth.js')(app, passport);
 
 //var HomeController = require('./controllers/home');
 // var userController = require('./controllers/user');
@@ -65,7 +67,7 @@ var authRoute = require('./routes/auth.js')(app, passport);
 // });
 
 //app.set('view engine', 'handlebars');
-app.set('port', process.env.PORT || 3000);
+// app.set('port', process.env.PORT || 3000);
 // app.use(compression());
 // app.use(logger('dev'));
 
@@ -126,14 +128,14 @@ app.post('/home', function(req, res){
   var user = 0;
   res.render('home.ejs', {user: user});
 });
-app.get('/profile', function(req, res){
-  var user = 0;
-  res.render('profile.ejs', {user: user});
-});
-app.post('/profile', function(req, res){
-  var user = 0;
-  res.render('profile.ejs', {user: user});
-});
+// app.get('/profile', function(req, res){
+//   var user = 0;
+//   res.render('profile.ejs', {user: user});
+// });
+// app.post('/profile', function(req, res){
+//   var user = 0;
+//   res.render('profile.ejs', {user: user});
+// });
 app.get('/tripdetail', function(req, res){
   var user = 1;
   res.render('tripdetail.ejs', {user: user});
@@ -177,15 +179,21 @@ app.post('/help', function(req, res){
 // app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 
 // Production error handler
-if (app.get('env') === 'production') {
-  app.use(function(err, req, res, next) {
-    console.error(err.stack);
-    res.sendStatus(err.status || 500);
-  });
-}
+// if (app.get('env') === 'production') {
+//   app.use(function(err, req, res, next) {
+//     console.error(err.stack);
+//     res.sendStatus(err.status || 500);
+//   });
+// }
 
-app.listen(app.get('port'), function() {
-  console.log('Express server listening on port ' + app.get('port'));
+// app.get('port')
+
+app.listen(3000, function() {
+  console.log('Express server listening on port ' + 3000);
+
+  // if (!err)
+  //   console.log("Site is live");
+  // else console.log(err)
 });
 
-module.exports = app;
+// module.exports = app;

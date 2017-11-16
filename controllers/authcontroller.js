@@ -1,15 +1,15 @@
 var exports = module.exports = {}
 
 exports.signup = function(req, res){
-    res.render('signup.ejs');
+    res.render('signup');
 }
 
 exports.login = function(req, res){
-    res.render('login.ejs');
+    res.render('login');
 }
 
 exports.profile = function(req, res){
-    res.render('profile.ejs');
+    res.render('profile');
 }
 
 exports.logout = function(req, res){

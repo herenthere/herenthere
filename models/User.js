@@ -50,53 +50,53 @@
 
 module.exports = function(sequelize, Sequelize) {
     var User = sequelize.define('user', {
-        UserID: {
+        id: {
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
         },
 
-        UserName: {
+        username: {
             type: Sequelize.TEXT,
             notEmpty: true,
             notNull: true
         },
 
-        LastName: {
+        lastname: {
             type: Sequelize.STRING,
             notEmpty: true
         },
 
-        FirstName: {
+        firstname: {
             type: Sequelize.STRING,
             notEmpty: true
         },
 
-        Email: {
-            type: Sequelize.STRING,
-            notNull: true,
-            notEmpty: true
-        },
-
-        Password: {
+        email: {
             type: Sequelize.STRING,
             notNull: true,
             notEmpty: true
         },
 
-        LastLogin: {
+        password: {
+            type: Sequelize.STRING,
+            notNull: true,
+            notEmpty: true
+        },
+
+        lastlogin: {
             type: Sequelize.DATE
         },
 
-        Verified: {
+        verified: {
             type: Sequelize.BOOLEAN
         },
 
-        UserPhoto: {
+        userphoto: {
             type: Sequelize.BLOB
         },
 
-        UserCover: {
+        usercover: {
             type: Sequelize.BLOB
         }
     });

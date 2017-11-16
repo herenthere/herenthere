@@ -37,6 +37,12 @@ Google Places API v3
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     
+    <script type="text/javascript" src="../files/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../files/bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="../files/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="../files/bower_components/jquery/dist/bootstrap.min.css" />
+    <link rel="stylesheet" href="../files/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
     <!--Style has all the CSS and modifications to edit how things look on the screen.
     For example #map will modify how the Google Maps window looks like. -->
     <link rel = "stylesheet"
@@ -94,7 +100,8 @@ Google Places API v3
 
           <div class="w3-panel w3-blue w3-card-4" style="width:500px;display:none;" id="additionalfilters">
             <br>
-            <p1panel>Number of hours to drive daily</p1panel> <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Number of hours to drive daily</p1panel>
+           <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
             <p1panel>Maximum number of days on the road</p1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="2" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
             <p1panel>Usual time for lunch</p1panel> <input type="number" name="timelunch" id="timelunch" value="12" min="1" max="24" style="width:50px;color:black;float:right;"/><br> <br>
             <p1panel>Usual time for dinner</p1panel> <input type="number" name="timedinner" id="timedinner" value="18" min="1" max="24" style="width:50px;color:black;float:right;"/><br><br>
@@ -250,6 +257,26 @@ Google Places API v3
 
 - Make Private Public toggle button.
 
+  <div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker3'>
+                    <input type='text' class="form-control" />
+                      <span class="input-group-addon">
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+            });
+        </script>
+    </div>
+</div>
 
 TO BLUR THINGS  , PUT IN DIVs
   -webkit-filter: blur(5px);

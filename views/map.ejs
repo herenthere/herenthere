@@ -41,14 +41,17 @@ Version 0.5 - October 27, 2017
     <title>HereNThere</title>
     <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
         We are just importing these libraries -->
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- jQuery UI Datepicker -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     <!--Style has all the CSS and modifications to edit how things look on the screen.
         For example #map will modify how the Google Maps window looks like. -->
@@ -84,7 +87,8 @@ Version 0.5 - October 27, 2017
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
               <div class="panel-body"> <!--BODY INSIDE FIRST PANEL -->
-                <input class="controls" id="origin-input" name="origin-input" type="text" placeholder="Enter an origin location" value="<%= departure %>"/>
+                <input class="controlsplusdate" id="datestop0" name="datestop0" type="text" placeholder="Date">
+                <input class="controlsplus" id="origin-input" name="origin-input" type="text" placeholder="Enter an origin location" value="<%= departure %>"/>
                 <input id="origin-input-placeid" name="origin-input-placeid" type="text" value="<%= departureplaceid %>" hidden>
                 <!-- <div id="scrolling-window" data-spy="scroll"> -->
                   <!-- <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop..."/> -->
@@ -94,8 +98,9 @@ Version 0.5 - October 27, 2017
                   var directionsHandler = "";
                 </script>
           
-                <input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
-                
+                <br id="br1" name="br1">
+                <input class="controlsplusdate" id="datestop1" name="datestop1" type="text" placeholder="Date"><input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
+                                
                 <script>
                   waypoints.push('waypoint1');
                   $(document).ready(function(){
@@ -107,10 +112,15 @@ Version 0.5 - October 27, 2017
                         
                         next++;
           
+                        var brek = '<br id="br' + next + '" name="br' + next + '">';
+                        var dateStop =  '<input class="controlsplusdate" id="datestop' + next + '" name="datestop' + next + '" type="text" placeholder="Date">';
                         var newIn = '<input class="controlsplus" id="waypoint' + next + '" name="waypoint' + next + '" type="text" placeholder="Add a stop...">';
                         waypoints.push('waypoint' + next);
+                        // TODO add datestop push
                         // console.log(waypoints);
                         
+                        var brInput = $(brek);
+                        var dateStopInput = $(dateStop);
                         var newInput = $(newIn);
                         
                         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div>';
@@ -118,6 +128,9 @@ Version 0.5 - October 27, 2017
                         // console.log(removeBtn);
                         
                         $(addto).after(newInput);
+                        $(addto).after(dateStopInput);
+                        $(addto).after(brInput);                     
+                        
                         $(addRemove).after(removeButton);
 
                         directionsHandler.updateWaypoints();
@@ -126,7 +139,10 @@ Version 0.5 - October 27, 2017
                         $('.remove-me').click(function(e){
                           // e.preventDefault();
                           var waypointNum = this.id.charAt(this.id.length-1);
+                          var brekID = "#br" + waypointNum;
+                          var datestopID = "#datestop" + waypointNum;
                           var waypointID = "#waypoint" + waypointNum;
+                          
                           var index = waypoints.indexOf('waypoint' + waypointNum);
                           // console.log('it ran');
                           // console.log(waypoints);
@@ -137,6 +153,8 @@ Version 0.5 - October 27, 2017
                           // console.log(this);
                           // console.log(waypoints);
                           $(this).remove();
+                          $(brekID).remove();
+                          $(datestopID).remove();
                           $(waypointID).remove();
                         });
                       });
@@ -144,7 +162,9 @@ Version 0.5 - October 27, 2017
                 </script>
                 <!-- </div> -->
           
-                <input id="destination-input" name="destination-input" class="controls" type="text" placeholder="Enter a destination location" value="<%= destination %>"/>    
+                <!-- TODO IMPLEMENT DATE -->
+                <input class="controlsplusdate" id="datestopfinal" name="datestopfinal" type="text" placeholder="Date" />
+                <input id="destination-input" name="destination-input" class="controlsplus" type="text" placeholder="Enter a destination location" value="<%= destination %>"/>    
                 <input id="destination-input-placeid" name="destination-input-placeid" type="text" value="<%= destinationplaceid %>" hidden>
               </div>
             </div>
@@ -215,12 +235,36 @@ Version 0.5 - October 27, 2017
 
     <script>
 
-      // Code for modal to pop up when click on myBtn (profile icon)  
-      // $(document).ready(function(){
-      //     $("#myBtn").click(function(){
-      //         $("#myModal").modal();
-      //     });
+      //datepicker function
+      // $(function() {
+      //   $( "#departure-datepicker" ).datepicker({
+      //     prevText:"click for previous months",
+      //     nextText:"click for next months",
+      //     showOtherMonths:true,
+      //     selectOtherMonths: false
+      //   });
+      //   $( "#destination-datepicker" ).datepicker({
+      //     prevText:"click for previous months",
+      //     nextText:"click for next months",
+      //     showOtherMonths:true,
+      //     selectOtherMonths: true
+      //   });
       // });
+
+      $(function(dateID) {
+        $( "#" + dateID ).datepicker({
+          prevText:"click for previous months",
+          nextText:"click for next months",
+          showOtherMonths:true,
+          selectOtherMonths: false
+        });
+        $( "#" + dateID ).datepicker({
+          prevText:"click for previous months",
+          nextText:"click for next months",
+          showOtherMonths:true,
+          selectOtherMonths: true
+        });
+      });
 
       // Initialize Google Maps map. Give it skin, then variables map, then camera location, then autocomplete functions.
       function initMap() {
@@ -506,7 +550,7 @@ Version 0.5 - October 27, 2017
 - Height maps needs to be scalable, use % instead of px.
 - Put destinations
 - 23 waypoints MAX - NOTE
-
+- reduce the left panel to three little things so user can see whole page
       function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({

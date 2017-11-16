@@ -3,26 +3,25 @@ var authController = require('../controllers/authcontroller.js');
 module.exports = function(app, passport) {
     app.get('/signup', authController.signup);
     
-    app.get('/login', authController.login);
-
-    app.get('/logout', authController.logout);
-
-    // app.get('/profile', isLoggedIn, authController.profile);
+    app.get('/signin', authController.login);
     
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/home',
+        successRedirect: '/map',
 
         failureRedirect: '/signup'
         }   
     ));
 
-    app.post('/login', passport.authenticate('local-signin', {
-        successRedirect: '/home',
+    app.get('/profile', isLoggedIn, authController.profile);
 
-        failureRedirect: '/login'
+    app.post('/signin', passport.authenticate('local-signin', {
+        successRedirect: '/profile',
+
+        failureRedirect: '/signin'
         }   
     ));
 
+    app.get('/logout', authController.logout);
 
     // Check if user is logged in
     function isLoggedIn(req, res, next) {
