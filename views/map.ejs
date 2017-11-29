@@ -148,7 +148,7 @@ Version 0.5 - October 27, 2017
                           // console.log(waypoints);
                           if(index != -1){
                             waypoints.splice(index, 1);
-                            // directionsHandler.updateWaypoints();
+                            directionsHandler.updateWaypoints();
                           }
                           // console.log(this);
                           // console.log(waypoints);
@@ -405,6 +405,8 @@ Version 0.5 - October 27, 2017
         
         this.travelMode = 'DRIVING';
         this.directionsService = new google.maps.DirectionsService;
+        this.service = new google.maps.places.PlacesService(map);
+        //this.directionsResult = google.maps.DirectionsService.getDirections();
         this.directionsDisplay = new google.maps.DirectionsRenderer;
         this.directionsDisplay.setMap(map);
 
@@ -452,6 +454,8 @@ Version 0.5 - October 27, 2017
         for (x = 0; x < me.waypointsAutocomplete.length; x++){
           me.setupPlaceChangedListener(me.waypointsAutocomplete[x], x);
         }
+
+        // showPOI(me);
       }
       // Sets a listener on a radio button to change the filter type on Places
       // Autocomplete.
@@ -518,12 +522,67 @@ Version 0.5 - October 27, 2017
           },
           
           function(response, status) {
-          if (status === 'OK') {
+          if (status === 'OK') {            
+            //store this shit
             me.directionsDisplay.setDirections(response);
+            showPOI(me, response);
           } else {
             window.alert('Directions request failed due to ' + status);
           }
         });
+      }
+
+      function showPOI(me, directionsResult){
+        var legs = directionsResult.routes[0].legs;
+        var cumulative_length = 0;
+
+        for(var i = 0; i < legs.length; i++){
+          cumulative_length += legs[i].distance.value;
+
+          //range * 2 TODO
+          if(cumulative_length >= 62){
+            //nearby search
+            me.service.nearbySearch(
+              {
+                bounds: me.map.getBounds(),
+                //keyword
+                location: legs[i].end_location
+              },                          
+              
+              function(results, status, pagination){
+                createMarkers(me.map, results);
+              }
+            )
+          
+            cumulative_length = 0;
+          }
+        }
+      }
+
+      //Create markets given a list of places
+      function createMarkers(map, places) {
+        //var bounds = map.getBounds();      
+        //var placesList = document.getElementById('places');
+
+        for (var i = 0, place; place = places[i]; i++) {
+          var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+          };
+
+          var marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            title: place.name,
+            position: place.geometry.location
+          });
+
+          //bounds.extend(place.geometry.location);
+        }
+        //map.fitBounds(bounds);
       }
 
       // Callback used by async scripted link below

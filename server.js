@@ -94,7 +94,7 @@ app.get('/map', function(req, res){
   var destinationplaceid = "";
   var departure_date = "";
   var destination_date = "";
-  var user = 0;
+  var user = 1;
   var hoursdrivedaily = "";
   var maxdaysonroad = "";
   var timelunch = "";
@@ -109,7 +109,7 @@ app.post('/map', function(req, res){
   var destination = req.body.destination;
   var departureplaceid = req.body.originplaceid;
   var destinationplaceid = req.body.destinationplaceid;
-  var user = 0;
+  var user = 1;
   var hoursdrivedaily = req.body.hoursdrivedaily;
   var maxdaysonroad = req.body.maxdaysonroad;
   var timelunch = req.body.timelunch;
@@ -126,6 +126,7 @@ app.get('/home', function(req, res){
 });
 app.post('/home', function(req, res){
   var user = 0;
+  // var user = req.user.username;
   res.render('home.ejs', {user: user});
 });
 // app.get('/profile', function(req, res){

@@ -9,7 +9,8 @@ exports.login = function(req, res){
 }
 
 exports.profile = function(req, res){
-    res.render('profile');
+    var usernum = 1;
+    res.render('profile', {user: usernum});
 }
 
 exports.logout = function(req, res){
