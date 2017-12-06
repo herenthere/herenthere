@@ -9,14 +9,14 @@
                 <a href="/map"><img src="files/img/logo.png" style="width:185px;height:50px;padding-left:50px;"></a>
                 </ull>
                 <% if (user) { %>
-                    <ul class="nav navbar-nav navbar-right">
-                            <li><button class="btn btn-outline-success my-2 my-sm-0" type="submit" class="align-middle" style="height:50px;">Search</button></li>
+                    <ul class="nav navbar-nav navbar-right"><td><a href="/profile">superpowerfulbutterfly</a></td>
+                            <li><a href="/search"> Search </a></li>
                             <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
                             <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                     </ul>
                 <% } else { %>
                     <ul class="nav navbar-nav navbar-right">
-                            <li><button class="btn btn-outline-success my-2 my-sm-0" type="submit" class="align-middle" style="height:50px;">Search</button></li>
+                            <li><a href="/search">Search</a></li>
                             <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
                             <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
