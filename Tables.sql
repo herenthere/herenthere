@@ -35,6 +35,30 @@ CREATE TABLE IF NOT EXISTS RoadTrip(
     PRIMARY KEY (RoadtripID)
 )
 
+CREATE TABLE IF NOT EXISTS Categories(
+    CategoryID SERIAL NOT NULL UNIQUE,
+    CategoryName VARCHAR(100),
+    PRIMARY KEY (CategoryID)
+)
+
+CREATE TABLE IF NOT EXISTS Business(
+    BusinessID SERIAL NOT NULL UNIQUE,
+    CategoryID INTEGER REFERENCES Category(CategoryID),
+    NumberHits INTEGER,
+    ContactEmail VARCHAR(100) NOT NULL,
+    PRIMARY KEY (BusinessID)
+)
+
+CREATE TABLE IF NOT EXISTS Stop(
+    StopID SERIAL NOT NULL UNIQUE,
+    CategoryID INTEGER NOT NULL REFERENCES Category(CategoryID),
+    BusinessID INTEGER REFERENCES Business(BusinessID),
+    StopName VARCHAR(100) NOT NULL,
+    Address VARCHAR(250),
+    Rating INTEGER,
+    PRIMARY KEY (StopID)
+)
+
 CREATE TABLE IF NOT EXISTS TripDetail(
     RoadtripID INTEGER NOT NULL REFERENCES RoadTrip(RoadTripID),
     StartPoint INTEGER NOT NULL REFERENCES Stop(StopID),
@@ -77,30 +101,6 @@ CREATE TABLE IF NOT EXISTS RoadTripOptions(
     TimesDinner DATETIME,
     DriveWithoutStop INTEGER,
     PRIMARY KEY (RoadTripOptionsID)
-)
-
-CREATE TABLE IF NOT EXISTS Categories(
-    CategoryID SERIAL NOT NULL UNIQUE,
-    CategoryName VARCHAR(100),
-    PRIMARY KEY (CategoryID)
-)
-
-CREATE TABLE IF NOT EXISTS Business(
-    BusinessID SERIAL NOT NULL UNIQUE,
-    CategoryID INTEGER REFERENCES Category(CategoryID),
-    NumberHits INTEGER,
-    ContactEmail VARCHAR(100) NOT NULL,
-    PRIMARY KEY (BusinessID)
-)
-
-CREATE TABLE IF NOT EXISTS Stop(
-    StopID SERIAL NOT NULL UNIQUE,
-    CategoryID INTEGER NOT NULL REFERENCES Category(CategoryID),
-    BusinessID INTEGER REFERENCES Business(BusinessID),
-    StopName VARCHAR(100) NOT NULL,
-    Address VARCHAR(250),
-    Rating INTEGER,
-    PRIMARY KEY (StopID)
 )
 
 CREATE TABLE IF NOT EXISTS TrackPromotion(

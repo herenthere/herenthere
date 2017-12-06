@@ -23,6 +23,13 @@
     <div class="login-container container">
       <div class="panel">
         <div class="panel-body">
+          <% if (errors) { %>            
+              <% errors.forEach(function(error) { %>
+                <div class="alert alert-danger">
+                  <p><%= error.msg %></p>
+                </div>
+              <% }); %>
+          <% } %>
           <form id="login" name="login" action="/signin" method="POST">
             <legend>Log In</legend>
             <div class="form-group">

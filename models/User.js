@@ -1,107 +1,39 @@
-// var crypto = require('crypto');
-// var bcrypt = require('bcrypt-nodejs');
-// //var bookshelf = require('../config/bookshelf');
+/* jshint indent: 2 */
 
-// var User = bookshelf.Model.extend({
-//   tableName: 'user',
-//   hasTimestamps: false,
-
-//   initialize: function() {
-//     this.on('saving', this.password, this);
-//   },
-
-//   hashPassword: function(model, attrs, options) {
-//     var password = options.patch ? attrs.password : model.get('password');
-//     if (!password) { return; }
-//     return new Promise(function(resolve, reject) {
-//       bcrypt.genSalt(10, function(err, salt) {
-//         bcrypt.hash(password, salt, null, function(err, hash) {
-//           if (options.patch) {
-//             attrs.password = hash;
-//           }
-//           model.set('password', hash);
-//           resolve();
-//         });
-//       });
-//     });
-//   },
-
-//   comparePassword: function(password, done) {
-//     var model = this;
-//     bcrypt.compare(password, model.get('password'), function(err, isMatch) {
-//       done(err, isMatch);
-//     });
-//   },
-
-//   hidden: ['password'],
-
-//   virtuals: {
-//     gravatar: function() {
-//       if (!this.get('username')) {
-//         return 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjq-L-M5_rWAhVi94MKHa2uBiAQjBwIBA&url=https%3A%2F%2Fwww.shareicon.net%2Fdownload%2F2016%2F08%2F18%2F810223_user_512x512.png&psig=AOvVaw2ocVdi-UbH8vhw7Q8kuFsb&ust=1508437862639852';
-//       }
-//       var md5 = crypto.createHash('md5').update(this.get('username')).digest('hex');
-//       return 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjq-L-M5_rWAhVi94MKHa2uBiAQjBwIBA&url=https%3A%2F%2Fwww.shareicon.net%2Fdownload%2F2016%2F08%2F18%2F810223_user_512x512.png&psig=AOvVaw2ocVdi-UbH8vhw7Q8kuFsb&ust=1508437862639852';
-//     }
-//   }
-// });
-
-// module.exports = User;
-
-module.exports = function(sequelize, Sequelize) {
-    var User = sequelize.define('user', {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
-        },
-
-        username: {
-            type: Sequelize.TEXT,
-            notEmpty: true,
-            notNull: true
-        },
-
-        lastname: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },
-
-        firstname: {
-            type: Sequelize.STRING,
-            notEmpty: true
-        },
-
-        email: {
-            type: Sequelize.STRING,
-            notNull: true,
-            notEmpty: true
-        },
-
-        password: {
-            type: Sequelize.STRING,
-            notNull: true,
-            notEmpty: true
-        },
-
-        lastlogin: {
-            type: Sequelize.DATE
-        },
-
-        verified: {
-            type: Sequelize.BOOLEAN
-        },
-
-        userphoto: {
-            type: Sequelize.BLOB
-        },
-
-        usercover: {
-            type: Sequelize.BLOB
-        }
-    });
-
-    return User;
-}
-
-// add verified to user
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('User', {
+    UserID: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    UserName: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    LastName: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    FirstName: {
+      type: DataTypes.STRING(30),
+      allowNull: false
+    },
+    Email: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
+    Password: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
+    Verified: {
+      type: DataTypes.INTEGER(1),
+      allowNull: false,
+      defaultValue: '0'
+    }
+  }, {
+    tableName: 'User'
+  });
+};
