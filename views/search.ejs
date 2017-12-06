@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HereNThere</title>
+        <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+            We are just importing these libraries -->
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    
+        <!--Style has all the CSS and modifications to edit how things look on the screen.
+            For example #map will modify how the Google Maps window looks like. -->
+        <link rel = "stylesheet"
+          type = "text/css"
+          href = "../files/css/main.css" />
+          
+    </head>
+
+<body>
+
+    <header style="height:50px;">
+        <% include partials/header %>
+    </header>
+
+    <link rel = "stylesheet"
+          type = "text/css"
+          href = "../files/css/main.css" />
+
+    <div class="jumbotron text-center">
+      <h1>Search</h1> 
+      <!-- TODO add copyright everywhere HereNThere is mentioned -->
+      <p>Search profiles and check their roadtrips!</p> 
+    </div>
+ 
+    <form>
+        <input type="text" name="search" placeholder="Search profiles..." 
+            style=" width: 40%;
+                    box-sizing: border-box;
+                    border: 2px solid #ccc;
+                    border-radius: 4px;
+                    font-size: 16px;
+                    background-color: white;
+                    background-position: 10px 10px; 
+                    background-repeat: no-repeat;
+                    padding: 5px 20px 5px 40px;
+        ">
+    </form>
+
+    <br><br>
+
+    <div class="container">
+            <table style="width:85%;">
+                <tr text-align="center">
+                    <th>User Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Number of roadtrips created</th>
+                </tr>
+                <tr>
+                    <td>acistheshoots</td>
+                    <td>John</td>
+                    <td>Smith</td>
+                    <td>1337</td>
+                </tr>
+                <tr>
+                    <!-- LINK TO PROFILES -->
+                    <td><a href="/profile">superpowerfulbutterfly</a></td>
+                    <td>Timbille</td>
+                    <td>Kulendi</td>
+                    <td>42</td>
+                </tr>
+            </table>
+        </div>
+
+        
+</body>
+</html>

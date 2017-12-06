@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HereNThere</title>
+        <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+            We are just importing these libraries -->
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+        <!-- jQuery UI Datepicker -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    
+        <!--Style has all the CSS and modifications to edit how things look on the screen.
+            For example #map will modify how the Google Maps window looks like. -->
+        <link rel = "stylesheet"
+          type = "text/css"
+          href = "../files/css/main.css" />
+          
+    </head>
+
+<body>
+
+    <header style="height:50px;">
+        <% include partials/header %>
+    </header>
+
+    <link rel = "stylesheet"
+          type = "text/css"
+          href = "../files/css/main.css" />
+
+    <div class="jumbotron text-center">
+      <h1>Admin Panel</h1> 
+      <!-- TODO add copyright everywhere HereNThere is mentioned -->
+      <p>Manage HereNThere using your administrative powers</p> 
+    </div>
+ 
+    <div class="container">
+            <table style="width:85%;">
+                <tr text-align="center">
+                    <th>User Name</th>
+                    <th>Contact Email</th>
+                    <!-- TODO add on database registration time of users -->
+                    <th>Registration Date</th>
+                    <th>Number of roadtrips created</th>
+                    <th>Last time online</th>
+                    <th>Delete</th>
+                </tr>
+                <tr>
+                    <td>acistheshoots</td>
+                    <td>pocketcamp@gmail.com</td>
+                    <td>05 October, 2017</td>
+                    <td>1337</td>
+                    <td>18:50 | 11 November, 2017</td>
+                    <td><img src="../files/img/exit.png" alt="x" height="15" width="15"></td>
+                </tr>
+                <tr>
+                    <td>superpowerfulbutterfly</td>
+                    <td>animallover@notgmail.com</td>
+                    <td>22 November, 2017</td>
+                    <td>42</td>
+                    <td>9:32 | 03 December, 2017</td>
+                    <td><img src="../files/img/exit.png" alt="x" height="15" width="15"></td>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>

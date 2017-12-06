@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HereNThere</title>
+        <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+            We are just importing these libraries -->
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+        <!-- jQuery UI Datepicker -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    
+        <!--Style has all the CSS and modifications to edit how things look on the screen.
+            For example #map will modify how the Google Maps window looks like. -->
+        <link rel = "stylesheet"
+          type = "text/css"
+          href = "../files/css/main.css" />
+          
+    </head>
+
+<body>
+
+    <header style="height:50px;">
+        <% include partials/header %>
+    </header>
+
+    <link rel = "stylesheet"
+          type = "text/css"
+          href = "../files/css/main.css" />
+
+    <div class="jumbotron text-center">
+      <h1>Promotion Page</h1> 
+      <p>Insert information regarding a new promotion</p> 
+    </div>
+ 
+    <!-- TODO How to get business name, do we use businessID in a drop down? We use a stopID to get stopName and that, if it's a business, it's the name of the business  -->
+    <!-- Business Name dropdown if other then enter need to get it from DB -->
+    <div class="login-container container">
+        <div class="panel">
+          <div class="panel-body">
+            <form id="login" name="login" action="/signin" method="POST">
+              <legend style="text-align:center;">New Promotion Agent</legend>
+              <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input name="firstname" id="firstname" placeholder="First Name" class="form-control" autofocus>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input name="lastname" id="lastname" placeholder="Last Name" class="form-control" autofocus>
+              </div>
+              <!-- TODO limit character numbers to 10 and error check for email characters ex. have an @ and a dot -->
+              <div class="form-group">
+                <label for="contactemail">Contact Email</label>
+                <input name="contactemail" id="contactemail" placeholder="Contact Email" class="form-control" autofocus>
+              </div>
+              <div class="form-group">
+                 <!-- TODO disable auto increment -->
+                 <!-- Future Features: get these two text areas to be consistent in CSS, not so easy cause class="form-control" puts the contact number text area to the next line -->
+                <label for="contactnumber">Contact Number</label> <br>
+                <input type="number" name="areacode" id="areacode" placeholder="01" style="width:8%;" autofocus><input type="number" name="contactnumber" id="contactnumber" placeholder="(000)000 0000"  style="width:50%;" autofocus>  
+              </div>
+              <div class="form-group">
+                  <label for="departure">Promotion Start Date:</label>
+                  <input id="originplaceid" name="originplaceid" type="text" hidden>
+                  <input id = "departure-datepicker" style="float:right;" type = "text" placeholder = "Choose Start Date" style="color:grey;">
+                </div>
+                <div class="form-group">
+                  <label for="destination">Promotion End Date:</label>
+                  <input id="destinationplaceid" name="destinationplaceid" type="text" hidden>
+                  <input id = "destination-datepicker" style="float:right;" type = "text" placeholder = "Choose End Date" style="color:grey;">
+                </div>
+              <div class="form-group">
+                  <!-- TODO allow 2 lines max instead of 1 continuous one -->
+                <label for="additionalinfo">Additional Information</label>
+                <input name="additionalinfo" id="additionalinfo" placeholder="Additional Info" class="form-control" style="height:75px;" autofocus>
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+    
+    <script>
+
+    //datepicker function
+    $(function() {
+      $( "#departure-datepicker" ).datepicker({
+        prevText:"click for previous months",
+        nextText:"click for next months",
+        showOtherMonths:true,
+        selectOtherMonths: false
+      });
+      $( "#destination-datepicker" ).datepicker({
+        prevText:"click for previous months",
+        nextText:"click for next months",
+        showOtherMonths:true,
+        selectOtherMonths: true
+      });
+    });
+
+    </script>
+
+</body>
+</html>

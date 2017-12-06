@@ -28,6 +28,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// express-validator and express-flash for error messages
+app.use(expressValidator());
+app.use(flash());
+
 // For EJS
 app.set('view engine', 'ejs');
 
@@ -74,7 +78,7 @@ models.sequelize.sync().then(function(){
 // app.use(expressValidator());
 // app.use(methodOverride('_method'));
 // app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitialized: true }));
-// app.use(flash());
+// 
 
 // app.use(function(req, res, next) {
 //   res.locals.user = req.user ? req.user.toJSON() : null;
@@ -88,13 +92,16 @@ app.use('/files', express.static(path.join(__dirname, 'files')));
 // app.get('/profile', userController.ensureAuthenticated, userController.profileGet);
 // app.get('/contact', contactController.contactGet);
 app.get('/map', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   var departure = "";
   var destination = "";
   var departureplaceid = "";
   var destinationplaceid = "";
   var departure_date = "";
-  var destination_date = "";
-  var user = 1;
+  var destination_date = "";  
   var hoursdrivedaily = "";
   var maxdaysonroad = "";
   var timelunch = "";
@@ -105,11 +112,14 @@ app.get('/map', function(req, res){
   res.render('map.ejs', {departure: departure, destination: destination, publictoggle: publictoggle, privatetoggle: privatetoggle, maxtimedrive: maxtimedrive, timedinner: timedinner, departureplaceid: departureplaceid, timelunch: timelunch, hoursdrivedaily: hoursdrivedaily, maxdaysonroad: maxdaysonroad, destinationplaceid: destinationplaceid, user: user});
 });
 app.post('/map', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   var departure = req.body.departure;  
   var destination = req.body.destination;
   var departureplaceid = req.body.originplaceid;
   var destinationplaceid = req.body.destinationplaceid;
-  var user = 1;
   var hoursdrivedaily = req.body.hoursdrivedaily;
   var maxdaysonroad = req.body.maxdaysonroad;
   var timelunch = req.body.timelunch;
@@ -122,10 +132,16 @@ app.post('/map', function(req, res){
 });
 app.get('/home', function(req, res){
   var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   res.render('home.ejs', {user: user});
 });
 app.post('/home', function(req, res){
   var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   // var user = req.user.username;
   res.render('home.ejs', {user: user});
 });
@@ -138,28 +154,102 @@ app.post('/home', function(req, res){
 //   res.render('profile.ejs', {user: user});
 // });
 app.get('/tripdetail', function(req, res){
-  var user = 1;
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   res.render('tripdetail.ejs', {user: user});
 });
 app.post('/tripdetail', function(req, res){
-  var user = 1;
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   res.render('tripdetail.ejs', {user: user});
 });
 app.get('/aboutus', function(req, res){
   var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   res.render('aboutus.ejs', {user: user});
 });
 app.post('/aboutus', function(req, res){
   var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   res.render('aboutus.ejs', {user: user});
 });
 app.get('/help', function(req, res){
   var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   res.render('help.ejs', {user: user});
 });
 app.post('/help', function(req, res){
   var user = 0;
+  if(req.user){
+    var user = 1;
+  }
   res.render('help.ejs', {user: user});
+});
+app.get('/adminpanel', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
+  res.render('adminpanel.ejs', {user: user});
+});
+app.post('/adminpanel', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
+  res.render('adminpanel.ejs', {user: user});
+}); 
+app.get('/search', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
+  res.render('search.ejs', {user: user});
+});
+app.post('/search', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
+  res.render('search.ejs', {user: user});
+}); 
+app.get('/promotion', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
+  res.render('promotion.ejs', {user: user});
+});
+app.post('/promotion', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
+  res.render('promotion.ejs', {user: user});
+}); 
+app.get('/settings', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
+  res.render('settings.ejs', {user: user});
+});
+app.post('/settings', function(req, res){
+  var user = 0;
+  if(req.user){
+    var user = 1;
+  }
+  res.render('settings.ejs', {user: user});
 }); 
 // app.get('/account', userController.ensureAuthenticated, userController.accountGet);
 // app.put('/account', userController.ensureAuthenticated, userController.accountPut);
