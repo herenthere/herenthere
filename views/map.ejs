@@ -87,7 +87,7 @@ Version 0.5 - October 27, 2017
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
               <div class="panel-body"> <!--BODY INSIDE FIRST PANEL -->
-                <input class="controlsplusdate" id="datestop0" name="datestop0" type="text" placeholder="Date">
+                <input class="controlsplusdate" id="datestop0" name="datestop0" type="text" placeholder="Date" maxlength="5">
                 <input class="controlsplus" id="origin-input" name="origin-input" type="text" placeholder="Enter an origin location" value="<%= departure %>"/>
                 <input id="origin-input-placeid" name="origin-input-placeid" type="text" value="<%= departureplaceid %>" hidden>
                 <!-- <div id="scrolling-window" data-spy="scroll"> -->
@@ -99,7 +99,7 @@ Version 0.5 - October 27, 2017
                 </script>
           
                 <br id="br1" name="br1">
-                <input class="controlsplusdate" id="datestop1" name="datestop1" type="text" placeholder="Date"><input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
+                <input class="controlsplusdate" id="datestop1" name="datestop1" type="text" placeholder="Date" maxlength="5"><input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
                                 
                 <script>
                   waypoints.push('waypoint1');
@@ -113,7 +113,7 @@ Version 0.5 - October 27, 2017
                         next++;
           
                         var brek = '<br id="br' + next + '" name="br' + next + '">';
-                        var dateStop =  '<input class="controlsplusdate" id="datestop' + next + '" name="datestop' + next + '" type="text" placeholder="Date">';
+                        var dateStop =  '<input class="controlsplusdate" id="datestop' + next + '" name="datestop' + next + '" type="text" placeholder="Date" maxlength="5">';
                         var newIn = '<input class="controlsplus" id="waypoint' + next + '" name="waypoint' + next + '" type="text" placeholder="Add a stop...">';
                         waypoints.push('waypoint' + next);
                         // TODO add datestop push
@@ -163,7 +163,7 @@ Version 0.5 - October 27, 2017
                 <!-- </div> -->
           
                 <!-- TODO IMPLEMENT DATE -->
-                <input class="controlsplusdate" id="datestopfinal" name="datestopfinal" type="text" placeholder="Date" />
+                <input class="controlsplusdate" id="datestopfinal" name="datestopfinal" type="text" placeholder="Date" maxlength="5"/>
                 <input id="destination-input" name="destination-input" class="controlsplus" type="text" placeholder="Enter a destination location" value="<%= destination %>"/>    
                 <input id="destination-input-placeid" name="destination-input-placeid" type="text" value="<%= destinationplaceid %>" hidden>
               </div>

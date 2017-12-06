@@ -66,13 +66,15 @@
                 <input type="number" name="areacode" id="areacode" placeholder="01" style="width:8%;" autofocus><input type="number" name="contactnumber" id="contactnumber" placeholder="(000)000 0000"  style="width:50%;" autofocus>  
               </div>
               <div class="form-group">
-                <label for="promotionstart">Promotion Start Date</label>
-                <input style="float:right;" type = "text" id = "promotionstart-datepicker" placeholder = "Choose Start Date" style="color:grey;">
-              </div>
-              <div class="form-group">
-                <label for="promotionend">Promotion End Date</label>
-                <input style="float:right;"type = "text" id = "promotionend-datepicker" placeholder = "Choose End Date" style="color:grey;">
-              </div>
+                  <label for="departure">Promotion Start Date:</label>
+                  <input id="originplaceid" name="originplaceid" type="text" hidden>
+                  <input id = "departure-datepicker" style="float:right;" type = "text" placeholder = "Choose Start Date" style="color:grey;">
+                </div>
+                <div class="form-group">
+                  <label for="destination">Promotion End Date:</label>
+                  <input id="destinationplaceid" name="destinationplaceid" type="text" hidden>
+                  <input id = "destination-datepicker" style="float:right;" type = "text" placeholder = "Choose End Date" style="color:grey;">
+                </div>
               <div class="form-group">
                   <!-- TODO allow 2 lines max instead of 1 continuous one -->
                 <label for="additionalinfo">Additional Information</label>
@@ -99,8 +101,8 @@
         selectOtherMonths: true
       });
     });
-})
-</script>
+
+    </script>
 
 </body>
 </html>
