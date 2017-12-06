@@ -240,7 +240,7 @@ function initMap() {
         this.destinationPlaceId = destinationInputPlaceId.value;
         // console.log(this.destinationPlaceId);
 
-        me.route();
+        this.route();
         // directionsServiceRoute(this, this.originPlaceId, this.destinationPlaceId, this.travelMode, this.waypointRoutes);
     }
     else{
