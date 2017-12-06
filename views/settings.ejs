@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HereNThere</title>
+        <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
+            We are just importing these libraries -->
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!--Style has all the CSS and modifications to edit how things look on the screen.
+            For example #map will modify how the Google Maps window looks like. -->
+        <link rel = "stylesheet"
+          type = "text/css"
+          href = "../files/css/main.css" />
+          
+    </head>
+
+<body>
+
+    <header style="height:50px;">
+        <% include partials/header %>
+    </header>
+
+    <link rel = "stylesheet"
+          type = "text/css"
+          href = "../files/css/main.css" />
+
+    <div class="jumbotron text-center">
+      <h1>Settings Page</h1> 
+      <p>Set HereNThere as you prefer</p> 
+    </div>
+ 
+    <!-- TODO Get the settings implemented and condition the map page by KM / miles at least-->
+    <!-- TODO URGENT Notice the group that they need to store Settings preferences on the database for profiles -->
+    <div class="login-container container">
+        <div class="panel">
+          <div class="panel-body">
+            <form id="login" name="login" action="/signin" method="POST">
+              <legend style="text-align:center;">Settings</legend>
+              <div class="form-group">
+                <label for="language">Language</label>
+                [X] English  [] American
+              </div>
+              <div class="form-group">
+                <label for="distancemetric">Distance Metric</label>
+                KM / Miles
+              </div>
+              <div class="form-group">
+                <label for="hours">Hour</label>
+                Normal/Weird americans (work in progress)
+              </div>
+              <br>
+              <br>
+              <label style="font-size:20px;">Change Password</label>
+              <div class="form-group">
+                    <label >Old Password</label>
+                    <input name="firstname" id="firstname" placeholder="Old Password" class="form-control" autofocus>
+              </div>
+              <div class="form-group">
+                <label for"newpassword">New Password</label>
+                <input name="newpassword" id="newpassword" placeholder="New Password" class="form-control" autofocus>
+              </div>
+              <!-- Legacy code TODO delete when not used anymore, aka before submission -->
+              <!-- <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input name="lastname" id="lastname" placeholder="Last Name" class="form-control" autofocus>
+              </div> -->
+              <br>
+              <br>
+              <button type="submit" class="btn btn-success">Apply Changes</button>
+              <!-- TODO look up on bootstrap how to make button red, lol at being on a plane -->
+              <!-- TODO also make the report a bug button automatically open up email, easy just look up type and such on w3school -->
+              <button type="submit" class="btn btn-error" style="float:right;">Report a bug</button> 
+            </form>
+          </div>
+</body>
+</html>

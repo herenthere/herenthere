@@ -161,6 +161,38 @@ app.post('/help', function(req, res){
   var user = 0;
   res.render('help.ejs', {user: user});
 }); 
+app.get('/adminpanel', function(req, res){
+  var user = 0;
+  res.render('adminpanel.ejs', {user: user});
+});
+app.post('/adminpanel', function(req, res){
+  var user = 0;
+  res.render('adminpanel.ejs', {user: user});
+}); 
+app.get('/search', function(req, res){
+  var user = 0;
+  res.render('search.ejs', {user: user});
+});
+app.post('/search', function(req, res){
+  var user = 0;
+  res.render('search.ejs', {user: user});
+}); 
+app.get('/promotion', function(req, res){
+  var user = 0;
+  res.render('promotion.ejs', {user: user});
+});
+app.post('/promotion', function(req, res){
+  var user = 0;
+  res.render('promotion.ejs', {user: user});
+}); 
+app.get('/settings', function(req, res){
+  var user = 0;
+  res.render('settings.ejs', {user: user});
+});
+app.post('/settings', function(req, res){
+  var user = 0;
+  res.render('settings.ejs', {user: user});
+}); 
 // app.get('/account', userController.ensureAuthenticated, userController.accountGet);
 // app.put('/account', userController.ensureAuthenticated, userController.accountPut);
 // app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);

@@ -10,11 +10,13 @@
                 </ull>
                 <% if (user) { %>
                     <ul class="nav navbar-nav navbar-right">
+                            <li><button class="btn btn-outline-success my-2 my-sm-0" type="submit" class="align-middle" style="height:50px;">Search</button></li>
                             <li><a href="/profile"><span class="glyphicon glyphicon-user"></span> My Profile</a></li>
                             <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                     </ul>
                 <% } else { %>
                     <ul class="nav navbar-nav navbar-right">
+                            <li><button class="btn btn-outline-success my-2 my-sm-0" type="submit" class="align-middle" style="height:50px;">Search</button></li>
                             <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> 
                             <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
@@ -24,6 +26,7 @@
     </div>
 </nav>
 
+<!--TOOD when logged in as admin show link to /adminpanel -->
 <!-- Menu on the left side -->
 <div id="mySidenav" class="sidenav" style="text-align: center;">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -32,8 +35,12 @@
   <a href="/home">SIGN OUT</a> <!-- TODO Only gonna show if the user is logged in -->
   <br>
   <br>
+  <a href="/promotion">Create a promotion with us!</a>
+  <br>
+  <br>
   <a href="/aboutus">About Us</a>
   <a href="/aboutus">Contact</a>
+  <a href="/settings">Settings</a>
   <a href="/help">Help</a>
 </div>
 
