@@ -21,6 +21,8 @@
     "async": "^1.5.2",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.18.2",
+    "bootstrap-select": "^1.12.4",
+    "bootstrap-slider": "^10.0.0",
     "compression": "^1.7.1",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
