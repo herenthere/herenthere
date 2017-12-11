@@ -36,6 +36,17 @@ Google Places API v3
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+
     
     <!-- <script type="text/javascript" src="../files/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../files/bower_components/moment/min/moment.min.js"></script>
@@ -89,31 +100,37 @@ Google Places API v3
                 <input type="submit" class="btn btn-primary" value="GO" id="GO" disabled></button> 
             </div>
         </div>
-        <ul class="pagination" style="height:60px;padding-top:8px;width:300px;background-color:transparent;">
-            <buttons><img src="../files/img/restaurantgreyicon.png" style="width:50px;height:50px;" id="changeImgrestaurant"></buttons>
-            <buttons><img src="../files/img/hotelgreyicon.png" style="width:50px;height:50px;" id="changeImghotel"></buttons>
-            <buttons><img src="../files/img/pointsofinterestgreyicon.png" style="width:50px;height:50px;" id="changeImgpointsofinterest"></buttons>
-        </ul>
-
+  
         <div class="w3-container">
-          <h3><button type="button" class="btn btn-primary btn-lg" onclick="myFunction()">Additional Filters</button></h3>
+            <h3><button type="button" class="btn btn-primary btn-lg" onclick="myFunction()">Additional Filters</button></h3>
+  
+            <div class="w3-panel w3-blue w3-card-4" style="width:500px;display:none;" id="additionalfilters">
+              <br>
+              <select class="selectpicker" multiple data-live-search="true" title="Place categories" data-selected-text-format="count > 2" data-size="4">
+                  <option>Restaurant</option>
+                  <option>Sinagoge</option>
+                  <option>Hotel</option>
+                  <option>Scenery</option>
+                  <option>Night Club</option>
+                  <option>Stadium</option>
+                  <option>Spa</option>
+                  <option>Parking</option>
+              </select>  
+              <br><br>
+              <p1panel>Number of hours to drive daily</p1panel>
+              <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+              <p1panel>Maximum number of days on the road</p1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="2" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+              <p1panel>Usual time for lunch</p1panel> <input type="number" name="timelunch" id="timelunch" value="12" min="1" max="24" style="width:50px;color:black;float:right;"/><br> <br>
+              <p1panel>Usual time for dinner</p1panel> <input type="number" name="timedinner" id="timedinner" value="18" min="1" max="24" style="width:50px;color:black;float:right;"/><br><br>
+              <p1panel>Maximum time driving not stopping</p1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="4" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
 
-          <div class="w3-panel w3-blue w3-card-4" style="width:500px;display:none;" id="additionalfilters">
-            <br>
-            <p1panel>Number of hours to drive daily</p1panel>
-           <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
-            <p1panel>Maximum number of days on the road</p1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="2" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
-            <p1panel>Usual time for lunch</p1panel> <input type="number" name="timelunch" id="timelunch" value="12" min="1" max="24" style="width:50px;color:black;float:right;"/><br> <br>
-            <p1panel>Usual time for dinner</p1panel> <input type="number" name="timedinner" id="timedinner" value="18" min="1" max="24" style="width:50px;color:black;float:right;"/><br><br>
-            <p1panel>Maximum time driving not stopping</p1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="4" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
-            <div id="togglePublicPrivate" align="center">
-              <label class="grey"><input type="radio" name="toggle" id="privatetoggle"><span>Private</span></label>
-              <label class="blue"><input type="radio" name="toggle" id="publictoggle"><span>Public</span></label>
-            </div>
-          </div>
-          </form>
-    </div>
-  </body>
+              <br>
+              <div id="maptogglePublicPrivate" align="center" style="float:center;"> <!-- TODO radio buttons passing to next page -->
+                <label class="grey"><input type="radio" name="toggle" id="privatetoggle"><span>Private</span></label>
+                <label class="blue"><input type="radio" name="toggle" id="publictoggle"><span>Public</span></label>
+              </div>
+      </div>
+ </body>
   
   <script>
     //datepicker function
@@ -297,4 +314,59 @@ Navigation Bar Bootstrap
           <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
+
+
+TODO
+airport
+amusement_park
+aquarium
+art_gallery
+bakery
+bank
+bar
+beauty_salon
+bicycle_store
+book_store
+bowling_alley
+cafe
+car_repair
+car_wash
+casino
+church
+city_hall
+clothing_store
+convenience_store
+department_store
+electronics_store
+embassy
+florist
+gas_station
+gym
+hair_care
+hardware_store
+hindu_temple
+home_goods_store
+jewelry_store
+library
+liquor_store
+lodging
+mosque
+movie_theater
+museum
+night_club
+park
+parking
+pet_store
+pharmacy
+restaurant
+shoe_store
+shopping_mall
+spa
+stadium
+store
+synagogue
+travel_agency
+university
+veterinary_care
+zoo
 -->

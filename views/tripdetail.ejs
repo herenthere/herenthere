@@ -55,8 +55,7 @@ Version 0.5 - October 27, 2017
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
+    
     <!--Style has all the CSS and modifications to edit how things look on the screen.
     For example #map will modify how the Google Maps window looks like. -->
     <link rel = "stylesheet"
@@ -79,8 +78,13 @@ Version 0.5 - October 27, 2017
         <div class="headertrip">
             <br>
             <img src="files/img/profile2.jpg" alt="?" height="150" width="150" class="img-circle">
-            
-            <h1 style="color: #FDFDFD">Washington Trip</h1>
+            <!-- TODO 
+                         make a separate function that gets the tripdetails
+                         and goes to the map page and populates it
+                         so that the trip is displayed and the user can modify it.
+                         A modified trip will be saved as a new one.
+            -->
+            <h1 style="color: #FDFDFD">Washington Trip <a href="/map"><img src="../files/img/edit.png" alt="edit" height="50" width="50"></a></h1> 
         </div>
          
         <div class="container">
@@ -109,7 +113,7 @@ Version 0.5 - October 27, 2017
 
                 <tr>
                     <td>Charlotte, NC</td>
-                    <td>111 Main Streetnodtd>
+                    <td>111 Main Street...</td>
                     <td>6 hr 24 min</td>
                     <td>334 mi</td>
                     <td>Hotel</td>

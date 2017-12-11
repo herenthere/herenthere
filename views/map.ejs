@@ -53,6 +53,22 @@ Version 0.5 - October 27, 2017
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
+    <!-- Slider Inserts -->
+    <link rel = "stylesheet" type = "text/css" href = "../files/css/bootstrap-slider.css" />
+    <link rel = "stylesheet" type = "text/css" href = "../files/css/bootstrap-slider.min.css" />
+
+    <script src="../files/js/bootstrap-slider.js"></script>
+    <script src="../files/js/bootstrap-slider.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+
     <!--Style has all the CSS and modifications to edit how things look on the screen.
         For example #map will modify how the Google Maps window looks like. -->
     <link rel = "stylesheet"
@@ -186,17 +202,40 @@ Version 0.5 - October 27, 2017
                 <mapp1panel>Usual time for lunch</mapp1panel> <input type="number" name="timelunch" id="timelunch" value="<%= timelunch %>"  min="12" max="24" style="width:50px;color:black;float:right;"/><br> <br>
                 <mapp1panel>Usual time for dinner</mapp1panel> <input type="number" name="timedinner" id="timedinner" value="<%= timedinner %>" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
                 <mapp1panel>Maximum time driving not stopping</mapp1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="<%= maxtimedrive %>" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
+                
+                <div class="switch-field" style="padding-top:25px;">
+                    <input type="radio" id="switch_left" name="switch_2" value="yes" checked/>
+                    <label for="switch_left" style="width:85px;">Scenic</label>
+                    <input type="radio" id="switch_right" name="switch_2" value="no" />
+                    <label for="switch_right" style="width:85px;">Ordinary</label>
+                </div>
                 <br>
                 <div id="maptogglePublicPrivate" align="center"> <!-- TODO radio buttons passing to next page -->
                   <label class="grey"><input type="radio" name="toggle" id="privatetoggle"><span>Private</span></label>
                   <label class="blue"><input type="radio" name="toggle" id="publictoggle"><span>Public</span></label>
                 </div>
                 <br>
+                <br><br>
                 <div id="slidecontainer">
-                    <input type="range" min="10" max="31" value="15" class="slider" id="nearbySearchRange" name="nearbySearchRange" onchange="updateRangeValue()"/>
-                    <h3 id="demo" name="slidervalue" style="color:black;"></h3>
+                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="31" data-slider-step="1" data-slider-value="20"/>
+                    <!-- id="nearbySearchRange" name="nearbySearchRange" onchange="updateRangeValue()" -->
                 </div>
                 <script>
+                  // With JQuery
+                  $('#ex1').slider({
+                    formatter: function(value) {
+                      return 'Range: ' + value;
+                    }
+                  });
+
+                  // Without JQuery
+                  var slider = new Slider('#ex1', {
+                    formatter: function(value) {
+                      return 'Range: ' + value;
+                    }
+                  });
+                </script>
+                <!-- <script>
                     var slider = document.getElementById("nearbySearchRange");
                     var output = document.getElementById("demo");
                     output.innerHTML = slider.value; // Display the default slider value
@@ -205,7 +244,7 @@ Version 0.5 - October 27, 2017
                     slider.oninput = function() {
                         output.innerHTML = this.value;
                     }
-                  </script>
+                  </script> -->
               </div>
             </div>
             <div id="icons">
