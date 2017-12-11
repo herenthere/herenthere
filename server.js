@@ -43,9 +43,39 @@ var models = require("./models");
 epilogue.initialize({app: app, sequelize: models.sequelize});
 // app.use(restful(models.sequelize));
 
-var userResource = epilogue.resource({
+var profileResource = epilogue.resource({
   model: models.users,
-  endpoints: ['/users', 'users/:id']
+  endpoints: ['/api/users', 'api/users/:id']
+})
+
+var roadtripResource = epilogue.resource({
+  model: models.roadtrip,
+  endpoints: ['/api/roadtrips', 'api/roadtrips/:id']
+})
+
+var roadtripOptionsResource = epilogue.resource({
+  model: models.roadtripoptions,
+  endpoints: ['/api/roadtripoptions', 'api/roadtripoptions/:id']
+})
+
+var tripDetailResource = epilogue.resource({
+  model: models.tripdetail,
+  endpoints: ['/api/tripdetails', '/api/tripdetails/:id']
+})
+
+var categoriesResource = epilogue.resource({
+  model: models.categories,
+  endpoints: ['/api/categories', '/api/categories/:id']
+})
+
+var feedbackResource = epilogue.resource({
+  model: models.feedback,
+  endpoints: ['/api/feedback', '/api/feedback/:id']
+})
+
+var stopResource = epilogue.resource({
+  model: models.stop,
+  endpoints: ['/api/stops', '/api/stops/:id']
 })
 
 // Routes
