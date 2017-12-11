@@ -10,6 +10,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 var expressValidator = require('express-validator');
+var epilogue = require('epilogue');
 var ejs = require('ejs');
 
 // Load environment variables from .env file
@@ -37,6 +38,15 @@ app.set('view engine', 'ejs');
 
 // Models
 var models = require("./models");
+
+// Restful API
+epilogue.initialize({app: app, sequelize: models.sequelize});
+// app.use(restful(models.sequelize));
+
+var userResource = epilogue.resource({
+  model: models.users,
+  endpoints: ['/users', 'users/:id']
+})
 
 // Routes
 var authRoute = require('./routes/auth.js')(app, passport);

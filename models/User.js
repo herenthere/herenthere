@@ -99,6 +99,8 @@ module.exports = function(sequelize, Sequelize) {
         usercover: {
             type: Sequelize.BLOB
         }
+    }, {
+        tableName: 'users'
     });
 
     return User;
