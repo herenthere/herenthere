@@ -9,41 +9,14 @@ Kulvinder Lotay
 Tashi Palden
 Joey Pupel  
 ==========================
-profilepage.php is the profile page of any registered user.
-They can see the details on each of their roadtrips, modify
-them and share them with other people. The rating of each
-roadtrip is based on the ratings of each user who has seen
-the roadtrip. 
-==========================
-Google Maps API v3
-Google Places API v3
-==========================
-Version 0.1 - October 13, 2017
-- Trip from point A to B
-- Auto completion in text areas
-- Google Places API v3, implemented
-- Google Maps API v3 (+ skin), implemented
-- Basic homepage, mappage, profile page created
-Version 0.3 - October 20, 2017
-- Login popup
-- Registration popup
-- hashing / encryption - TODO
-- Registration - TODO
-- Database tables for USERS - TODO
-Version 0.5 - October 27, 2017
-- Multiple stops  in a trip - TODO
-- Duration and distance each stop - TODO
+tripdetail.ejs is the page where the details of a specific
+trip are displayed. Users can edit the trip info and by clicking
+on the edit button they will be taken to the map page where the
+currently selected trip is displayed. Changes to the trip will be saved
+as a new trip.
 -->
 
 <!DOCTYPE html>
-
-<!-- <
-    include('db.php');
-
-    $sql = 'SELECT FirstName, LastName FROM USER Where UserID = 1';
-    $result = $conn->$query($sql);    
-?> -->
-
 <html>
     <title>HereNThere</title>
     
@@ -51,6 +24,7 @@ Version 0.5 - October 27, 2017
         We are just importing these libraries -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <!-- Load the Bootstrap required for this page -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -70,6 +44,8 @@ Version 0.5 - October 27, 2017
 -->
 
     <body style="background-color: #214682;background-image:none;">
+        
+        <!-- Header partial at the top of the window -->
         <header style="height:50px;">
             <% include partials/header %>
         </header>
@@ -87,6 +63,10 @@ Version 0.5 - October 27, 2017
             <h1 style="color: #FDFDFD">Washington Trip <a href="/map"><img src="../files/img/edit.png" alt="edit" height="50" width="50"></a></h1> 
         </div>
          
+        <!-- Container for (trip details table) -->
+        <!-- This should display a users saved trip details  
+             TODO Trip details should be pulled from the database-->
+        
         <div class="container">
             <table>
                 <tr>

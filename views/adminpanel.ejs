@@ -1,3 +1,18 @@
+<!--
+Marist College - Capping Project - Prof. Arias
+HereNThere || Rights reserved
+==========================
+Juan Diaz
+Francesco Galletti
+Timbille Kulendi
+Kulvinder Lotay
+Tashi Palden
+Joey Pupel  
+==========================
+adminpanel.ejs is an admin only page that allows an admin to
+look at existing accounts and moderate them as necessary.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,13 +41,10 @@
 
 <body>
 
+    <!-- Header partial at the top of the window -->
     <header style="height:50px;">
         <% include partials/header %>
     </header>
-
-    <link rel = "stylesheet"
-          type = "text/css"
-          href = "../files/css/main.css" />
 
     <div class="jumbotron text-center">
       <h1>Admin Panel</h1> 
@@ -59,6 +71,7 @@
                     <td>18:50 | 11 November, 2017</td>
                     <td><img src="../files/img/exit.png" alt="x" height="15" width="15"></td>
                 </tr>
+                <!-- TODO connect this to the database -->
                 <tr>
                     <td>superpowerfulbutterfly</td>
                     <td>animallover@notgmail.com</td>

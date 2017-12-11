@@ -9,7 +9,7 @@ Kulvinder Lotay
 Tashi Palden
 Joey Pupel  
 ==========================
-mappage.php is the main page of the web application. Users can
+mappage.ejs is the main page of the web application. Users can
 see the details of their trips, see the points of interests
 based on their filters and range selections, and can explore
 different roadtrips. All the booking and planning is done on
@@ -17,22 +17,6 @@ this page.
 ==========================
 Google Maps API v3
 Google Places API v3
-==========================
-Version 0.1 - October 13, 2017
-- Trip from point A to B
-- Auto completion in text areas
-- Google Places API v3, implemented
-- Google Maps API v3 (+ skin), implemented
-- Basic homepage, mappage, profile page created
-Version 0.3 - October 20, 2017
-- Login popup
-- Registration popup
-- hashing / encryption - TODO
-- Registration - TODO
-- Database tables for USERS - TODO
-Version 0.5 - October 27, 2017
-- Multiple stops  in a trip - TODO
-- Duration and distance each stop - TODO
 -->
 
 <!DOCTYPE html>
@@ -86,7 +70,9 @@ Version 0.5 - October 27, 2017
 -->
 
   <body>
-      <header>
+      
+      <!-- Header partial at the top of the window -->
+      <header style="height:50px;">
           <% include partials/header %>
       </header>
 
@@ -110,14 +96,24 @@ Version 0.5 - October 27, 2017
                   <!-- <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop..."/> -->
           
                 <script>
+                  // Initializes required variables for trip
+                  // waypoints represents stops
+                  // initial range from actual road is 15, changeable with
+                  //  slider bottom of Trip Settings
                   var waypoints = [];
                   var directionsHandler = {};
                   var nearbySearchRange = 15;
                 </script>
                 
-                  <br id="br1" name="br1">
+                <br id="br1" name="br1">
+                
+                <!-- Field that allows the user to add multiple waypoints to their trip -->
                 <input class="controlsplusdate" id="datestop1" name="datestop1" type="text" placeholder="Date" maxlength="5"><input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
-                                
+                           
+                <!-- Script that adds or removes waypoint text inputs -->
+                <!-- TODO allow for more than 9 waypoints (more than 9 and the remove button stops working properly) -->
+                <!-- TODO make the remove button remove waypoints from the trip -->
+                <!-- TODO add scrolling if there becomes too many waypoints -->
                 <script>
                   waypoints.push('waypoint1');
                   $(document).ready(function(){
@@ -155,6 +151,8 @@ Version 0.5 - October 27, 2017
                         // $("#count").val(next);
                         $('.remove-me').click(function(e){
                           // e.preventDefault();
+                          // TODO fix how it obtains the waypointNum to account for double digits
+                          // This is why the waypoint limit is set to 9, because it does not account for double digits
                           var waypointNum = this.id.charAt(this.id.length-1);
                           var brekID = "#br" + waypointNum;
                           var datestopID = "#datestop" + waypointNum;
@@ -177,7 +175,6 @@ Version 0.5 - October 27, 2017
                       });
                   });
                 </script>
-                <!-- </div> -->
           
                 <!-- TODO IMPLEMENT DATE -->
                 <br>
@@ -203,19 +200,21 @@ Version 0.5 - October 27, 2017
                 <mapp1panel>Usual time for dinner</mapp1panel> <input type="number" name="timedinner" id="timedinner" value="<%= timedinner %>" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
                 <mapp1panel>Maximum time driving not stopping</mapp1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="<%= maxtimedrive %>" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
                 
-                <div class="switch-field" style="padding-top:25px;">
+                <div class="switch-field" style="padding-top:25px;"> <!-- TODO radio buttons passing from previous page -->
                     <input type="radio" id="switch_left" name="switch_2" value="yes" checked/>
                     <label for="switch_left" style="width:85px;">Scenic</label>
                     <input type="radio" id="switch_right" name="switch_2" value="no" />
                     <label for="switch_right" style="width:85px;">Ordinary</label>
                 </div>
                 <br>
-                <div id="maptogglePublicPrivate" align="center"> <!-- TODO radio buttons passing to next page -->
+                <div id="maptogglePublicPrivate" align="center"> <!-- TODO radio buttons passing from previous page -->
                   <label class="grey"><input type="radio" name="toggle" id="privatetoggle"><span>Private</span></label>
                   <label class="blue"><input type="radio" name="toggle" id="publictoggle"><span>Public</span></label>
                 </div>
                 <br>
                 <br><br>
+
+                <!-- TODO allow this to change the search without having to refresh the page -->
                 <div id="slidecontainer">
                     <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="31" data-slider-step="1" data-slider-value="20"/>
                     <!-- id="nearbySearchRange" name="nearbySearchRange" onchange="updateRangeValue()" -->
@@ -252,7 +251,6 @@ Version 0.5 - October 27, 2017
                 <buttons><img src="../files/img/hotelgreyicon.png" style="width:50px;height:50px;" id="changeImghotel"></buttons>
                 <buttons><img src="../files/img/pointsofinterestgreyicon.png" style="width:50px;height:50px;" id="changeImgpointsofinterest"></buttons>
                 <div style="float:right; padding-top:5px;padding-right:20px;">
-                  <!-- TODO Delete </button> next line -->
                   <input type="submit" class="btn btn-success" value="Save"></button> 
                 </div>  
               </div>
@@ -275,23 +273,6 @@ Version 0.5 - October 27, 2017
       <!-- Filter check boxes - TODO make them actually display Restaurants/Hotels/Points of interests ONLY-->
 
     <script>
-
-      //datepicker function
-      // $(function() {
-      //   $( "#departure-datepicker" ).datepicker({
-      //     prevText:"click for previous months",
-      //     nextText:"click for next months",
-      //     showOtherMonths:true,
-      //     selectOtherMonths: false
-      //   });
-      //   $( "#destination-datepicker" ).datepicker({
-      //     prevText:"click for previous months",
-      //     nextText:"click for next months",
-      //     showOtherMonths:true,
-      //     selectOtherMonths: true
-      //   });
-      // });
-
       $(function(dateID) {
         $( "#" + dateID ).datepicker({
           prevText:"click for previous months",
@@ -306,6 +287,12 @@ Version 0.5 - October 27, 2017
           selectOtherMonths: true
         });
       });
+
+      // ===========================================
+      // ===========================================
+      // ===  OLD STYLIZED MAP, NOW SEPARATE JS  ===
+      // ===========================================
+      // ===========================================
 
       // // Initialize Google Maps map. Give it skin, then variables map, then camera location, then autocomplete functions.
       // function initMap() {
@@ -657,12 +644,22 @@ Version 0.5 - October 27, 2017
       //     }
       //   }
       // }
-      
+
+      // ===========================================
+      // ===========================================
+      // ===  OLD STYLIZED MAP, NOW SEPARATE JS  ===
+      // ===========================================
+      // ===========================================
     </script>
 
+    <!-- Loads the javascript for the map -->
     <script src="../files/js/map.js"></script>
 
-    <!-- Connects the map to the API key that we have registered -->
+    <!-- Places service is a self-contained library
+       To use the functionality contained within this library
+       load it using the libraries parameter in the Maps API bootstrap URL 
+       async - script will be executed while the page continues the parsing
+       defer - pecifies that the script is executed when the page has finished parsing -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOVAWCWgAiZ_iTjXOVIBoJC0Y-_1xRNos&callback=initMap&libraries=places"></script>
 
   </body>

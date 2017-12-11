@@ -1,9 +1,26 @@
+<!--
+Marist College - Capping Project - Prof. Arias
+HereNThere || Rights reserved
+==========================
+Juan Diaz
+Francesco Galletti
+Timbille Kulendi
+Kulvinder Lotay
+Tashi Palden
+Joey Pupel  
+==========================
+aboutus.ejs is a page where users can learn more about our
+company and our web application. A button is available to 
+email the company and get in touch with them.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>HereNThere</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Loading bootstrap required for the page -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -13,10 +30,13 @@
 
 <aboutusbody id="myPage" data-spy="scroll">
 
+    <!--Style has all the CSS and modifications to edit how things look on the screen.
+        For example #map will modify how the Google Maps window looks like. -->
     <link rel = "stylesheet"
           type = "text/css"
           href = "../files/css/main.css" />
     
+    <!-- Header partial at the top of the window -->
     <header style="height:50px;">
         <% include partials/header %>
     </header>
@@ -33,6 +53,7 @@
           <h3 style="font-size:35px;">About HereNThere</h3><br>
           <h3>Founded in 2017, HereNThere is a road trip planner web application. Specialized in multiple stop trips, we focus on taking our customers to their next amazing roadtrip. With our four years of experience in programming, we are devoted to bring our customers a streamlined and modern service.</h3><br>
           <!-- <h4 style="color:white;">Best roadtripper on the web except for roadtrippers.com</h4>   -->
+          <!-- TODO: Make this button open up email with email address of company -->
           <button class="btn btn-default btn-lg">Get in Touch</button>
         </div>
         <div class="col-sm-4">
@@ -44,10 +65,12 @@
     <div class="container-fluid bg-grey" style="padding: 60px 50px;">
       <div class="row">
         <div class="col-sm-4">
+          <!-- Creates a globe image that appears when the user scrolls down -->
           <span class="glyphicon glyphicon-globe logoaboutus slideanim"></span>
         </div>
         <div class="col-sm-8">
           <h2>Our Values</h2><br>
+          <!-- TODO: Rewrite the mission and vision -->
           <h4><strong>MISSION:</strong> Our mission is to bring to our customers a streamlined and modern service. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
           <p><strong>VISION:</strong> Our vision is to bring to our customers a streamlined and modern service. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -60,6 +83,7 @@
       <h2>TEAM</h2>
       <h4>Development Team</h4>
       <br>
+      <!-- Makes the items inside appear when the page is scrolled down to them -->
       <div class="row slideanim">
         <div class="col-sm-4">
           <span><img src="files/img/juandiaz.png" alt="JuanDiaz" height="75" width="75" class="img-circle"></span>
@@ -79,6 +103,7 @@
         </div>
       </div>
       <br><br>
+      <!-- Makes the items inside appear when the page is scrolled down to them -->
       <div class="row slideanim">
         <div class="col-sm-4">
             <span><img src="files/img/kulvinderlotay.png" alt="KulvinderLotay" height="75" width="75" class="img-circle"></span>
@@ -99,6 +124,7 @@
     </div>
 
     <footer class="container-fluid text-center" style="padding: 60px 50px;">
+      <!-- Takes the user back to the top of the page when clicked on -->
       <a href="#myPage" title="To Top">
         <span class="glyphicon glyphicon-chevron-up"></span>
       </a>
@@ -128,6 +154,7 @@
         } // End if
       });
       
+      // Function used to slide images into place when the window scrolls down
       $(window).scroll(function() {
         $(".slideanim").each(function(){
           var pos = $(this).offset().top;

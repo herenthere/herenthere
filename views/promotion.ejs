@@ -6,6 +6,7 @@
             We are just importing these libraries -->
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <meta charset="utf-8">
+        <!-- Loads the Bootstrap required for the page -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -26,14 +27,13 @@
 
 <body>
 
+    <!-- Header partial at the top of the window -->
     <header style="height:50px;">
         <% include partials/header %>
     </header>
 
-    <link rel = "stylesheet"
-          type = "text/css"
-          href = "../files/css/main.css" />
-
+    <!-- jumbotron indicates a big box for calling extra attention to some special content or information
+         displayed as a white box with rounded corners -->
     <div class="jumbotron text-center">
       <h1>Promotion Page</h1> 
       <p>Insert information regarding a new promotion</p> 
@@ -41,9 +41,11 @@
  
     <!-- TODO How to get business name, do we use businessID in a drop down? We use a stopID to get stopName and that, if it's a business, it's the name of the business  -->
     <!-- Business Name dropdown if other then enter need to get it from DB -->
+    <!-- Container for (new promotion agent sign up) -->
     <div class="login-container container">
         <div class="panel">
           <div class="panel-body">
+            <!-- Handles form control (New Agent Agent) -->
             <form id="login" name="login" action="/signin" method="POST">
               <legend style="text-align:center;">New Promotion Agent</legend>
               <div class="form-group">
@@ -66,13 +68,17 @@
                 <input type="number" name="areacode" id="areacode" placeholder="01" style="width:8%;" autofocus><input type="number" name="contactnumber" id="contactnumber" placeholder="(000)000 0000"  style="width:50%;" autofocus>  
               </div>
               <div class="form-group">
+                  <!-- TODO disable auto increment -->
+                  <!-- Future Features: get these two text areas to be consistent in CSS, not so easy cause class="form-control" puts the contact number text area to the next line -->
                   <label for="departure">Promotion Start Date:</label>
                   <input id="originplaceid" name="originplaceid" type="text" hidden>
                   <input id = "departure-datepicker" style="float:right;" type = "text" placeholder = "Choose Start Date" style="color:grey;">
                 </div>
+                <!-- TDOD fix id, etc for datepicker function -->
                 <div class="form-group">
                   <label for="destination">Promotion End Date:</label>
                   <input id="destinationplaceid" name="destinationplaceid" type="text" hidden>
+                  <!-- References datepicker function in script -->
                   <input id = "destination-datepicker" style="float:right;" type = "text" placeholder = "Choose End Date" style="color:grey;">
                 </div>
               <div class="form-group">
@@ -86,14 +92,20 @@
     
     <script>
 
-    //datepicker function
+    /** 
+      * Date picker function TODO change the IDs as they are the same as home page
+      * Used as a jQuery Plugin to attach a popup calender to input fields
+      * Refences jQuery UI Datepicker
+      **/
     $(function() {
+      // Attaches pop up calender to promotion start date datepicker input field in promotion agent form
       $( "#departure-datepicker" ).datepicker({
         prevText:"click for previous months",
         nextText:"click for next months",
         showOtherMonths:true,
         selectOtherMonths: false
       });
+      // Attaches pop up calender to promotion end date datepicker input field in promotion agent form
       $( "#destination-datepicker" ).datepicker({
         prevText:"click for previous months",
         nextText:"click for next months",

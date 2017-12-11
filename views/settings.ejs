@@ -1,3 +1,19 @@
+<!--
+Marist College - Capping Project - Prof. Arias
+HereNThere || Rights reserved
+==========================
+Juan Diaz
+Francesco Galletti
+Timbille Kulendi
+Kulvinder Lotay
+Tashi Palden
+Joey Pupel  
+==========================
+settings.ejs is the page where the user can 
+set different settings on the page such as how the
+distance is displayed (Kilometers or Miles).
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,6 +22,7 @@
             We are just importing these libraries -->
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
         <meta charset="utf-8">
+        <!-- Loads Bootstrap required for this page -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -21,14 +38,13 @@
 
 <body>
 
+    <!-- Header partial at the top of the window -->
     <header style="height:50px;">
         <% include partials/header %>
     </header>
 
-    <link rel = "stylesheet"
-          type = "text/css"
-          href = "../files/css/main.css" />
-
+    <!-- jumbotron indicates a big box for calling extra attention to some special content or information
+         displayed as a white box with rounded corners -->
     <div class="jumbotron text-center">
       <h1>Settings Page</h1> 
       <p>Set HereNThere as you prefer</p> 
@@ -36,16 +52,19 @@
  
     <!-- TODO Get the settings implemented and condition the map page by KM / miles at least-->
     <!-- TODO URGENT Notice the group that they need to store Settings preferences on the database for profiles -->
+    <!-- Container for (Setting form)-->
     <div class="login-container container">
         <div class="panel">
           <div class="panel-body">
             <form id="login" name="login" action="/signin" method="POST">
               <legend style="text-align:center;">Settings</legend>
               <div class="form-group">
+                <!-- User should be able to select their preferred language -->
                 <label for="language">Language</label>
                 [X] English  [] American
               </div>
               <div class="form-group">
+                <!-- User should be able to select their prefect unit of measure -->
                 <label for="distancemetric">Distance Metric</label>
                 KM / Miles
               </div>
@@ -55,6 +74,7 @@
               </div>
               <br>
               <br>
+              <!-- Change Password form -->
               <label style="font-size:20px;">Change Password</label>
               <div class="form-group">
                     <label >Old Password</label>

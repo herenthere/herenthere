@@ -1,3 +1,19 @@
+<!--
+Marist College - Capping Project - Prof. Arias
+HereNThere || Rights reserved
+==========================
+Juan Diaz
+Francesco Galletti
+Timbille Kulendi
+Kulvinder Lotay
+Tashi Palden
+Joey Pupel  
+==========================
+search.ejs is a page where users can search for other users
+to find and use their already made roadtrips. More information
+about the users is displayed in the page.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,6 +38,7 @@
 
 <body>
 
+    <!-- Header partial at the top of the window -->
     <header style="height:50px;">
         <% include partials/header %>
     </header>
@@ -32,6 +49,7 @@
       <p>Search profiles and check their roadtrips!</p> 
     </div>
  
+    <!-- TODO allow for transition to open up the box (width:50%) and make it work properly -->
     <form>
         <input type="text" name="search" placeholder="Search profiles..." 
             style=" width: 40%;
@@ -48,6 +66,7 @@
 
     <br><br>
 
+    <!-- TODO dynamically display the results and connect to db -->
     <div class="container">
             <table style="width:85%;">
                 <tr text-align="center">

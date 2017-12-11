@@ -1,26 +1,53 @@
+<!--
+Marist College - Capping Project - Prof. Arias
+HereNThere || Rights reserved
+==========================
+Juan Diaz
+Francesco Galletti
+Timbille Kulendi
+Kulvinder Lotay
+Tashi Palden
+Joey Pupel  
+==========================
+signup.ejs is the page where users can sign up to HereNThere.
+The account will be registered in the database and a confirmation
+email will be sent to their email addresses. The passwords are 256-bit
+hashed (encryption).
+-->
+
+
+<!DOCTYPE html>
 <html>
   <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
       We are just importing these libraries -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <!-- Load Bootstrap required for page -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <meta charset="utf-8">
+  
   <head>
     <title>HereNThere Login</title>
   </head>
 
+  <!--Style has all the CSS and modifications to edit how things look on the screen.
+        For example #map will modify how the Google Maps window looks like. -->
   <link rel = "stylesheet"
     type = "text/css"
     href = "../files/css/main.css" />
   
   <body>
+
+    <!-- Header partial at the top of the window -->
     <header>
       <% include partials/loginheader %>
     </header>
+
     <div class="login-container container">
       <div class="panel">
         <div class="panel-body">
+            <!-- Container for (Signup form) -->
             <form id="signup" name="signup" action="/signup" method="POST">
               <legend>Create an account</legend>
               <div class="form-group" style="color: black;"> <!-- First Name SIGNUP-->
@@ -53,7 +80,9 @@
             </form>
             <div class="hr-title"><span>or</span></div>
             <div class="btn-toolbar text-center">
+              <!-- References facebook authentication for sign in -->
               <a href="/auth/facebook" class="btn btn-facebook">Sign in with Facebook</a>
+              <!-- References google authentication for sign in -->
               <a href="/auth/google" class="btn btn-google">Sign in with Google</a>
             </div>
             <!-- <div class="modal-footer" style="color: black;">
@@ -61,6 +90,7 @@
               <p>Already a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;"onclick="$('#signup-content').hide();$('#initial-content').show();">Login</a></p>
             </div> -->
         <p class="text-center">
+          <!-- References login form -->
           Already have an account <a href="/signin"><strong>Log in</strong></a>
         </p>
       </div>   

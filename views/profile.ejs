@@ -9,41 +9,18 @@ Kulvinder Lotay
 Tashi Palden
 Joey Pupel  
 ==========================
-profilepage.php is the profile page of any registered user.
+profilepage.ejs is the profile page of any registered user.
 They can see the details on each of their roadtrips, modify
 them and share them with other people. The rating of each
 roadtrip is based on the ratings of each user who has seen
-the roadtrip. 
+the roadtrip. Clicking on a roadtrip will take the user to the
+tripdetails page.
 ==========================
 Google Maps API v3
 Google Places API v3
-==========================
-Version 0.1 - October 13, 2017
-- Trip from point A to B
-- Auto completion in text areas
-- Google Places API v3, implemented
-- Google Maps API v3 (+ skin), implemented
-- Basic homepage, mappage, profile page created
-Version 0.3 - October 20, 2017
-- Login popup
-- Registration popup
-- hashing / encryption - TODO
-- Registration - TODO
-- Database tables for USERS - TODO
-Version 0.5 - October 27, 2017
-- Multiple stops  in a trip - TODO
-- Duration and distance each stop - TODO
 -->
 
 <!DOCTYPE html>
-
-<!-- <
-    include('db.php');
-
-    $sql = 'SELECT FirstName, LastName FROM USER Where UserID = 1';
-    $result = $conn->$query($sql);    
-?> -->
-
 <html>
     <title>HereNThere</title>
     
@@ -51,6 +28,7 @@ Version 0.5 - October 27, 2017
         We are just importing these libraries -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <!-- Load the Bootstrap required for the page -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -84,6 +62,7 @@ Version 0.5 - October 27, 2017
 
     <body style="background-color: #214682;background-image:none;">
         
+        <!-- Header partial at the top of the window -->
         <header style="height:50px;">
             <% include partials/header %>
         </header>
@@ -95,6 +74,9 @@ Version 0.5 - October 27, 2017
             <h1 style="color: #214682">Timbille Kulendi</h1>
         </div>
          
+        <!-- Container for users trips
+             This should display a users saved trips
+             TODO Saved trips should be pulled from the database-->
         <div class="container">
             <table style="width:75%;">
                 <tr text-align="center">
@@ -133,7 +115,8 @@ Version 0.5 - October 27, 2017
                 </tr>
             </table>
             <script>
-                // TODO: Look through script
+                    // Bootstrap Rating is a jQuery plugin that creates a rating control 
+                    // that uses Bootstrap glyphicons for rating symbols
                     $(document).on('ready', function () {
                         $('.kv-gly-star').rating({
                             containerClass: 'is-star'

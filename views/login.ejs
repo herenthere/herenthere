@@ -1,3 +1,21 @@
+<!--
+Marist College - Capping Project - Prof. Arias
+HereNThere || Rights reserved
+==========================
+Juan Diaz
+Francesco Galletti
+Timbille Kulendi
+Kulvinder Lotay
+Tashi Palden
+Joey Pupel  
+==========================
+login.ejs is a page where users can login to their existing
+accounts. Users can also log into using their Facebook or
+Google accounts. 256 hashing is done on passwords. Decrypting
+is done the moment the password is retrieved.
+-->
+
+<!DOCTYPE html>
 <html>
    <!--These are the typical Bootstrap (BS) characteristics and basic libraries that BS is based on.
     We are just importing these libraries -->
@@ -12,17 +30,22 @@
     <title>HereNThere Login</title>
   </head>
 
+  <!--Style has all the CSS and modifications to edit how things look on the screen.
+           For example #map will modify how the Google Maps window looks like. -->
   <link rel = "stylesheet"
     type = "text/css"
     href = "../files/css/main.css" />
   
   <body>
     <header>
+      <!-- Places the header at the top of the window -->
       <% include partials/loginheader %>
     </header>
     <div class="login-container container">
+      <!-- TODO center the panel in the blue area -->
       <div class="panel">
         <div class="panel-body">
+          <!-- Error checking -->
           <% if (errors) { %>            
               <% errors.forEach(function(error) { %>
                 <div class="alert alert-danger">
@@ -44,11 +67,14 @@
             <button type="submit" class="btn btn-success">Log in</button>
           </form>
           <div class="hr-title"><span>or</span></div>
+          <!-- Facebook and Google sign in options -->
+          <!-- TODO make these work properly -->
           <div class="btn-toolbar text-center">
             <a href="/auth/facebook" class="btn btn-facebook">Sign in with Facebook</a>
             <a href="/auth/google" class="btn btn-google">Sign in with Google</a>
           </div>
         </div>
+        <!-- Link to the signup page at the bottom-->
         <p class="text-center">
           Don't have an account? <a href="/signup"><strong>Sign up</strong></a>
         </p>
