@@ -49,32 +49,32 @@ var profileResource = epilogue.resource({
 })
 
 var roadtripResource = epilogue.resource({
-  model: models.roadtrip,
+  model: models.RoadTrip,
   endpoints: ['/api/roadtrips', 'api/roadtrips/:id']
 })
 
 var roadtripOptionsResource = epilogue.resource({
-  model: models.roadtripoptions,
+  model: models.RoadTripOptions,
   endpoints: ['/api/roadtripoptions', 'api/roadtripoptions/:id']
 })
 
 var tripDetailResource = epilogue.resource({
-  model: models.tripdetail,
+  model: models.TripDetail,
   endpoints: ['/api/tripdetails', '/api/tripdetails/:id']
 })
 
 var categoriesResource = epilogue.resource({
-  model: models.categories,
+  model: models.Categories,
   endpoints: ['/api/categories', '/api/categories/:id']
 })
 
 var feedbackResource = epilogue.resource({
-  model: models.feedback,
+  model: models.Feedback,
   endpoints: ['/api/feedback', '/api/feedback/:id']
 })
 
 var stopResource = epilogue.resource({
-  model: models.stop,
+  model: models.Stop,
   endpoints: ['/api/stops', '/api/stops/:id']
 })
 
@@ -173,6 +173,7 @@ app.post('/map', function(req, res){
 app.get('/home', function(req, res){
   var user = 0;
   if(req.user){
+    // console.log(req.user);
     var user = 1;
   }
   res.render('home.ejs', {user: user});

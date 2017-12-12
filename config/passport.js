@@ -56,7 +56,8 @@
           { username:username,
           password:userPassword,
           firstname: req.body.firstname,
-          lastname: req.body.lastname
+          lastname: req.body.lastname,
+          email: req.body.email
           };
   
   
