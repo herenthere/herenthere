@@ -31,6 +31,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^2.20.4",
     "express.js": "^4.16.2",
+    "mdbootstrap": "^4.4.3",
     "method-override": "^2.3.10",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0",
