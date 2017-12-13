@@ -191,7 +191,7 @@ Google Places API v3
               <mapp1panel>Usual time for dinner</mapp1panel> <input type="number" name="timedinner" id="timedinner" value="<%= timedinner %>" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
               <mapp1panel>Maximum time driving not stopping</mapp1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="<%= maxtimedrive %>" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
               
-              <div class="switch-field" style="position:relative; left:75px; top: 35px;"> <!-- TODO radio buttons passing from previous page -->
+              <div class="switch-field" style="position:relative; left:100px; top: 35px;"> <!-- TODO radio buttons passing from previous page -->
                   <input type="radio" id="switch_left" name="switch_2" value="yes" checked/>
                   <label for="switch_left" style="width:85px;">Scenic</label>
                   <input type="radio" id="switch_right" name="switch_2" value="no" />
@@ -200,7 +200,7 @@ Google Places API v3
 
               <br>
               
-              <div id="maptogglePublicPrivate" align="center" style="position:relative; left:78px; top: 30px;">
+              <div id="maptogglePublicPrivate" align="center" style="position:relative; left:100px; top: 30px;">
                 <label class="grey"><input type="radio" name="toggle" id="privatetoggle" style="display: none;"><span>Private</span></label>
                 <label class="grey"><input type="radio" name="toggle" id="publictoggle" style="display: none;"><span>Public</span></label>
               </div>
@@ -209,7 +209,7 @@ Google Places API v3
 
               <!-- TODO allow this to change the search without having to refresh the page -->
               <div id="slidecontainer" style="position:relative; left:-9px; top: 14px;">
-                  <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="31" data-slider-step="1" data-slider-value="15" style="width:340px;"/>
+                  <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="31" data-slider-step="1" data-slider-value="15" style="width:422px;"/>
                   <!-- id="nearbySearchRange" name="nearbySearchRange" onchange="updateRangeValue()" -->
               </div>
 
@@ -231,7 +231,7 @@ Google Places API v3
             </div>
           </div>
           
-          <div id="icons" style="left:1px;">
+          <div id="icons" style="left:5px;">
               <select class="selectpicker" multiple data-live-search="true" title="Place categories" data-selected-text-format="count > 2" data-size="4">
                   <option>Airport</option>
                   <option>Amusement Park</option>
