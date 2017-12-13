@@ -78,8 +78,13 @@
 
 // Update range values
 function updateRangeValue() {
-    var nearbySearchRangeSlider = document.getElementById('nearbySearchRange');
+    var nearbySearchRangeSlider = document.getElementById('ex1');
     nearbySearchRange = nearbySearchRangeSlider.value;
+}
+
+function updateTimeDrivingNotStopping() {
+    var timeDrivingNotStoppingSetting = document.getElementById('maxtimedrive');
+    timeDrivingNotStopping = timeDrivingNotStoppingSetting.value;
 }
 
 // Initialize Google Maps map. Give it skin, then variables map, then camera location, then autocomplete functions.
@@ -268,8 +273,8 @@ AutocompleteDirectionsHandler.prototype.updateWaypoints = function(){
     var me = this;
 
     for (i = 0; i < waypoints.length; i++){
-        me.waypointsAutocomplete.push(new google.maps.places.Autocomplete(
-        document.getElementById(waypoints[i]), {placeIdOnly: true}
+            me.waypointsAutocomplete.push(new google.maps.places.Autocomplete(
+                document.getElementById(waypoints[i]), {placeIdOnly: true}
         ));
 
         me.waypointsPlaceIds.push(null);
@@ -368,6 +373,8 @@ function showPOI(me, directionsResult){
     var legs = directionsResult.routes[0].legs;
     var steps = [];
     var cumulative_length = 0;
+    var cumulative_duration = 0;
+    var cumulative_duration_hours = 0;
     var nearbySearchRangeMeters = 1609.34 * nearbySearchRange;
 
     for(var x = 0; x < legs.length; x++) {
@@ -389,12 +396,32 @@ function showPOI(me, directionsResult){
         
         for(var i = 0; i < steps.length; i++) {
             cumulative_length += steps[i].distance.value;
-            
             cumulative_duration += steps[i].duration.value;
+            cumulative_duration_hours = cumulative_duration / 3600;
 
             //range TODO
-            if(cumulative_length >= (nearbySearchRangeMeters * 2)){
-                if()
+            if(cumulative_length >= (nearbySearchRangeMeters * 2)) {
+                if(cumulative_duration_hours >= timeDrivingNotStopping) {
+                    console.log(timeDrivingNotStopping);
+                    //nearby search    
+                    me.service.nearbySearch(
+                        {
+                            //keyword
+                            location: steps[i].end_location,
+                            radius: nearbySearchRangeMeters
+                        },                          
+                        
+                        function(results, status, pagination){
+                            if(results){
+                                // me.markerPlaces.push(results);
+                                createMarkers(me, results);
+                            }
+                        }
+                    )
+                
+                    cumulative_duration = 0;
+                    cumulative_duration_hours = 0;
+                }
                 // console.log(steps[i].instructions);
                 // console.log(steps[i].end_location);
                 //nearby search start location
@@ -412,23 +439,6 @@ function showPOI(me, directionsResult){
                 //     }
                 // }
                 // )
-                
-                //nearby search
-                me.service.nearbySearch(
-                    {
-                        //keyword
-                        location: steps[i].end_location,
-                        radius: nearbySearchRangeMeters
-                    },                          
-                    
-                    function(results, status, pagination){
-                        if(results){
-                            // me.markerPlaces.push(results);
-                            createMarkers(me, results);
-                        }
-                    }
-                )
-            
                 cumulative_length = 0;
             }
         }
@@ -442,7 +452,33 @@ function createMarkers(me, places) {
 
     for (var i = 0, place; place = places[i]; i++) {
 
+        var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(10, 10),
+            scaledSize: new google.maps.Size(30, 30)
+        };
+
+        var marker = new google.maps.Marker({
+            map: me.map,
+            icon: image,
+            title: place.name,
+            position: place.geometry.location,
+            optimized: false,    
+        });
+        
+        // shape: {
+        //     coords: [place.geometry.location.lat(), place.geometry.location.lng(), 0.05],
+        //     type: 'circle'
+        // }
+
+        me.markers.push(marker);
+
         var priceLevel = '';
+        var placeRating = 0;
+        var placeWebsite = '';
+        var placeUrl = '';
 
         switch(place.price_level){
             case 0:
@@ -463,48 +499,54 @@ function createMarkers(me, places) {
             default:
                 priceLevel = 'Unavailable';
         }
+
+        if(place.rating) {
+            placeRating = place.rating;
+        }
+        else{
+            placeRating = 'Unavailable';
+        }
+
+        if(place.website) {
+            placeWebsite = place.website;
+        }
+        else{
+            placeWebsite = 'Unavailable';
+        }
+
+        if(place.url) {
+            placeUrl = place.url;
+        }
+        else{
+            placeUrl = 'https://www.google.com/search?q=' + place.name;
+            placeUrl = placeUrl.replace(/\s/g,'');
+        }
             
         var contentString = '<div id="content">' +
             '<h1>' + place.name + '</h1>' +
-            '<p>' + '<b>Rating:</b> ' + place.rating + '</p>' +
+            '<img src= ' + place.icon + '><br><br><br>' +
+            '<p>' + '<b>Rating:</b> ' + placeRating + '</p>' +
             '<p>' + '<b>Price:</b> ' + priceLevel + '</p>' +
             '<p>' + '<b>Wesbite:</b> ' + place.website + '</p>' +
-            '<p>' + '<b>More Information:</b> ' + place.url + '</p>' +
-            '</div>';
-        
-        var infoWindow = new google.maps.InfoWindow({
-            content: contentString
-        });
+            '<p>' + '<a target="_blank" href=' + placeUrl + '><b>Click for More Information</b></a></p>' +
+            '<p><button>' + '' + '>' + '<b>ADD WAYPOINT</b></button></p>' +
+            '</div>';        
 
-        var image = {
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(10, 10),
-            scaledSize: new google.maps.Size(25, 25)
-        };
-
-        var marker = new google.maps.Marker({
-            map: me.map,
-            icon: image,
-            title: place.name,
-            position: place.geometry.location,
-            optimized: false,
-            shape: {
-                coords: [place.geometry.location.lat(), place.geometry.location.lng(), 0.05],
-                type: 'circle'
-            }
-        });
-
-        marker.addListener('click', function() {
-            infoWindow.open(me.map, marker);
-        })
-
-        me.markers.push(marker);
+        attachInfoWindow(marker, contentString);
 
         //bounds.extend(place.geometry.location);
     }
     //map.fitBounds(bounds);
+}
+
+function attachInfoWindow(marker, contentString) {
+    var infoWindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    marker.addListener('click', function() {
+        infoWindow.open(marker.get('map'), marker);
+    });
 }
 
 function removeMarkers(me) {
@@ -516,11 +558,11 @@ function removeMarkers(me) {
     me.markers = [];
 }
 
-    // Callback used by async scripted link below
+// Callback used by async scripted link below
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-        createMarker(results[i]);
+            createMarker(results[i]);
         }
     }
 }

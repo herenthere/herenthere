@@ -52,7 +52,7 @@ Google Places API v3
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
     <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script> -->
 
     <!--Style has all the CSS and modifications to edit how things look on the screen.
         For example #map will modify how the Google Maps window looks like. -->
@@ -96,6 +96,7 @@ Google Places API v3
                 var waypoints = [];
                 var directionsHandler = {};
                 var nearbySearchRange = 15;
+                var timeDrivingNotStopping = 1.5;
               </script>
               
               <br id="br1" name="br1">
@@ -192,7 +193,7 @@ Google Places API v3
               <mapp1panel>Maximum number of days on the road</mapp1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="<%= maxdaysonroad %>" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
               <mapp1panel>Usual time for lunch</mapp1panel> <input type="number" name="timelunch" id="timelunch" value="<%= timelunch %>"  min="12" max="24" style="width:50px;color:black;float:right;"/><br> <br>
               <mapp1panel>Usual time for dinner</mapp1panel> <input type="number" name="timedinner" id="timedinner" value="<%= timedinner %>" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
-              <mapp1panel>Maximum time driving not stopping</mapp1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="<%= maxtimedrive %>" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
+              <mapp1panel>Maximum time driving not stopping</mapp1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="<%= maxtimedrive %>" min="1" max="99" style="width:50px;color:black;float:right;" onchange="updateTimeDrivingNotStopping()"/> <br>
               
               <div class="switch-field" style="position:relative; left:100px; top: 35px;"> <!-- TODO radio buttons passing from previous page -->
                   <input type="radio" id="switch_left" name="switch_2" value="yes" checked/>
@@ -212,7 +213,7 @@ Google Places API v3
 
               <!-- TODO allow this to change the search without having to refresh the page -->
               <div id="slidecontainer" style="position:relative; left:-9px; top: 14px;">
-                  <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="31" data-slider-step="1" data-slider-value="15" style="width:422px;"/>
+                  <input id="ex1" name="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="31" data-slider-step="1" data-slider-value="15" style="width:422px;" onchange="updateRangeValue()"/>
                   <!-- id="nearbySearchRange" name="nearbySearchRange" onchange="updateRangeValue()" -->
               </div>
 
