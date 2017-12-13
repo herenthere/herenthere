@@ -58,257 +58,242 @@ Google Places API v3
     <link rel = "stylesheet"
       type = "text/css"
       href = "../files/css/main.css" />
-      
+  
   </head>
-
-<!-- 
-  ==========================
-  ==========================
-  =====   END STYLE   ======
-  ==========================
-  ==========================
--->
 
   <body>
       
-      <!-- Header partial at the top of the window -->
-      <header style="height:50px;">
-          <% include partials/header %>
-      </header>
+    <!-- Header partial at the top of the window -->
+    <header style="height:50px;">
+        <% include partials/header %>
+    </header>
 
     <!-- floating panel on the left of the map. Origin and Destination text areas -->
     <div id="floating-panel">
       <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="float:center;">
-                  <p align="center" style="font-size: 25px;">Trip Details</p>
-                </a>
-              </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-              <div class="panel-body"> <!--BODY INSIDE FIRST PANEL -->
-                <input class="controlsplusdate" id="datestop0" name="datestop0" type="text" placeholder="Date" maxlength="5">
-                <input class="controlsplus" id="origin-input" name="origin-input" type="text" placeholder="Enter an origin location" value="<%= departure %>"/>
-                <input id="origin-input-placeid" name="origin-input-placeid" type="text" value="<%= departureplaceid %>" hidden>
-                <!-- <div id="scrolling-window" data-spy="scroll"> -->
-                  <!-- <input autocomplete="off" class="controlsplus" id="field1" name="prof1" type="text" placeholder="Add a stop..."/> -->
-          
-                <script>
-                  // Initializes required variables for trip
-                  // waypoints represents stops
-                  // initial range from actual road is 15, changeable with
-                  //  slider bottom of Trip Settings
-                  var waypoints = [];
-                  var directionsHandler = {};
-                  var nearbySearchRange = 15;
-                </script>
-                
-                <br id="br1" name="br1">
-                
-                <!-- Field that allows the user to add multiple waypoints to their trip -->
-                <input class="controlsplusdate" id="datestop1" name="datestop1" type="text" placeholder="Date" maxlength="5"><input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
-                           
-                <!-- Script that adds or removes waypoint text inputs -->
-                <!-- TODO allow for more than 9 waypoints (more than 9 and the remove button stops working properly) -->
-                <!-- TODO make the remove button remove waypoints from the trip -->
-                <!-- TODO add scrolling if there becomes too many waypoints -->
-                <script>
-                  waypoints.push('waypoint1');
-                  $(document).ready(function(){
-                      var next = 1;
-                      $(".add-more").click(function(e){
-                        e.preventDefault();
-                        var addto = "#waypoint" + next;
-                        var addRemove = "#waypoint" + (next);
-                        
-                        next++;
-          
-                        var brek = '<br id="br' + next + '" name="br' + next + '">';
-                        var dateStop =  '<input class="controlsplusdate" id="datestop' + next + '" name="datestop' + next + '" type="text" placeholder="Date" maxlength="5">';
-                        var newIn = '<input class="controlsplus" id="waypoint' + next + '" name="waypoint' + next + '" type="text" placeholder="Add a stop...">';
-                        waypoints.push('waypoint' + next);
-                        // TODO add datestop push
-                        // console.log(waypoints);
-                        
-                        var brInput = $(brek);
-                        var dateStopInput = $(dateStop);
-                        var newInput = $(newIn);
-                        
-                        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div>';
-                        var removeButton = $(removeBtn);
-                        // console.log(removeBtn);
-                        
-                        $(addto).after(newInput);
-                        $(addto).after(dateStopInput);
-                        $(addto).after(brInput);                     
-                        
-                        $(addRemove).after(removeButton);
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="float:center;">
+                <p align="center" style="font-size: 25px;">Trip Details</p>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body"> <!--BODY INSIDE FIRST PANEL -->
+              <input class="controlsplusdate" id="datestop0" name="datestop0" type="text" placeholder="Date" maxlength="5">
+              <input class="controlsplus" id="origin-input" name="origin-input" type="text" placeholder="Enter an origin location" value="<%= departure %>"/>
+              <input id="origin-input-placeid" name="origin-input-placeid" type="text" value="<%= departureplaceid %>" hidden>
 
-                        directionsHandler.updateWaypoints();
-                        
-                        // $("#count").val(next);
-                        $('.remove-me').click(function(e){
-                          // e.preventDefault();
-                          // TODO fix how it obtains the waypointNum to account for double digits
-                          // This is why the waypoint limit is set to 9, because it does not account for double digits
-                          var waypointNum = this.id.charAt(this.id.length-1);
-                          var brekID = "#br" + waypointNum;
-                          var datestopID = "#datestop" + waypointNum;
-                          var waypointID = "#waypoint" + waypointNum;
+              <script>
+                // Initializes required variables for trip
+                // waypoints represents stops
+                // initial range from actual road is 15, changeable with
+                //  slider bottom of Trip Settings
+                var waypoints = [];
+                var directionsHandler = {};
+                var nearbySearchRange = 15;
+              </script>
+              
+              <br id="br1" name="br1">
+              
+              <!-- Field that allows the user to add multiple waypoints to their trip -->
+              <input class="controlsplusdate" id="datestop1" name="datestop1" type="text" placeholder="Date" maxlength="5"><input class="controlsplus" id="waypoint1" name="waypoint1" type="text" placeholder="Add a stop.."/><button id="add-waypoint" class="btn add-more" type="button">+</button>
                           
-                          var index = waypoints.indexOf('waypoint' + waypointNum);
-                          // console.log('it ran');
-                          // console.log(waypoints);
-                          if(index != -1){
-                            waypoints.splice(index, 1);
-                            directionsHandler.updateWaypoints();
-                          }
-                          // console.log(this);
-                          // console.log(waypoints);
-                          $(this).remove();
-                          $(brekID).remove();
-                          $(datestopID).remove();
-                          $(waypointID).remove();
-                        });
+              <!-- Script that adds or removes waypoint text inputs -->
+              <!-- TODO allow for more than 9 waypoints (more than 9 and the remove button stops working properly) -->
+              <!-- TODO make the remove button remove waypoints from the trip -->
+              <!-- TODO add scrolling if there becomes too many waypoints -->
+              <script>
+                waypoints.push('waypoint1');
+                $(document).ready(function(){
+                    var next = 1;
+                    $(".add-more").click(function(e){
+                      e.preventDefault();
+                      var addto = "#waypoint" + next;
+                      var addRemove = "#waypoint" + (next);
+                      
+                      next++;
+        
+                      var brek = '<br id="br' + next + '" name="br' + next + '">';
+                      var dateStop =  '<input class="controlsplusdate" id="datestop' + next + '" name="datestop' + next + '" type="text" placeholder="Date" maxlength="5">';
+                      var newIn = '<input class="controlsplus" id="waypoint' + next + '" name="waypoint' + next + '" type="text" placeholder="Add a stop...">';
+                      waypoints.push('waypoint' + next);
+                      // TODO add datestop push
+                      // console.log(waypoints);
+                      
+                      var brInput = $(brek);
+                      var dateStopInput = $(dateStop);
+                      var newInput = $(newIn);
+                      
+                      var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div>';
+                      var removeButton = $(removeBtn);
+                      // console.log(removeBtn);
+                      
+                      $(addto).after(newInput);
+                      $(addto).after(dateStopInput);
+                      $(addto).after(brInput);                     
+                      
+                      $(addRemove).after(removeButton);
+
+                      directionsHandler.updateWaypoints();
+                      
+                      // $("#count").val(next);
+                      $('.remove-me').click(function(e){
+                        // e.preventDefault();
+                        // TODO fix how it obtains the waypointNum to account for double digits
+                        // This is why the waypoint limit is set to 9, because it does not account for double digits
+                        var waypointNum = this.id.charAt(this.id.length-1);
+                        var brekID = "#br" + waypointNum;
+                        var datestopID = "#datestop" + waypointNum;
+                        var waypointID = "#waypoint" + waypointNum;
+                        
+                        var index = waypoints.indexOf('waypoint' + waypointNum);
+                        // console.log('it ran');
+                        // console.log(waypoints);
+                        if(index != -1){
+                          waypoints.splice(index, 1);
+                          directionsHandler.updateWaypoints();
+                        }
+                        // console.log(this);
+                        // console.log(waypoints);
+                        $(this).remove();
+                        $(brekID).remove();
+                        $(datestopID).remove();
+                        $(waypointID).remove();
                       });
-                  });
-                </script>
+                    });
+                });
+              </script>
+        
+              <!-- TODO IMPLEMENT DATE -->
+              <br>
+              <input class="controlsplusdate" id="datestopfinal" name="datestopfinal" type="text" placeholder="Date" maxlength="5" />
+              <input id="destination-input" name="destination-input" class="controlsplus" type="text" placeholder="Enter a destination location" value="<%= destination %>"/>    
+              <input id="destination-input-placeid" name="destination-input-placeid" type="text" value="<%= destinationplaceid %>" hidden>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default template">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                <p align="center" style="font-size: 25px;">Trip Settings</p>
+              </a>
+            </h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body"> <!--BODY INSIDE SECOND  PANEL -->                   
+              <mapp1panel>Number of hours to drive daily</mapp1panel> <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="<%= hoursdrivedaily %>" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+              <mapp1panel>Maximum number of days on the road</mapp1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="<%= maxdaysonroad %>" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+              <mapp1panel>Usual time for lunch</mapp1panel> <input type="number" name="timelunch" id="timelunch" value="<%= timelunch %>"  min="12" max="24" style="width:50px;color:black;float:right;"/><br> <br>
+              <mapp1panel>Usual time for dinner</mapp1panel> <input type="number" name="timedinner" id="timedinner" value="<%= timedinner %>" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
+              <mapp1panel>Maximum time driving not stopping</mapp1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="<%= maxtimedrive %>" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
+              
+              <div class="switch-field" style="position:relative; left:75px; top: 35px;"> <!-- TODO radio buttons passing from previous page -->
+                  <input type="radio" id="switch_left" name="switch_2" value="yes" checked/>
+                  <label for="switch_left" style="width:85px;">Scenic</label>
+                  <input type="radio" id="switch_right" name="switch_2" value="no" />
+                  <label for="switch_right" style="width:85px;">Ordinary</label>
+              </div>
+
+              <br>
+              
+              <div id="maptogglePublicPrivate" align="center" style="position:relative; left:78px; top: 30px;">
+                <label class="grey"><input type="radio" name="toggle" id="privatetoggle" style="display: none;"><span>Private</span></label>
+                <label class="grey"><input type="radio" name="toggle" id="publictoggle" style="display: none;"><span>Public</span></label>
+              </div>
+              
+              <br><br><br>
+
+              <!-- TODO allow this to change the search without having to refresh the page -->
+              <div id="slidecontainer" style="position:relative; left:-9px; top: 14px;">
+                  <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="31" data-slider-step="1" data-slider-value="15" style="width:340px;"/>
+                  <!-- id="nearbySearchRange" name="nearbySearchRange" onchange="updateRangeValue()" -->
+              </div>
+
+              <script>
+                // With JQuery
+                $('#ex1').slider({
+                  formatter: function(value) {
+                    return 'Range: ' + value;
+                  }
+                });
+
+                // Without JQuery
+                var slider = new Slider('#ex1', {
+                  formatter: function(value) {
+                    return 'Range: ' + value;
+                  }
+                });
+              </script>
+            </div>
+          </div>
           
-                <!-- TODO IMPLEMENT DATE -->
-                <br>
-                <input class="controlsplusdate" id="datestopfinal" name="datestopfinal" type="text" placeholder="Date" maxlength="5" />
-                <input id="destination-input" name="destination-input" class="controlsplus" type="text" placeholder="Enter a destination location" value="<%= destination %>"/>    
-                <input id="destination-input-placeid" name="destination-input-placeid" type="text" value="<%= destinationplaceid %>" hidden>
+          <div id="icons" style="left:1px;">
+              <select class="selectpicker" multiple data-live-search="true" title="Place categories" data-selected-text-format="count > 2" data-size="4">
+                  <option>Airport</option>
+                  <option>Amusement Park</option>
+                  <option>Aquarium</option>
+                  <option>Art Gallery</option>
+                  <option>Bakery</option>
+                  <option>Bank</option>
+                  <option>Bar</option>
+                  <option>Beauty Salon</option>
+                  <option>Bicycle Store</option>
+                  <option>Book Store</option>
+                  <option>Bowling Alley</option>
+                  <option>Cafe</option>
+                  <option>Car Repair</option>
+                  <option>Car Wash</option>
+                  <option>Casino</option>
+                  <option>Church</option>
+                  <option>City Hall</option>
+                  <option>Clothing Store</option>
+                  <option>Convenience Store</option>
+                  <option>Department Store</option>
+                  <option>Electronics Store</option>
+                  <option>Embassy</option>
+                  <option>Florist</option>
+                  <option>Gas Station</option>
+                  <option>Gym</option>
+                  <option>Hair Care</option>
+                  <option>Hardware Store</option>
+                  <option>Hindu Temple</option>
+                  <option>Home Hoods Store</option>
+                  <option>Jewelry Store</option>
+                  <option>Library</option>
+                  <option>Liquor Store</option>
+                  <option>Lodging</option>
+                  <option>Mosque</option>
+                  <option>Movie Theater</option>
+                  <option>Museum</option>
+                  <option>Night Club</option>
+                  <option>Park</option>
+                  <option>Parking</option>
+                  <option>Pet Store</option>
+                  <option>Pharmacy</option>
+                  <option>Restaurant</option>
+                  <option>Shoe Store</option>
+                  <option>Shopping Mall</option>
+                  <option>Spa</option>
+                  <option>Stadium</option>
+                  <option>Store</option>
+                  <option>Synagogue</option>
+                  <option>Travel Agency</option>
+                  <option>University</option>
+                  <option>Veterinary Care</option>
+                  <option>Zoo</option>
+              </select>  
+              <div style="float:right; right:5px; top: -30px; position:relative;">
+                <a href="https://waze.com/ul?ll=40.7128,-74.0059"><input type="submit" class="btn btn-info" value="Export to Waze"></button></a> <br>
+                <a href="https://www.google.com/maps/@40.7264048,-74.0176149,10z?hl=en-US"><input type="submit" class="btn btn-info" value="Export to Maps" style="top: 2px; position: relative;"></button></a> <br>
+                <input type="submit" class="btn btn-success" value="Save" style="top: 3px;left:30px; position:relative;"></button>
               </div>
-            </div>
-          </div>
-          <div class="panel panel-default template">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                  <p align="center" style="font-size: 25px;">Trip Settings</p>
-                </a>
-              </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse">
-              <div class="panel-body"> <!--BODY INSIDE SECOND  PANEL -->                   
-                <mapp1panel>Number of hours to drive daily</mapp1panel> <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="<%= hoursdrivedaily %>" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
-                <mapp1panel>Maximum number of days on the road</mapp1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="<%= maxdaysonroad %>" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
-                <mapp1panel>Usual time for lunch</mapp1panel> <input type="number" name="timelunch" id="timelunch" value="<%= timelunch %>"  min="12" max="24" style="width:50px;color:black;float:right;"/><br> <br>
-                <mapp1panel>Usual time for dinner</mapp1panel> <input type="number" name="timedinner" id="timedinner" value="<%= timedinner %>" min="18" max="24" style="width:50px;color:black;float:right;"/><br><br>
-                <mapp1panel>Maximum time driving not stopping</mapp1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="<%= maxtimedrive %>" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
-                
-                <div class="switch-field" style="position:relative; left:75px; top: 35px;"> <!-- TODO radio buttons passing from previous page -->
-                    <input type="radio" id="switch_left" name="switch_2" value="yes" checked/>
-                    <label for="switch_left" style="width:85px;">Scenic</label>
-                    <input type="radio" id="switch_right" name="switch_2" value="no" />
-                    <label for="switch_right" style="width:85px;">Ordinary</label>
-                </div>
-                <br>
-                <div id="maptogglePublicPrivate" align="center" style="position:relative; left:78px; top: 30px;">
-                  <label class="grey"><input type="radio" name="toggle" id="privatetoggle" style="display: none;"><span>Private</span></label>
-                  <label class="grey"><input type="radio" name="toggle" id="publictoggle" style="display: none;"><span>Public</span></label>
-                </div>
-                <br>
-                <br><br>
-
-                <!-- TODO allow this to change the search without having to refresh the page -->
-                <div id="slidecontainer" style="position:relative; left:-9px; top: 14px;">
-                    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="31" data-slider-step="1" data-slider-value="15" style="width:340px;"/>
-                    <!-- id="nearbySearchRange" name="nearbySearchRange" onchange="updateRangeValue()" -->
-                </div>
-                <script>
-                  // With JQuery
-                  $('#ex1').slider({
-                    formatter: function(value) {
-                      return 'Range: ' + value;
-                    }
-                  });
-
-                  // Without JQuery
-                  var slider = new Slider('#ex1', {
-                    formatter: function(value) {
-                      return 'Range: ' + value;
-                    }
-                  });
-                </script>
-                <!-- <script>
-                    var slider = document.getElementById("nearbySearchRange");
-                    var output = document.getElementById("demo");
-                    output.innerHTML = slider.value; // Display the default slider value
-            
-                    // Update the current slider value (each time you drag the slider handle)
-                    slider.oninput = function() {
-                        output.innerHTML = this.value;
-                    }
-                  </script> -->
-              </div>
-            </div>
-            <div id="icons" style="left:1px;">
-                <select class="selectpicker" multiple data-live-search="true" title="Place categories" data-selected-text-format="count > 2" data-size="4">
-                    <option>Airport</option>
-                    <option>Amusement Park</option>
-                    <option>Aquarium</option>
-                    <option>Art Gallery</option>
-                    <option>Bakery</option>
-                    <option>Bank</option>
-                    <option>Bar</option>
-                    <option>Beauty Salon</option>
-                    <option>Bicycle Store</option>
-                    <option>Book Store</option>
-                    <option>Bowling Alley</option>
-                    <option>Cafe</option>
-                    <option>Car Repair</option>
-                    <option>Car Wash</option>
-                    <option>Casino</option>
-                    <option>Church</option>
-                    <option>City Hall</option>
-                    <option>Clothing Store</option>
-                    <option>Convenience Store</option>
-                    <option>Department Store</option>
-                    <option>Electronics Store</option>
-                    <option>Embassy</option>
-                    <option>Florist</option>
-                    <option>Gas Station</option>
-                    <option>Gym</option>
-                    <option>Hair Care</option>
-                    <option>Hardware Store</option>
-                    <option>Hindu Temple</option>
-                    <option>Home Hoods Store</option>
-                    <option>Jewelry Store</option>
-                    <option>Library</option>
-                    <option>Liquor Store</option>
-                    <option>Lodging</option>
-                    <option>Mosque</option>
-                    <option>Movie Theater</option>
-                    <option>Museum</option>
-                    <option>Night Club</option>
-                    <option>Park</option>
-                    <option>Parking</option>
-                    <option>Pet Store</option>
-                    <option>Pharmacy</option>
-                    <option>Restaurant</option>
-                    <option>Shoe Store</option>
-                    <option>Shopping Mall</option>
-                    <option>Spa</option>
-                    <option>Stadium</option>
-                    <option>Store</option>
-                    <option>Synagogue</option>
-                    <option>Travel Agency</option>
-                    <option>University</option>
-                    <option>Veterinary Care</option>
-                    <option>Zoo</option>
-                </select>  
-                <div style="float:right; right:5px; top: -30px; position:relative;">
-                  <a href="https://waze.com/ul?ll=40.7128,-74.0059"><input type="submit" class="btn btn-info" value="Export to Waze"></button></a> <br>
-                  <a href="https://www.google.com/maps/@40.7264048,-74.0176149,10z?hl=en-US"><input type="submit" class="btn btn-info" value="Export to Maps" style="top: 2px; position: relative;"></button></a> <br>
-                  <input type="submit" class="btn btn-success" value="Save" style="top: 3px;left:30px; position:relative;"></button>
-                </div>
-            </div>  
-          </div>
-        </div>  
+          </div>  
+        </div>
+      </div>  
     </div>
 
     <!-- div to initiate Google Maps -->
@@ -319,11 +304,13 @@ Google Places API v3
       <span id="place-name"  class="title"></span><br>
       <span id="place-address"></span>
     </div>
-      <br>
-      <button class="btn btn-lg btn-primary btn-add-panel">
-          <i class="glyphicon glyphicon-plus"></i> Add new panel
-      </button>
-      <!-- Filter check boxes - TODO make them actually display Restaurants/Hotels/Points of interests ONLY-->
+
+    <br>
+
+    <button class="btn btn-lg btn-primary btn-add-panel">
+      <i class="glyphicon glyphicon-plus"></i> Add new panel
+    </button>
+    <!-- Filter check boxes - TODO make them actually display Restaurants/Hotels/Points of interests ONLY-->
 
     <script>
       $(function(dateID) {
@@ -375,3 +362,7 @@ Google Places API v3
           infowindow.open(map, this);
         });
       }
+
+
+KML reference
+https://developers.google.com/kml/documentation/kmlreference

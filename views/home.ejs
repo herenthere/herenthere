@@ -29,6 +29,7 @@ Google Places API v3
         We are just importing these libraries -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+
     <!-- Load the Bootstrap required for the datepicker -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -39,7 +40,6 @@ Google Places API v3
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
@@ -55,88 +55,86 @@ Google Places API v3
     <link rel = "stylesheet"
       type = "text/css"
       href = "../files/css/main.css" />
+
   </head>
-<!-- 
-  ==========================
-  ==========================
-  =====   END STYLE   ======
-  ==========================
-  ==========================
--->
+
   <body>
-      <!-- Header partial at the top of the window -->
-      <header>
-          <% include partials/header %>
-      </header>
+    <!-- Header partial at the top of the window -->
+    <header>
+        <% include partials/header %>
+    </header>
 
     <!-- Main elements in the center of the screen -->
-    <br><br><br> <!-- to delete, pulls it down in the center but will be BS eventually-->
+
+    <br><br><br>
+
     <!-- Container for trip creation input fields -->
     <div class="container-fluid" style="color:#ffffff" align="center" style="border:20px solid #ffffff;">
-        <h1>Explore and hit the road</h1>
-        <p>Select a departure and destination and hit GO!</p>
-        <br>
-        <!-- Form post method sends form data to map page upon clicking GO button -->
-        <form action="/map" method="post" id="search" name="search" onkeydown="noGoInput()" novalidate>
-        <div class="row">
-            <div class="col-xs-2 col-md-2 col-lg-2" class="form-group">
-            </div>
-            <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
-              <label for="departure">Departure:</label>
-              <!-- Handles form control for departure input -->
-              <input type="text" class="form-control" id="origin-input-home" name="departure">
-              <input id="originplaceid" name="originplaceid" type="text" hidden>
-              <!-- References datepicker function in script for departure -->
-              <input type = "text" id = "departure-datepicker" placeholder = "Add Date" style="color:grey;">
-            </div>
-            <!-- Handles form control for destination input -->
-            <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
-              <label for="destination">Destination:</label>
-              <input type="text" class="form-control" id="destination-input-home" name="destination" >
-              <input id="destinationplaceid" name="destinationplaceid" type="text" hidden>
-              <!-- References datepicker function in script for departure -->
-              <input type = "text" id = "destination-datepicker" placeholder = "Add Date" style="color:grey;">
-            </div>
-            <div class="col-xs-1 col-md-1 col-lg-1">
-                <br>
-                <input type="submit" class="btn btn-primary" value="GO" id="GO" disabled></button> 
-            </div>
-        </div>
-  
+      <h1>Explore and hit the road</h1>
+      <p>Select a departure and destination and hit GO!</p>
+      <br>
+      <!-- Form post method sends form data to map page upon clicking GO button -->
+      <form action="/map" method="post" id="search" name="search" onkeydown="noGoInput()" novalidate>
+      <div class="row">
+          <div class="col-xs-2 col-md-2 col-lg-2" class="form-group"></div>
+          <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
+            <label for="departure">Departure:</label>
+            <!-- Handles form control for departure input -->
+            <input type="text" class="form-control" id="origin-input-home" name="departure">
+            <input id="originplaceid" name="originplaceid" type="text" hidden>
+            <!-- References datepicker function in script for departure -->
+            <input type = "text" id = "departure-datepicker" placeholder = "Add Date" style="color:grey;">
+          </div>
+          <!-- Handles form control for destination input -->
+          <div class="col-xs-2 col-md-3 col-lg-4" class="form-group">
+            <label for="destination">Destination:</label>
+            <input type="text" class="form-control" id="destination-input-home" name="destination" >
+            <input id="destinationplaceid" name="destinationplaceid" type="text" hidden>
+            <!-- References datepicker function in script for departure -->
+            <input type = "text" id = "destination-datepicker" placeholder = "Add Date" style="color:grey;">
+          </div>
+          <div class="col-xs-1 col-md-1 col-lg-1">
+            <br>
+            <input type="submit" class="btn btn-primary" value="GO" id="GO" disabled></button> 
+          </div>
+      </div>
+
         <!--  Reference  myFunction() in script
               On clicking Additional filters button displays panel-->
         <!--  Filters for locations the user wants to see on the map -->
         <div class="w3-container">
-            <h3><button type="button" class="btn btn-primary btn-lg" onclick="myFunction()">Additional Filters</button></h3>
-  
-            <div class="w3-panel w3-blue w3-card-4" style="width:500px;display:none;" id="additionalfilters">
-              <br>
-              <select class="selectpicker" multiple data-live-search="true" title="Place categories" data-selected-text-format="count > 2" data-size="4">
-                  <option>Restaurant</option>
-                  <option>Sinagoge</option>
-                  <option>Hotel</option>
-                  <option>Scenery</option>
-                  <option>Night Club</option>
-                  <option>Stadium</option>
-                  <option>Spa</option>
-                  <option>Parking</option>
-              </select>  
-              <br><br>
-              <p1panel>Number of hours to drive daily</p1panel>
-              <!-- Input form for additional filters -->
-              <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
-              <p1panel>Maximum number of days on the road</p1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="2" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
-              <p1panel>Usual time for lunch</p1panel> <input type="number" name="timelunch" id="timelunch" value="12" min="1" max="24" style="width:50px;color:black;float:right;"/><br> <br>
-              <p1panel>Usual time for dinner</p1panel> <input type="number" name="timedinner" id="timedinner" value="18" min="1" max="24" style="width:50px;color:black;float:right;"/><br><br>
-              <p1panel>Maximum time driving not stopping</p1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="4" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
+          <h3><button type="button" class="btn btn-primary btn-lg" onclick="myFunction()">Additional Filters</button></h3>
 
-              <br>
+          <div class="w3-panel w3-blue w3-card-4" style="width:500px;display:none;" id="additionalfilters">
+            <br>
+            <select class="selectpicker" multiple data-live-search="true" title="Place categories" data-selected-text-format="count > 2" data-size="4">
+                <option>Restaurant</option>
+                <option>Sinagoge</option>
+                <option>Hotel</option>
+                <option>Scenery</option>
+                <option>Night Club</option>
+                <option>Stadium</option>
+                <option>Spa</option>
+                <option>Parking</option>
+            </select>  
 
-              <!-- Creates radio buttons for private/public selection -->
-              <div id="maptogglePublicPrivate" align="center" style="float:center;"> <!-- TODO radio buttons passing to next page -->
-                <label class="grey"><input type="radio" name="toggle" id="privatetoggle"><span>Private</span></label>
-                <label class="blue"><input type="radio" name="toggle" id="publictoggle"><span>Public</span></label>
-              </div>
+            <br><br>
+
+            <p1panel>Number of hours to drive daily</p1panel>
+            <!-- Input form for additional filters -->
+            <input type="number" name="hoursdrivedaily" id="hoursdrivedaily" value="1" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Maximum number of days on the road</p1panel> <input type="number" name="maxdaysonroad" id="maxdaysonroad" value="2" min="1" max="99" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Usual time for lunch</p1panel> <input type="number" name="timelunch" id="timelunch" value="12" min="1" max="24" style="width:50px;color:black;float:right;"/><br> <br>
+            <p1panel>Usual time for dinner</p1panel> <input type="number" name="timedinner" id="timedinner" value="18" min="1" max="24" style="width:50px;color:black;float:right;"/><br><br>
+            <p1panel>Maximum time driving not stopping</p1panel> <input type="number" name="maxtimedrive" id="maxtimedrive" value="4" min="1" max="99" style="width:50px;color:black;float:right;"/> <br>
+
+            <br>
+
+            <!-- Creates radio buttons for private/public selection -->
+            <div id="maptogglePublicPrivate" align="center" style="float:center;"> <!-- TODO radio buttons passing to next page -->
+              <label class="grey"><input type="radio" name="toggle" id="privatetoggle"><span>Private</span></label>
+              <label class="blue"><input type="radio" name="toggle" id="publictoggle"><span>Public</span></label>
+            </div>
       </div>
  </body>
   
@@ -217,22 +215,7 @@ Google Places API v3
       this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
       // Listener calls autocomplete when inputing Destination
       this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-
-      // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-      // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-      // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
     }
-
-    // Sets a listener on a radio button to change the filter type on Places
-    // // Autocomplete.
-    // AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
-    //   var radioButton = document.getElementById(id);
-    //   var me = this;
-    //   radioButton.addEventListener('click', function() {
-    //     me.travelMode = mode;
-    //     me.route();
-    //   });
-    // };
 
     // Checks that place has been selected from options provided by autocomplete 
     AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
@@ -359,7 +342,7 @@ Navigation Bar Bootstrap
     </div>
 
 
-TODO
+Categories list, here for reference
 airport
 amusement_park
 aquarium

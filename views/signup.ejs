@@ -12,7 +12,7 @@ Joey Pupel
 signup.ejs is the page where users can sign up to HereNThere.
 The account will be registered in the database and a confirmation
 email will be sent to their email addresses. The passwords are 256-bit
-hashed (encryption).
+hashed (encryption)
 -->
 
 
@@ -22,6 +22,7 @@ hashed (encryption).
       We are just importing these libraries -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">  
+  
   <!-- Load Bootstrap required for page -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -73,7 +74,7 @@ hashed (encryption).
               <div class="form-group">
                 <small class="text-muted">By signing up, you agree to the <a href="/">Terms of Service</a>.</small>
               </div>
-              <!-- <div class="checkbox">
+              <!-- <div class="checkbox"> TODO - implement
                 <label><input type="checkbox" value="" checked>Remember me</label>
               </div> -->
               <button type="submit" class="btn btn-success btn-block" style="background:#214682;border-color:#fff"><span class="glyphicon glyphicon-off"></span>Signup</button>
@@ -85,7 +86,7 @@ hashed (encryption).
               <!-- References google authentication for sign in -->
               <a href="/auth/google" class="btn btn-google">Sign in with Google</a>
             </div>
-            <!-- <div class="modal-footer" style="color: black;">
+            <!-- <div class="modal-footer" style="color: black;"> TODO - implement
               <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
               <p>Already a member? <a class="btn btn-success btn-lg" style="background-color: #214682; border-color: #fff;"onclick="$('#signup-content').hide();$('#initial-content').show();">Login</a></p>
             </div> -->
@@ -97,3 +98,10 @@ hashed (encryption).
     </div>
   </body>
 </html>
+
+<!--
+=========================
+======  TODO    =========
+
+
+-->
