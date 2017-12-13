@@ -109,7 +109,7 @@ Google Places API v3
                 <% trips.forEach(function(trip) { %>
                     <tr>
                         <td><%= trip.RoadTripName %></td>
-                        <td><%= trip.RoadTripName %></td>
+                        <td><% tripstatistic.forEach(function(tripstatistic) { %> <%= tripstatistic.Stops %> <% }); %></td>
                         <td><%= trip.Duration %></td>
                         <td><%= trip.Distance %></td>
                         <td><%= trip.RoadTripName %></td>
