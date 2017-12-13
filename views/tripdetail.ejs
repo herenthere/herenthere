@@ -55,7 +55,7 @@ as a new trip.
                     so that the trip is displayed and the user can modify it.
                     A modified trip will be saved as a new one.
             -->
-            <h1 style="color: #FDFDFD">Washington Trip <a href="/map"><img src="../files/img/edit.png" alt="edit" height="50" width="50"></a></h1> 
+            <h1 style="color: #FDFDFD"><%= roadtripname %><a href="/map"><img src="../files/img/edit.png" alt="edit" height="50" width="50"></a></h1> 
 
         </div>
          
@@ -72,6 +72,15 @@ as a new trip.
                     <th>Distance from previous stop</th>                  
                     <th>Type</th>
                 </tr>
+                <% tripdetail.forEach(function(detail) { %>
+                    <tr>
+                        <td><%= detail.StartPoint %></td>
+                        <td><%= detail.EndPoint %></td>
+                        <td><%= detail.Duration %></td>
+                        <td><%= detail.Distance %></td>
+                        <td>Stop</td>
+                    </tr>
+                <% }); %>
                 <tr>
                     <td>Washington, DC</td>
                     <td>312 River Street...</td>

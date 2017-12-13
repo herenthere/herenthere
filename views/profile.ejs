@@ -83,7 +83,7 @@ Google Places API v3
                 </tr>
                 <% trips.forEach(function(trip) { %>
                 <tr>
-                    <td><a href="/tripdetail"><%= trip.RoadTripName %></a></td>
+                    <td><a href='/tripdetail?roadtripname=<%= trip.RoadTripName %>&roadtripid=<%= trip.RoadTripID %>'><%= trip.RoadTripName %></a></td>
                     <td><%= trip.Distance %></td>
                     <td><%= trip.Duration %></td>
                     <td><%= trip.StartLocation %></td>

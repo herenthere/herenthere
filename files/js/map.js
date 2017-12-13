@@ -204,17 +204,18 @@ function initMap() {
     //   anchorPoint: new google.maps.Point(0, -29)
     // });
 
-    /**
-    * @constructor
-    */
-    function AutocompleteDirectionsHandler(map) {
+/**
+* @constructor
+*/
+function AutocompleteDirectionsHandler(map) {
     var originInput = document.getElementById('origin-input');
     var destinationInput = document.getElementById('destination-input');
     var originInputPlaceId = document.getElementById('origin-input-placeid');
     var destinationInputPlaceId = document.getElementById('destination-input-placeid');
+    var scenicRadio = document.getElementById('switch_left');
     
     //add toggle button on map screen
-    this.scenic = true;
+    this.scenic = scenicRadio.checked;
 
     this.markerPlaces = [];
     this.markers = [];
@@ -259,10 +260,10 @@ function initMap() {
     this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
     
     this.updateWaypoints();
-    }
+}
 
-    AutocompleteDirectionsHandler.prototype.updateWaypoints = function(){
-    // console.log(document.getElementById(waypoints[0]));
+AutocompleteDirectionsHandler.prototype.updateWaypoints = function(){
+        // console.log(document.getElementById(waypoints[0]));
 
     var me = this;
 
@@ -277,7 +278,7 @@ function initMap() {
     for (x = 0; x < me.waypointsAutocomplete.length; x++){
         me.setupPlaceChangedListener(me.waypointsAutocomplete[x], x);
     }
-    }
+}
     // Sets a listener on a radio button to change the filter type on Places
     // Autocomplete.
     // AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
@@ -289,7 +290,7 @@ function initMap() {
     //   });
     // };
 
-    AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
     var me = this;
     // Bind the map's bounds (viewport) property to the autocomplete object,
     // so that the autocomplete requests use the current map bounds for the
@@ -317,46 +318,47 @@ function initMap() {
 
         me.route();
     });
-    };
+};
 
-    AutocompleteDirectionsHandler.prototype.route = function() {
-        if (!this.originPlaceId || !this.destinationPlaceId) {
-            // window.alert("Please select an origin and destination!")
-            return;
-        }
-        var me = this;
-
-        // console.log(this.waypointRoutes);
-
-        //Calling google.maps.DirectionsService.route method, passing a request: DirectionsRequest and callback: function(DirectionsResult, DirectionsStatus)
-        directionsServiceRoute(me, this.originPlaceId, this.destinationPlaceId, this.travelMode, this.waypointRoutes, this.scenic);
-    };
-
-    function directionsServiceRoute(me, originPlaceId, destinationPlaceId, travelMode, waypoints, scenic){
-        me.directionsService.route(
-            //DirectionsRequest Object
-            {
-                origin: {'placeId': originPlaceId},
-                destination: {'placeId': destinationPlaceId},
-                //Pass Waypoints
-                waypoints: waypoints,
-                travelMode: travelMode,
-                optimizeWaypoints: true,
-                avoidHighways: scenic,
-                avoidTolls: scenic
-            },
-            
-            function(response, status) {
-            if (status === 'OK') {            
-                // store
-                me.directionsDisplay.setDirections(response);
-                clearPOI(me);
-                showPOI(me, response);
-            } else {
-                window.alert('Directions request failed due to ' + status);
-            }
-        });
+AutocompleteDirectionsHandler.prototype.route = function() {
+    if (!this.originPlaceId || !this.destinationPlaceId) {
+        // window.alert("Please select an origin and destination!")
+        return;
     }
+    var me = this;
+
+    // console.log(this.waypointRoutes);
+
+    //Calling google.maps.DirectionsService.route method, passing a request: DirectionsRequest and callback: function(DirectionsResult, DirectionsStatus)
+    directionsServiceRoute(me, this.originPlaceId, this.destinationPlaceId, this.travelMode, this.waypointRoutes, this.scenic);
+};
+
+function directionsServiceRoute(me, originPlaceId, destinationPlaceId, travelMode, waypoints, scenic){
+    // console.log("SCENIC = " + scenic);
+    me.directionsService.route(
+        //DirectionsRequest Object
+        {
+            origin: {'placeId': originPlaceId},
+            destination: {'placeId': destinationPlaceId},
+            //Pass Waypoints
+            waypoints: waypoints,
+            travelMode: travelMode,
+            optimizeWaypoints: true,
+            avoidHighways: scenic,
+            avoidTolls: scenic
+        },
+        
+        function(response, status) {
+        if (status === 'OK') {            
+            // store
+            me.directionsDisplay.setDirections(response);
+            clearPOI(me);
+            showPOI(me, response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
 
 function clearPOI(me){
     removeMarkers(me);
@@ -387,9 +389,12 @@ function showPOI(me, directionsResult){
         
         for(var i = 0; i < steps.length; i++) {
             cumulative_length += steps[i].distance.value;
+            
+            cumulative_duration += steps[i].duration.value;
 
             //range TODO
             if(cumulative_length >= (nearbySearchRangeMeters * 2)){
+                if()
                 // console.log(steps[i].instructions);
                 // console.log(steps[i].end_location);
                 //nearby search start location

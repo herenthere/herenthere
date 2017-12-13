@@ -32,6 +32,14 @@ module.exports = function(sequelize, DataTypes) {
     Duration: {
       type: DataTypes.INTEGER(11),
       allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
   }, {
     tableName: 'TripDetail'
