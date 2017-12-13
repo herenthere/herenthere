@@ -566,3 +566,5 @@ function callback(results, status) {
         }
     }
 }
+
+// function addWaypoint()
