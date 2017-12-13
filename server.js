@@ -12,6 +12,7 @@ var dotenv = require('dotenv');
 var expressValidator = require('express-validator');
 var epilogue = require('epilogue');
 var ejs = require('ejs');
+var request = require('request');
 // var http = require('http');
 
 // Load environment variables from .env file
@@ -200,13 +201,40 @@ app.post('/home', function(req, res){
 //   var user = 0;
 //   res.render('profile.ejs', {user: user});
 // });
-app.get('/tripdetail', function(req, res){
+app.get('/tripdetail', getTripDetails, function(req, res){
   var user = 0;
+  var roadtripname = req.param('roadtripname');
+  console.log(req.param('roadtripid'));
   if(req.user){
     var user = 1;
   }
-  res.render('tripdetail.ejs', {user: user});
+  if(roadtripname == undefined){
+    roadtripname = "Washington Trip";
+  }
+
+  var tripdetail = [];
+  if(res.locals.tripdetail){
+      var tripdetail = res.locals.tripdetail;
+  }
+  console.log(tripdetail);
+
+  res.render('tripdetail.ejs', {user: user, roadtripname: roadtripname, tripdetail: tripdetail});
 });
+
+function getTripDetails(req, res, next) {
+  var url = req.protocol + '://' + req.get('host') + '/api/tripdetails?RoadtripID=' + req.param('roadtripid');
+  console.log(url);
+  // console.log(url);
+  request.get(url, function(error, r, body){
+      if (error) {
+          throw error;
+      }
+      res.locals.tripdetail = JSON.parse(body);
+      next();
+      // console.log(body);
+  });
+}
+
 app.post('/tripdetail', function(req, res){
   var user = 0;
   if(req.user){
