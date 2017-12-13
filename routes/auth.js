@@ -1,6 +1,7 @@
 var authController = require('../controllers/authcontroller.js');
+var request = require('request');
 
-module.exports = function(app, passport) {
+module.exports = function(app, passport, roadtripResource) {
     app.get('/signup', authController.signup);
     
     app.get('/signin', authController.login);
@@ -12,7 +13,7 @@ module.exports = function(app, passport) {
         }   
     ));
 
-    app.get('/profile', isLoggedIn, authController.profile);
+    app.get('/profile', isLoggedIn, getRoadTrips, authController.profile);
 
     app.post('/signin', passport.authenticate('local-signin', {
         successRedirect: '/profile',
@@ -21,13 +22,32 @@ module.exports = function(app, passport) {
         }
     ));
 
+    // app.get('/api/roadtrips', function(req, res){
+        
+    // })
+
     app.get('/logout', authController.logout);
 
     // Check if user is logged in
     function isLoggedIn(req, res, next) {
-        if (req.isAuthenticated())
+        if (req.isAuthenticated()){
             return next();
+        }
         res.redirect('/signin');
+    }
+
+    function getRoadTrips(req, res, next) {
+        var url = req.protocol + '://' + req.get('host') + '/api/roadtrips?userid=' + req.user.id;
+        console.log(url);
+        // console.log(url);
+        request.get(url, function(error, r, body){
+            if (error) {
+                throw error;
+            }
+            res.locals.user_roadtrips = JSON.parse(body);
+            next();
+            // console.log(body);
+        });
     }
 
     function loginPost(req, res) {

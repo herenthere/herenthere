@@ -12,6 +12,7 @@ var dotenv = require('dotenv');
 var expressValidator = require('express-validator');
 var epilogue = require('epilogue');
 var ejs = require('ejs');
+// var http = require('http');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -28,6 +29,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(function(req, res, next){
+  res.locals.user_roadtrips = [];
+  return next();
+});
 
 // express-validator and express-flash for error messages
 app.use(expressValidator());
@@ -79,7 +85,7 @@ var stopResource = epilogue.resource({
 })
 
 // Routes
-var authRoute = require('./routes/auth.js')(app, passport);
+var authRoute = require('./routes/auth.js')(app, passport, roadtripResource);
 
 // Passport strategies
 require('./config/passport.js')(passport, models.user);

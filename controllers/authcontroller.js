@@ -12,11 +12,21 @@ exports.login = function(req, res){;
 }
 
 exports.profile = function(req, res){
+
     var user = 0;
     if(req.user){
-      var user = 1;
+        var fullname = req.user.firstname + " " + req.user.lastname;
+        var user = 1;
     }
-    res.render('profile', {user: user});
+
+    var trips = [];
+    if(res.locals.user_roadtrips){
+        var trips = res.locals.user_roadtrips;
+    }
+
+    console.log(trips);
+
+    res.render('profile', {user: user, fullname: fullname, trips: trips});
 }
 
 exports.logout = function(req, res){

@@ -71,7 +71,7 @@ Google Places API v3
         <div class="headerprofile">
             <br>
             <img src="files/img/profile.jpg" alt="?" height="150" width="150" class="img-circle">
-            <h1 style="color: #214682">Timbille Kulendi</h1>
+            <h1 style="color: #214682"><%= fullname %></h1>
         </div>
          
         <!-- Container for users trips
@@ -113,6 +113,17 @@ Google Places API v3
                     <td><input type="text" class="rating rating-loading" value="2" data-size="xs" title=""></td>
                     <td><a href="/map"></a><img src="../files/img/edit.png" alt="edit" height="20" width="20"></a> <img src="../files/img/exit.png" alt="x" height="20" width="20"></td>
                 </tr>
+                <% trips.forEach(function(trip) { %>
+                    <tr>
+                        <td><%= trip.RoadTripName %></td>
+                        <td><%= trip.RoadTripName %></td>
+                        <td><%= trip.Duration %></td>
+                        <td><%= trip.Distance %></td>
+                        <td><%= trip.RoadTripName %></td>
+                        <td><%= trip.RoadTripName %></td>
+                        <td><a href="/map"></a><img src="../files/img/edit.png" alt="edit" height="20" width="20"></a> <img src="../files/img/exit.png" alt="x" height="20" width="20"></td>
+                    </tr>
+                <% }); %>
             </table>
             <script>
                     // Bootstrap Rating is a jQuery plugin that creates a rating control 
